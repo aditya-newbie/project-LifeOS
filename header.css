@@ -1,0 +1,70 @@
+header {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  height: 60px;
+  display: flex;
+  border: solid 1px black;
+  background-color: white;
+  z-index: 100;
+}
+
+.left-section { 
+  width: 200px;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 20px;
+  margin-left: 5px;
+  margin-top: 4.5px;
+}
+
+.middle-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  height: 25px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-width: 1px;
+  /*there is a default min width for search bar*/
+}
+
+.search-button {
+  height: 29px;
+  width: 40px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-width: 1px;
+}
+
+.search-icon {
+  height : 100%
+}
+
+.right-section {
+  width: 160px;
+  display: flex;
+}
+
+
+.profile {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 110px;
+}
+
+.profile-pic {
+  margin-top: 4px;
+  height: 30px;
+}
+
+.profile-text {
+  font-size: 12px;
+}
