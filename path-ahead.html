@@ -17,14 +17,14 @@
       <div class="middle-section">
         <input class="search-bar" type="text" placeholder="search">
         <button class="search-button">
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <svg class="search-icon size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         </svg>
         </button>
       </div>
       <div class="right-section">
         <div class="profile">
-           <svg class="profile-pic" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+           <svg class="profile-pic size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
         </svg>
 
@@ -38,35 +38,39 @@
     <main id="path-ahead">
       <h2 class="path-ahead-heading">Path Ahead</h2>
 
-      <div class="field-selecter">
-        <div class="field-container">
-          <a class="field" href="#career-roadmap">
-            💼 <br>
-            <br>
-            <br>
-            Career <br>
-            <br>
-            <span class="view Roadmap">
-              View Roadmap...
-            </span>
-          </a>
-        </div>
-        <div class="field-container">
-          <a class="field" href="#fitness-roadmap">
-            🏋️ <br>
-            <br>
-            <br>
-            Fitness <br>
-            <br>
-            <span class="view Roadmap">
-              View Roadmap...
-            </span>
-          </a>
-        </div>
-      </div>
+      <div class="field-selecter js-field-selector"></div>
 
+      <dialog class="add-field-popup js-add-field-popup">
+        <button class="back-popup-button js-back-popup-button">
+          <img style="width: 100%;" src="images/arrow-left.svg">
+        </button>
+        
+        <div class="popup-input-container" >
+         
+          <div class="fieldicon-input-container">
+             <label class="fieldicon-label" for="fieldicon-input">
+              Field <br>
+              icon
+            </label>
 
-      <div id="career-roadmap">
+            <svg class="fieldicon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            
+            <input class="fieldicon-input js-fieldicon-input" id="fieldicon-input" type="file" accept="image/png, image/svg+xml" aria-label="Upload field icon">
+
+            <p class="optional-label">
+              optional
+            </p>
+          </div>
+          
+          <label for="fieldname-input" class="fieldname-label">
+            Enter field name
+          </label>
+          <input class="fieldname-input js-fieldname-input" id="fieldname-input" placeholder="e.g: Finance">
+        </div>
+        <button class="add-field-button js-add-field-button">Add</button>
+      </dialog>
+
+      <div id="Career-roadmap">
         <h3 class="roadmap-heading">Career Roadmap</h3>
 
         <div class="career-roadmap">
@@ -93,7 +97,7 @@
               </div>
 
             </div>
-            <div class="stage-detail-wrapper">
+            <div class="stage-detail-wrapper" id="cr-stage-one-detail">
               <a class="stage-details" href="#cr-stage-one-detail">
                 View Details &rarr;
               </a>
@@ -172,7 +176,7 @@
         </div>
       </div>
       
-      <div id="fitness-roadmap">
+      <div id="Fitness-roadmap">
         <h3 class="roadmap-heading">Fitness Roadmap</h3>
 
         <div class="fitness-roadmap">
@@ -274,5 +278,8 @@
         </div>
       </div>
     </main>
+
+
+    <script type="module" src="script/path-ahead.js"></script>
   </body>
 </html>
