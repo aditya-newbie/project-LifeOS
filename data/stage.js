@@ -1,19 +1,16 @@
-let careerStages = [];
+export class StageCard {
+  name;
+  discription;
+  mileStone = {
+    mileStones = [],
+    completed = [],
+    workingOn = []
+  }
 
-class StageCard {
-  stageNo;
-  stageName;
-  stageDiscription;
-  stageMileStone;
-
-  constructor(number, name, discription, totalMileStone) {
-    this.stageNo = number;
-    this.stageName = name;
-    this.stageDiscription = discription;
-    this.stageMileStone = totalMileStone;
+  constructor(name, discription, mileStone) {
+    this.name = name;
+    this.discription = discription;
+    this.mileStone = mileStone;
   }
 }
 
-function createStage(name, discription, totalMileStone) {
-
-}
