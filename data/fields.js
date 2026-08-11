@@ -1,17 +1,18 @@
 export let fields = [];
 
 export class Field {
-  #iconPath;
+  #iconFakePath;
   name;
+  stages = [];
 
   constructor(fieldName, fieldIcon = '') {
     this.name = fieldName;
-    this.iconPath = fieldIcon
+    this.iconFakePath = fieldIcon
   }
 
   getIcon() {
-    if(this.iconPath) {
-      return URL.createObjectURL(this.iconPath);
+    if(this.iconFakePath) {
+      return URL.createObjectURL(this.iconFakePath);
     } else {return 'images/blank.png'};
   }
 }

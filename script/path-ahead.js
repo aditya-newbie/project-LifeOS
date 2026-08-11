@@ -1,10 +1,11 @@
 import {fields, Field} from "../data/fields.js"
 
-function renderFields() {
+function renderFieldsCards() {
   let fieldHTML = '';
   const addFieldPopup = document.querySelector('.js-add-field-popup')
 
   fields.forEach((field) => {
+    // learn createElement and improve it 
     fieldHTML += `
     <a class="field-container" href="#${field.name}-roadmap">
       <p class="field">
@@ -33,8 +34,6 @@ function renderFields() {
   attachAddFieldButtton();
 }
 
-
-
 function attachAddFieldButtton() {
   document.querySelector('.js-add-field-button')
     .addEventListener('click', () => {
@@ -42,10 +41,21 @@ function attachAddFieldButtton() {
       const fieldName = document.querySelector('.js-fieldname-input');
 
       fields.push(new Field(fieldName.value, fieldIcon.files[0])),
-      renderFields();
+      renderFieldsCards();
     });
 }
-  
 
-renderFields();
+function renderFieldsStages() {
+  let fieldsStagesHTML = ''
+
+  fields.forEach((field) => {
+    fieldsStagesHTML += `
+    <section class="stage-cards-section">
+      <h2>${field} Stages</h2>
+      
+    </section>`
+  })
+}
+
+renderFieldsCards();
 

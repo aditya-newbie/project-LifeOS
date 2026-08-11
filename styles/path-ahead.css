@@ -1,6 +1,11 @@
 body {
   font-family: arial;
   padding-top: 70px;
+  padding-bottom: 100rem;
+}
+
+p {
+  margin: 0;
 }
 
 .path-ahead-heading {
@@ -153,207 +158,132 @@ body {
   border: none;
 }
 
+.stage-card {
+  border: solid 1px;
 
-
-
-.roadmap-heading {
-  margin-top: 20rem;
-  font-size: 2.4rem;
+  height: 20rem;
+  width: 40rem;
+  border-radius: 1rem;
+  font-family: 'Inter'
 }
 
-.career-roadmap , .fitness-roadmap {
-  margin-top: 4rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+.stage-info {
+  margin-left: 2rem;
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 
-@media (max-width: 1100px) {
-  .career-roadmap , .fitness-roadmap {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1800px) {
-  .career-roadmap, .fitness-roadmap {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.stage-overview {
-  aspect-ratio: 4/3;
-  padding: 0.8rem 0.5rem 0.8rem 0.5rem;
-  border: groove 1px rgb(180, 180, 180);
-  border-radius: 1%;
-}
-
-.career-SO {
-  background-color: #3B82F6;
-  box-shadow: inset 0px 0px 10px rgba(135, 148, 170, 0.45);
-}
-
-.stage-n {
-  font-size: 1.4rem;
+.stage-number {
   font-weight: bold;
-  margin-bottom: 0.6rem
+  font-size: 0.75rem;
+  color: rgb(32, 114, 255);
+  margin-bottom: 1rem;
 }
 
 .stage-name {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  word-spacing: 0.3rem;
 }
 
-.stage-discription {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
+.stage-description {
+  font-size: 0.75rem;
+  color: rgb(100, 100, 100);
 }
 
 .stage-progress {
   position: relative;
+}
+
+.stage-progress-count {
+  border-radius: 0.6rem;
   display: inline-block;
-  width: 8rem;
-}
+  padding:  0.6rem;
+  background-color: rgb(241, 239, 255);
 
-.progress-count {
-  font-size: 1.2rem;
-  margin-bottom: 0.4rem;
-}
-
-.stage-progress .tooltip {
-  font-size: 14px;
   position: absolute;
-  top: -4rem;
-  right: -9rem;
-  line-height: 1.3rem;
-  background-color: rgba(0, 0, 0, 0.795);
-  color: white;
-  border: solid 2px rgb(192, 192, 192);
-  border-radius: 0.4rem;
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  padding: 0.6rem;
-  transition: opacity 0.15s;
-  pointer-events: none;
-}
- 
-.stage-progress:hover .tooltip {
-  opacity: 0.85;
+  top: -5.8rem;
+  right: 2rem;
 }
 
-.completed {
-  background-color: rgb(54, 255, 47);
-  padding: 0rem 0.17rem;
-  border-radius: 2px;
-}
-
-.working-on {
-  margin-left: -0.5px;
-  background-color: rgb(211, 181, 190);
-  padding: 0rem 0.25rem;
-  border-radius: 2px;
-}
-
-.not-started {
-  margin-left: -0.5px;
-  background-color: rgb(199, 196, 19);
-  padding: 0rem 0.25rem;
-  border-radius: 2px;
-}
-
-.progress-bar {
-  width: 110%;
-  height: 7px;
-  background: #e5e7eb;
-  border-radius: 999px;
-  border: groove 0.2px rgb(243, 243, 243);
-  overflow: hidden;
-  margin-bottom: 1.4rem;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, hsl(69, 100%, 57%), #61ff17);
-  transition: width 0.3s ease;
-}
-
-.stage-detail-wrapper {
-  position: relative;
-  width: 9rem;
-}
-
-.stage-details {
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-.stage-detail-wrapper .tooltip {
-  position: absolute;
-  top: -1.5rem;
-  right: -14rem;
-  width: 12.5rem;
-  background-color: rgba(0, 0, 0, 0.795);
-  color: white;
-  border: solid 2px rgb(192, 192, 192);
-  border-radius: 0.4rem;
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  padding: 0.6rem;
-  transition: opacity 0.15s;
-  pointer-events: none;
-}
-
-.stage-detail-wrapper:hover .tooltip {
-  opacity: 0.85;
-}
-
-.locked {
-  filter: grayscale(85%);
-  position: relative;
-}
-
-.lock {
-  text-align: center;
-  font-size: 2rem;
+.stage-progress-percent {
+  text-align:center;
   font-weight: bold;
-  position: absolute;
-  filter: grayscale(0%);
-  width: 30%;
-  top:42%;
-  right:39%;
+  color: rgb(32, 114, 255);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
 }
 
-.lock .tooltip {
-  position: absolute;
-  font-size: 0.8rem;
-  width: 100%;
-  top: -50%;
-  right:-85%;
-  background-color: rgba(0, 0, 0, 0.795);
+.stage-progress-label {
+  font-size: 0.65rem;
+}
+
+.stage-progress-meter {
+  height: 0.6rem;
+  border-radius: 999rem;
+  margin: 1rem;
+  background-color: rgb(228, 228, 228);
+  display: flex;
+  margin-top: 0rem;
+}
+
+.stage-completed {
+  border-top-left-radius: 999rem;
+  border-bottom-left-radius: 999rem;
+  background-color: rgb(30, 200, 0);
+  width: 60%;
+}
+
+.stage-in-progress {
+  width: 20%;
+  background-color: blue;
+  border-top-right-radius: 999rem;
+  border-bottom-right-radius: 999rem;
+}
+
+.stage-progress-value-tooltip {
+  font-size: 0.45rem;
   color: white;
-  border: solid 2px rgb(192, 192, 192);
-  border-radius: 0.4rem;
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.3);
+  margin-left: 0.6rem;
   opacity: 0;
-  padding: 0.6rem;
-  pointer-events: none;
+  transition: opacity 0.15s;
 }
 
-.lock:hover .tooltip {
+.stage-progress-meter:hover .stage-progress-value-tooltip {
   opacity: 1;
 }
 
-.fitness-SO {
-  background-color: #00ff9d;
-  box-shadow: inset 0px 0px 10px rgba(135, 170, 160, 0.45);
+.stage-milestone {
+  display: flex;
+  border: solid 1px;
+  margin: 0rem 1rem;
 }
 
-.stage-progress .tooltip-stage1-fit {
-  top: -2rem;
-  right: -12rem;
+.stage-milestone-preview {
+  display: flex;
+  height: 4rem;
+  flex: 1;
+  padding: 1rem;
 }
- 
-.cr-stage-one-detail {
-  margin-top: 20rem;
+
+.stage-milestone-preview + .stage-milestone-preview {
+  border-left: solid 1px gray;
+}
+
+.stage-milestone-color {
+  background-color: blue;
+  border: solid 1px gray;
+  border-radius: 999rem;
+  margin-top: 0.2rem;
+  height: 0.4rem;
+  width: 0.4rem;
+}
+
+.stage-milestone-name {
+  font-size: 0.7rem;
+}
+
+.stage-task-count {
+  font-size: 0.6rem;
 }

@@ -1,15 +1,11 @@
-export class StageCard {
+export class Stage {
   name;
-  discription;
-  mileStone = {
-    mileStones = [],
-    completed = [],
-    workingOn = []
-  }
+  description;
+  mileStone = {};
 
-  constructor(name, discription, mileStone) {
+  constructor(name, description, mileStone) {
     this.name = name;
-    this.discription = discription;
+    this.description = description;
     this.mileStone = mileStone;
   }
 }

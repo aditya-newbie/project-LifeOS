@@ -23,10 +23,3 @@
 
 }
 
-.section-break {
-  border: 0;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #242424, transparent);
-  margin: 3rem 0 2rem 0;
-}
-

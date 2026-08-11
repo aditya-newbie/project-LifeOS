@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" href="styles/path-ahead.css">
     <link rel="stylesheet" href="styles/header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   </head>
   <body>
@@ -70,212 +73,82 @@
         <button class="add-field-button js-add-field-button">Add</button>
       </dialog>
 
-      <div id="Career-roadmap">
-        <h3 class="roadmap-heading">Career Roadmap</h3>
-
-        <div class="career-roadmap">
-
-          <div class="career-SO stage-overview">
-            <div class="stage-n">Stage 1</div>
-            <div class="stage-name">Web Development Foundations</div>
-
-            <div class="stage-discription">Learn the fundamentals of web development.</div>
-
-            <div class="stage-progress"> 
-              <p class="progress-count">
-                Progress: 2 / 6
-              </p>
-              <p class="tooltip">
-                <span class="completed">&#10003;</span> HTML<br>
-                <span class="completed">&#10003;</span> CSS<br>
-                <span class="working-on">&#9675;</span> JavaScript<br>
-                <span class="not-started">&#9675;</span> Git &amp; GitHub<br>
-                <span class="not-started">&#9675;</span> Projects
-              </p>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 33.3%"></div>
-              </div>
-
-            </div>
-            <div class="stage-detail-wrapper" id="cr-stage-one-detail">
-              <a class="stage-details" href="#cr-stage-one-detail">
-                View Details &rarr;
-              </a>
-              <p class="tooltip"> 
-                Open the detailed roadmap <br>
-                for this stage.
-              </p>
-            </div>
-          </div>
-
-          <div class="career-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-              <span class="tooltip">
-                Complete previous stage and create your Stage 2 roadmap to unlock.
-              </span>
-            </p>
-            <div class="stage-n">Stage 2</div>
-            <div class="stage-name">Modern Frontend Development</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"></div>
-              
-          </div>
-
-          <div  class="career-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-                <span class="tooltip">
-                  Complete previous stage and create your Stage 3 roadmap to unlock.
-                </span>
-            </p>
-            <div class="stage-n">Stage 3</div>
-            <div class="stage-name">Backend Development</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"> </div>
-          </div>
-
-          <div  class="career-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-                <span class="tooltip">
-                  Complete previous stage and create your Stage 4 roadmap to unlock.
-                </span>
-            </p>
-            <div class="stage-n">Stage 4</div>
-            <div class="stage-name">Professional Development</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"> </div>
-          </div>
-
-          <div  class="career-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-                <span class="tooltip">
-                  Complete previous stage and create your Stage 5 roadmap to unlock.
-                </span>
-            </p>
-            <div class="stage-n">Stage 5</div>
-            <div class="stage-name">Specialization</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"> </div>
-          </div>
-
+      <div class="stage-card">
+        <div class="stage-info">
+          <p class="stage-number">STAGE 01</p>
+          <p class="stage-name">Web Development Foundations</p>
+          <p class="stage-description">Build the fundamental skills for web development.</p>
         </div>
-      </div>
-      
-      <div id="Fitness-roadmap">
-        <h3 class="roadmap-heading">Fitness Roadmap</h3>
+        
+        <div class="stage-progress">
+          <div class="stage-progress-count">
+            <p class="stage-progress-percent">68%</p>
+            <p class="stage-progress-label">Overall Progress</p>
+          </div>
 
-        <div class="fitness-roadmap">
-          <div class="fitness-SO stage-overview">
-            <div class="stage-n">Stage 1</div>
-            <div class="stage-name">Strength Foundation</div>
-
-            <div class="stage-discription">Build the strenght, muscle, and movement foundation required for advanced training.</div>
-
-            <div class="stage-progress"> 
-              <p class="progress-count">
-                Progress: 0 / 3
-              </p>
-              <p class="tooltip tooltip-stage1-fit">
-                <span class="not-started">&#9675;</span> Bench 50kgs x 15 reps<br>
-                <span class="not-started">&#9675;</span> Pull-ups +25 x 4-6 reps<br>
-                <span class="not-started">&#9675;</span> OHP 45kgs x 4 reps 
-              </p>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 0"></div>
-              </div>
-
+          <div class="stage-progress-meter">
+            <div class="stage-completed">
+              <p class="stage-progress-value-tooltip">Completed</p>
             </div>
-            <div class="stage-detail-wrapper">
-              <a class="stage-details" href="">
-                View Details &rarr;
-              </a>
-              <p class="tooltip"> 
-                Open the detailed roadmap <br>
-                for this stage.
-              </p>
+            <div class="stage-in-progress">
+              <p class="stage-progress-value-tooltip">In-progress</p>
             </div>
           </div>
+        </div>
 
-          <div class="fitness-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-              <span class="tooltip">
-                Complete previous stage and create your Stage 2 roadmap to unlock.
-              </span>
-            </p>
-            <div class="stage-n">Stage 2</div>
-            <div class="stage-name">Calisthenics Skill Foundation</div>
+        <div class="stage-milestone">
 
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"></div>
+          <div class="stage-milestone-preview">
+            <div class="stage-milestone-color"></div>
+            <div class="stage-milestone-info">
+              <p class="stage-milestone-name">HTML</p>
+              <p class="stage-task-count">8/10</p>
+            </div>
           </div>
-
-          <div class="fitness-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-              <span class="tooltip">
-                Complete previous stage and create your Stage 3 roadmap to unlock.
-              </span>
-            </p>
-            <div class="stage-n">Stage 3</div>
-            <div class="stage-name">Intermediate Strength Development</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"></div>
+          <div class="stage-milestone-preview">
+            <div class="stage-milestone-color"></div>
+            <div class="stage-milestone-info">
+              <p class="stage-milestone-name">CSS</p>
+              <p class="stage-task-count">8/10</p>
+            </div>
           </div>
-
-          <div class="fitness-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-              <span class="tooltip">
-                Complete previous stage and create your Stage 4 roadmap to unlock.
-              </span>
-            </p>
-            <div class="stage-n">Stage 4</div>
-            <div class="stage-name">Advanced Calisthenics Skills</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"></div>
+          <div class="stage-milestone-preview">
+            <div class="stage-milestone-color"></div>
+            <div class="stage-milestone-info">
+              <p class="stage-milestone-name">JAVA SCRIPT</p>
+              <p class="stage-task-count">8/10</p>
+            </div>
           </div>
-
-          <div class="fitness-SO stage-overview locked">
-            <p class="lock">
-              🔒<br>
-              Locked
-              <span class="tooltip">
-                Complete previous stage and create your Stage 5 roadmap to unlock.
-              </span>
-            </p>
-            <div class="stage-n">Stage 5</div>
-            <div class="stage-name">Strenght & Skill Mastery</div>
-
-            <div class="stage-discription"></div>
-
-            <div class="stage-progress"></div>
+          <div class="stage-milestone-preview">
+            <div class="stage-milestone-color"></div>
+            <div class="stage-milestone-info">
+              <p class="stage-milestone-name">PRACTICE</p>
+              <p class="stage-task-count">8/10</p>
+            </div>
+          </div>
+          <div class="stage-milestone-preview">
+            <div class="stage-milestone-color"></div>
+            <div class="stage-milestone-info">
+              <p class="stage-milestone-name">GIT & GITHUB</p>
+              <p class="stage-task-count">8/10</p>
+            </div>
+          </div>
+          <div class="stage-milestone-preview">
+            <div class="stage-milestone-color"></div>
+            <div class="stage-milestone-info">
+              <p class="stage-milestone-name">PROJECT</p>
+              <p class="stage-task-count">8/10</p>
+            </div>
           </div>
           
         </div>
+
+        <hr class="stage-hr">
+
+        <div class="stage-start-date"></div>
+        <div class="stage-task-status"></div>
+        <a class="stage-view-datails">View Details</a>
+
       </div>
     </main>
 
