@@ -159,12 +159,13 @@ p {
 }
 
 .stage-card {
-  border: solid 1px;
+  border:solid 2px rgb(238, 238, 238);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 
-  height: 20rem;
+  height: 19rem;
   width: 40rem;
   border-radius: 1rem;
-  font-family: 'Inter'
+  font-family: 'Inter';
 }
 
 .stage-info {
@@ -256,34 +257,101 @@ p {
 
 .stage-milestone {
   display: flex;
-  border: solid 1px;
   margin: 0rem 1rem;
 }
 
 .stage-milestone-preview {
+  padding-top: 0.3rem;
   display: flex;
   height: 4rem;
   flex: 1;
-  padding: 1rem;
 }
 
 .stage-milestone-preview + .stage-milestone-preview {
-  border-left: solid 1px gray;
+    position: relative;
+}
+
+.stage-milestone-preview + .stage-milestone-preview::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #ddd 15%,
+        #ddd 85%,
+        transparent
+    );
 }
 
 .stage-milestone-color {
+  margin-left: 1rem;
+  margin-right: 0.4rem;
+  margin-top: 0.2rem;
   background-color: blue;
   border: solid 1px gray;
   border-radius: 999rem;
-  margin-top: 0.2rem;
   height: 0.4rem;
   width: 0.4rem;
 }
 
+.stage-milestone-info {
+  display: grid;
+  grid-template-rows: 0.8fr 0.8fr 1fr;
+}
+
 .stage-milestone-name {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  white-space: nowrap;
+}
+
+.stage-task-percent {
+  font-size: 0.8rem;
 }
 
 .stage-task-count {
   font-size: 0.6rem;
+}
+
+.stage-card-footer {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 0.65fr;
+  padding: 0rem 1.4rem;
+}
+
+.stage-start-date , .stage-task-status {
+  display: flex;
+  align-items: center;
+}
+
+.stage-calender-icon, .stage-task-icon {
+  margin-top: 0.4rem;
+  height: 0.9rem;
+  width: 0.9rem;
+}
+
+.stage-start-date-text , .stage-task-status-text {
+  font-size: 0.65rem;
+  margin-top: 0.3rem;
+  margin-left: 0.4rem;
+}
+
+.stage-view-details {
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+  padding: 0.3rem 1rem;
+  padding-right: 0.5rem;
+  border-color: rgb(195, 195, 195);
+  border-radius: 0.5rem;
+}
+
+.stage-view-details-text {
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-right: 0.9rem;
 }

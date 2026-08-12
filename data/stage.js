@@ -2,11 +2,16 @@ export class Stage {
   name;
   description;
   mileStone = {};
+  status = 'current';
 
-  constructor(name, description, mileStone) {
+  constructor(name, description) {
     this.name = name;
     this.description = description;
-    this.mileStone = mileStone;
+  }
+
+  getStageNumber(index) {
+    const num = index + 1;
+    return String(num).padStart(2, '0');
   }
 }
 
