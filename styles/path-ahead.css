@@ -194,6 +194,20 @@ p {
   color: rgb(100, 100, 100);
 }
 
+.stage-empty-state-ui {
+  display: flex;
+  flex-direction: column;
+  height: 5.6rem;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 600;
+}
+
+.stage-add-milestone-anchor {
+  display: flex;
+}
+
+
 .stage-progress {
   position: relative;
 }
@@ -366,7 +380,7 @@ p {
 
 .stage-arrow-icon {
   padding-bottom: 0.2rem;
-  transform: scale(0.7)
+  transform: scale(0.7);
 }
 
 .stage-cards-section {

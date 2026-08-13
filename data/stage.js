@@ -1,7 +1,7 @@
 export class Stage {
   name;
   description;
-  mileStone = [];
+  milestones = [];
   completed = false;
   startedOn;
 

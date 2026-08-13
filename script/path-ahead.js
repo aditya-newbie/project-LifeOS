@@ -150,74 +150,7 @@ function renderStageCards(field) {
           <p class="stage-description">${stage.description}</p>
         </div>
         
-        <div class="stage-progress">
-          <div class="stage-progress-count">
-            <p class="stage-progress-percent">68%</p>
-            <p class="stage-progress-label">Overall Progress</p>
-          </div>
-
-          <div class="stage-progress-meter">
-            <div class="stage-completed">
-              <p class="stage-progress-value-tooltip">Completed</p>
-            </div>
-            <div class="stage-in-progress">
-              <p class="stage-progress-value-tooltip">In-progress</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage-milestone">
-
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">HTML</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">CSS</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">JavaScript</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">PRACTICE</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">Git & Github</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">PROJECT</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          
-        </div>
+        ${renderProgressNMilestones(stage)}
 
         <hr class="stage-hr">
 
@@ -247,74 +180,7 @@ function renderStageCards(field) {
           <p class="stage-description">${stage.description}</p>
         </div>
         
-        <div class="stage-progress">
-          <div class="stage-progress-count">
-            <p class="stage-progress-percent">68%</p>
-            <p class="stage-progress-label">Overall Progress</p>
-          </div>
-
-          <div class="stage-progress-meter">
-            <div class="stage-completed">
-              <p class="stage-progress-value-tooltip">Completed</p>
-            </div>
-            <div class="stage-in-progress">
-              <p class="stage-progress-value-tooltip">In-progress</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage-milestone">
-
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">HTML</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">CSS</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">JavaScript</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">PRACTICE</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">Git & Github</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">PROJECT</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          
-        </div>
+        ${renderProgressNMilestones(stage)}
 
         <hr class="stage-hr">
 
@@ -344,74 +210,7 @@ function renderStageCards(field) {
           <p class="stage-description">${stage.description}</p>
         </div>
         
-        <div class="stage-progress">
-          <div class="stage-progress-count">
-            <p class="stage-progress-percent">68%</p>
-            <p class="stage-progress-label">Overall Progress</p>
-          </div>
-
-          <div class="stage-progress-meter">
-            <div class="stage-completed">
-              <p class="stage-progress-value-tooltip">Completed</p>
-            </div>
-            <div class="stage-in-progress">
-              <p class="stage-progress-value-tooltip">In-progress</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="stage-milestone">
-
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">HTML</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">CSS</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">JavaScript</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">PRACTICE</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">Git & Github</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          <div class="stage-milestone-preview">
-            <div class="stage-milestone-color"></div>
-            <div class="stage-milestone-info">
-              <p class="stage-milestone-name">PROJECT</p>
-              <p class="stage-task-percent">80%</p>
-              <p class="stage-task-count">8/10</p>
-            </div>
-          </div>
-          
-        </div>
+        ${renderProgressNMilestones(stage)}
 
         <hr class="stage-hr">
 
@@ -449,6 +248,60 @@ function renderStageCards(field) {
     </div>`
 
   return stageCardsHTML;
+}
+
+function renderProgressNMilestones(stage) {
+  let milestonesHTML = '';
+  const emptyStateHTML = `
+    <div class="stage-empty-state-ui">
+      <p class="stage-empty-state-text">
+        No milestones added yet
+      </p>
+      <a class="stage-add-milestone-anchor">
+        <p class="stage-add-mileston-text">Add milestones</p>
+        <svg class="stage-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>`;
+
+  const progressHTML = `
+  <div class="stage-progress">
+    <div class="stage-progress-count">
+      <p class="stage-progress-percent">68%</p>
+      <p class="stage-progress-label">Overall Progress</p>
+    </div>
+
+    <div class="stage-progress-meter">
+      <div class="stage-completed">
+        <p class="stage-progress-value-tooltip">Completed</p>
+      </div>
+      <div class="stage-in-progress">
+        <p class="stage-progress-value-tooltip">In-progress</p>
+      </div>
+    </div>
+  </div>`;
+
+  stage.milestones.forEach(milestone => {
+    milestonesHTML += `
+    <div class="stage-milestone-preview">
+      <div class="stage-milestone-color"></div>
+      <div class="stage-milestone-info">
+        <p class="stage-milestone-name">PROJECT</p>
+        <p class="stage-task-percent">80%</p>
+        <p class="stage-task-count">8/10</p>
+      </div>
+    </div>`
+  })
+
+  const progressNMilestonesHTML = progressHTML + `
+  <div class="stage-milestone">
+    ${milestonesHTML};
+  </div>`
+
+  if (stage.milestone) {
+    return progressNMilestonesHTML;
+  } else {
+    return emptyStateHTML;
+  }
 }
 
 
