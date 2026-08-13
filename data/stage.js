@@ -1,12 +1,14 @@
 export class Stage {
   name;
   description;
-  mileStone = {};
-  status = 'current';
+  mileStone = [];
+  completed = false;
+  startedOn;
 
-  constructor(name, description) {
+  constructor(name, description, startedOn) {
     this.name = name;
     this.description = description;
+    this.startedOn = startedOn;
   }
 
   getStageNumber(index) {
@@ -15,3 +17,11 @@ export class Stage {
   }
 }
 
+export class MileStone {
+  name;
+  completed = false;
+
+  constructor(name) {
+    this.name = name;
+  }
+}

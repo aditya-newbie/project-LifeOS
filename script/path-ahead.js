@@ -1,7 +1,26 @@
-import {fields, Field} from "../data/fields.js"
+import {fields,addFieldsToStorage, Field} from "../data/fields.js"
 import {Stage} from "../data/stage.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"
 
-const addFieldPopup = document.querySelector('.js-add-field-popup')
+const addFieldButton = document.querySelector('.js-add-field-button');
+const addFieldPopup = document.querySelector('.js-add-field-popup');
+
+renderFieldsCards();
+renderFieldsStages();
+toggleStageContainer();
+
+addFieldButton.addEventListener('click', () => {
+  const fieldIcon = document.querySelector('.js-fieldicon-input');
+  const fieldName = document.querySelector('.js-fieldname-input');
+
+  fields.push(new Field(fieldName.value, fieldIcon.files[0]));
+  
+  addFieldPopup.close();
+  renderFieldsCards();
+  renderFieldsStages();
+  toggleStageContainer()
+  addFieldsToStorage();
+});
 
 function renderFieldsCards() {
   let fieldHTML = '';
@@ -23,65 +42,107 @@ function renderFieldsCards() {
 
   document.querySelector('.js-field-selector').innerHTML = fieldHTML;
 
+  attachAddFieldPopup();
+}
+
+function attachAddFieldPopup() {
   document.querySelector('.js-add-field')
       .addEventListener('click', () => {
         addFieldPopup.showModal();
-      })
+      });
 
   document.querySelector('.js-back-popup-button')
       .addEventListener('click', () => {
         addFieldPopup.close();
-      })
-  renderFieldsStages();
-}
-
-function attachAddFieldButton() {
-  const addFieldButton = document.querySelector('.js-add-field-button');
-  if (!addFieldButton) return;
-
-  addFieldButton.addEventListener('click', () => {
-    const fieldIcon = document.querySelector('.js-fieldicon-input');
-    const fieldName = document.querySelector('.js-fieldname-input');
-
-    fields.push(new Field(fieldName.value, fieldIcon.files[0]));
-    addFieldPopup.close();
-    console.log(fields);
-    renderFieldsCards();
-  });
+      });
 }
 
 function renderFieldsStages() {
   let fieldsStagesHTML = ''
 
   fields.forEach((field) => {
+    const cleanFieldName = field.name.replace(" ", "-")
     fieldsStagesHTML += `
     <div class="stage-cards-section js-stage-cards-section">
-        ${renderStageCards(field)}
+      <h2 class="roadmap-heading">${field.name} Roadmap</h2>
+      ${renderStageCards(field)}
       <div>
-        <input class="temporary-name-input" placeholder="Name">
-        <input class="temporary-description-input" placeholder="Description">
+        <input class="temporary-name-input-${cleanFieldName}" placeholder="Name">
+        <input class="temporary-description-input-${cleanFieldName}" placeholder="Description">
         <button class="add-stage-button" data-field-name="${field.name}">
           add
         </button>
-      <div>
+      </div>
     </div>`;
 
   })
-  console.log(fieldsStagesHTML);
   document.querySelector('.js-stage-cards-container').innerHTML = fieldsStagesHTML;
 
   attachAddStageButton();
 }
 
+function attachAddStageButton() {
+
+  document.querySelectorAll('.add-stage-button').forEach((button) => {
+    button.addEventListener('click', () => {
+
+      const fieldName = button.dataset.fieldName;
+      const cleanFieldName = fieldName.replace(" ", "-")
+
+      const name = document.querySelector(`.temporary-name-input-${cleanFieldName}`);
+      const description = document.querySelector(`.temporary-description-input-${cleanFieldName}`);
+
+      const today = dayjs()
+      const todayString = today.format('DD MMM YYYY')
+
+      let matchingField;
+
+      fields.forEach((field) => {
+        if(field.name === fieldName) {
+          matchingField = field;   
+        }
+      })
+
+      matchingField.stages.push( new Stage(name.value, description.value, todayString));
+
+      renderFieldsStages();
+      toggleStageContainer();
+      addFieldsToStorage();
+      
+    })
+  })
+}
+//               ^
+//fix this later.|
+
+function toggleStageContainer() {
+  const stageContainer = document.querySelectorAll('.js-stage-card-container');
+
+  
+  if (!stageContainer) {
+    return;
+  }
+
+  stageContainer.forEach(container => {
+    if (container.innerHTML.trim() === '') {
+    container.classList.add('empty')
+  } else {container.classList.remove('empty')}
+  })
+}
+
+  
+
 function renderStageCards(field) {
+
+  const currentStage = field.stages.find(stage => !stage.completed)
   let currentCardHTML = '';
   let completedCardsHTML = '';
   let upcomingCardsHTML = '';
 
   field.stages.forEach((stage, index) => {
-    if (stage.status === 'completed') {
+    if (stage.completed) {
       completedCardsHTML += `
-      <div class="stage-card">
+      <div class="stage-card completed-stage-card">
 
         <div class="stage-info">
           <p class="stage-number">STAGE ${stage.getStageNumber(index)}</p>
@@ -163,7 +224,7 @@ function renderStageCards(field) {
         <div class="stage-card-footer">
           <div class="stage-start-date">
             <svg class="stage-calender-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-            <p class="stage-start-date-text">Started 12 Jan 2025</p>
+            <p class="stage-start-date-text">Started ${stage.startedOn}</p>
           </div>
           <div class="stage-task-status">
             <svg class="stage-task-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
@@ -176,9 +237,9 @@ function renderStageCards(field) {
         </div>
 
       </div>`
-    } else if (stage.status === 'current'){
+    } else if (stage === currentStage){
       currentCardHTML += `
-      <div class="stage-card">
+      <div class="stage-card current-stage-card">
 
         <div class="stage-info">
           <p class="stage-number">STAGE ${stage.getStageNumber(index)}</p>
@@ -260,7 +321,7 @@ function renderStageCards(field) {
         <div class="stage-card-footer">
           <div class="stage-start-date">
             <svg class="stage-calender-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-            <p class="stage-start-date-text">Started 12 Jan 2025</p>
+            <p class="stage-start-date-text">Started ${stage.startedOn}</p>
           </div>
           <div class="stage-task-status">
             <svg class="stage-task-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
@@ -275,7 +336,7 @@ function renderStageCards(field) {
       </div>`
     } else {
       upcomingCardsHTML += `
-      <div class="stage-card">
+      <div class="stage-card upcoming-stage-card">
 
         <div class="stage-info">
           <p class="stage-number">STAGE ${stage.getStageNumber(index)}</p>
@@ -357,7 +418,7 @@ function renderStageCards(field) {
         <div class="stage-card-footer">
           <div class="stage-start-date">
             <svg class="stage-calender-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-            <p class="stage-start-date-text">Started 12 Jan 2025</p>
+            <p class="stage-start-date-text">Started ${stage.startedOn}</p>
           </div>
           <div class="stage-task-status">
             <svg class="stage-task-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
@@ -374,13 +435,16 @@ function renderStageCards(field) {
   })
 
   let stageCardsHTML = `
-    <div class="completed-stage-card">
+    <div class="stage-card-container completed-stage-card-container 
+    js-stage-card-container js-completed-stage-card-container">
       ${completedCardsHTML}
     </div>
-    <div class="current-stage-card">
+    <div class="stage-card-container current-stage-card-container 
+    js-stage-card-container js-current-stage-card-container" >
       ${currentCardHTML}
     </div>
-    <div class="upcoming-stage-card">
+    <div class="stage-card-container upcoming-stage-card-container 
+    js-stage-card-container js-upcoming-stage-card-container">
       ${upcomingCardsHTML}
     </div>`
 
@@ -388,31 +452,4 @@ function renderStageCards(field) {
 }
 
 
-                 
-function attachAddStageButton() {
-  document.querySelectorAll('.add-stage-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const fieldName = button.dataset.fieldName;
-      const name = document.querySelector('.temporary-name-input');
-      const description = document.querySelector('.temporary-description-input');
-      let matchingField;
-
-      fields.forEach((field) => {
-        if(field.name === fieldName) {
-          matchingField = field;
-        }
-      })
-
-      matchingField.stages.push( new Stage(name.value, description.value));
-      console.log(matchingField.stages);
-      renderFieldsCards();
-    })
-  })
-}
-//               ^
-//fix this later.|
-
-renderFieldsCards();
-attachAddFieldButton();
-renderFieldsStages();
 

@@ -1,7 +1,9 @@
+import { Stage } from "./stage.js";
+
 export let fields = [];
 
 export class Field {
-  #iconFakePath;
+  iconFakePath;
   name;
   stages = [];
 
@@ -16,4 +18,46 @@ export class Field {
     } else {return 'images/blank.png'};
   }
 }
+class FieldRemake {
+  iconFakePath;
+  name;
+  stages = [];
+
+  constructor(fieldName, fieldIcon , stages) {
+    this.name = fieldName;
+    this.iconFakePath = fieldIcon
+    this.stages = stages
+  }
+
+  getIcon() {
+    if(this.iconFakePath) {
+      return URL.createObjectURL(this.iconFakePath);
+    } else {return 'images/blank.png'};
+  }
+}
+
+export function addFieldsToStorage() {
+  localStorage.setItem('fields', JSON.stringify(fields, (key, value) => {
+    if (typeof value === 'function') return undefined;
+    return value;
+  }));
+}
+
+function loadFieldsFromStorage() {
+  const savedFields = JSON.parse(localStorage.getItem('fields')) || [];
+
+  fields = savedFields.map(fieldData => {
+    const stages = fieldData.stages.map((stageData) => {
+      return new Stage(stageData.name, stageData.description)
+    })
+
+    const field = new Field(fieldData.name, fieldData.iconFakePath);
+    field.stages = stages;
+    
+    return field;
+    
+  })
+}
+
+loadFieldsFromStorage();
 
