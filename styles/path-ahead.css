@@ -161,7 +161,7 @@ p {
 .stage-card {
   border:solid 2px rgb(238, 238, 238);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-
+  margin-top: 1.3rem;
   height: 19rem;
   width: 40rem;
   border-radius: 1rem;
@@ -387,12 +387,74 @@ p {
   display: flex;
   flex-direction: column;
   width: 50rem;
-  justify-self: center;
+  justify-self: left;
+  margin-top: 5rem;
+
+  position: relative;
 }
 
 .roadmap-heading {
   justify-self: left;
   text-decoration:underline;
+}
+
+.add-stage-popup-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 0.6rem; 
+  background-color: rgb(25, 117, 255);
+  border:solid 2px rgb(0, 86, 214);
+  border-radius: 0.4rem;
+  color: white;
+
+  position: absolute;
+  top: 0rem;
+  right: 5rem;
+}
+
+.add-stage-popup-button-icon {
+  transform: translateX(-0.2rem);
+}
+
+.add-stage-popup {
+  margin: 0;
+  border:solid 1px;
+  border-radius: 0.5rem;
+  background: white;
+  justify-self: center;
+  align-self: center;
+
+  position: fixed;
+}
+
+.add-stage-popup::backdrop {
+  background-color: rgba(128, 128, 128, 0.301);
+}
+
+.add-stage-popup-flexbox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  height: 9rem;
+  width: 18rem;
+}
+
+.add-stage-name {
+  height: 1.8rem;
+}
+
+.add-stage-description {
+  height: 3rem;
+  resize: none;
+}
+
+.add-stage-button {
+  height: 2rem;
+  background-color: rgb(223, 33, 96);
+  border: none;
+  color: white;
+  font-weight: bold;
 }
 
 .stage-card-container {
@@ -402,6 +464,22 @@ p {
 .stage-card-container.empty {
   height: 0rem;
 }
+
+.completed-stage-card-container:hover {
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.current-stage-card-container:hover {
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.upcoming-stage-card-container:hover {
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
 
 .completed-stage-card-container , .upcoming-stage-card-container {
   overflow-y: auto;

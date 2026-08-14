@@ -4,14 +4,28 @@ import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"
 
 const addFieldButton = document.querySelector('.js-add-field-button');
 const addFieldPopup = document.querySelector('.js-add-field-popup');
+const addStageButton = document.querySelector('.js-add-stage-button');
+const addStagePopup = document.querySelector('.js-add-stage-popup');
+let currentField;
 
 renderFieldsCards();
 renderFieldsStages();
 toggleStageContainer();
 
-addFieldButton.addEventListener('click', () => {
+addStagePopup.addEventListener('click' , (event) => {
+  if (event.target === addStagePopup) {
+    addStagePopup.close();
+  }
+})
+
+addFieldButton.addEventListener('click' , () => {
   const fieldIcon = document.querySelector('.js-fieldicon-input');
   const fieldName = document.querySelector('.js-fieldname-input');
+
+  if(!fieldName.value) {
+    alert('Enter field name');
+    return;
+  }
 
   fields.push(new Field(fieldName.value, fieldIcon.files[0]));
   
@@ -21,6 +35,29 @@ addFieldButton.addEventListener('click', () => {
   toggleStageContainer()
   addFieldsToStorage();
 });
+
+addStageButton.addEventListener('click' , () => {
+  const nameElement = document.querySelector('.js-add-stage-name');
+  const descriptionElement = document.querySelector('.js-add-stage-description');
+  const today = dayjs().format('DD MMM YYYY');
+
+  if(!nameElement.value) {
+    alert('Enter stage name');
+    return;
+  }
+
+  if(!descriptionElement.value) {
+    alert('Enter stage description');
+    return;
+  }
+
+      
+  currentField.stages.push( new Stage(nameElement.value, descriptionElement.value, today));
+  addStagePopup.close();
+  renderFieldsStages();
+  toggleStageContainer();
+  addFieldsToStorage();
+})
 
 function renderFieldsCards() {
   let fieldHTML = '';
@@ -48,6 +85,7 @@ function renderFieldsCards() {
 function attachAddFieldPopup() {
   document.querySelector('.js-add-field')
       .addEventListener('click', () => {
+        console.log('click')
         addFieldPopup.showModal();
       });
 
@@ -58,62 +96,46 @@ function attachAddFieldPopup() {
 }
 
 function renderFieldsStages() {
-  let fieldsStagesHTML = ''
+  let fieldsStagesHTML = '';
 
   fields.forEach((field) => {
     const cleanFieldName = field.name.replace(" ", "-")
     fieldsStagesHTML += `
     <div class="stage-cards-section js-stage-cards-section">
+
       <h2 class="roadmap-heading">${field.name} Roadmap</h2>
+
       ${renderStageCards(field)}
-      <div>
-        <input class="temporary-name-input-${cleanFieldName}" placeholder="Name">
-        <input class="temporary-description-input-${cleanFieldName}" placeholder="Description">
-        <button class="add-stage-button" data-field-name="${field.name}">
-          add
-        </button>
-      </div>
+
+      <button class="add-stage-popup-button js-add-stage-popup-button" data-field-name="${field.name}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus add-stage-popup-button-icon"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <p>Add Stage</p>
+      </button>
+
     </div>`;
 
   })
   document.querySelector('.js-stage-cards-container').innerHTML = fieldsStagesHTML;
 
-  attachAddStageButton();
+  attachAddStageButtons();
 }
 
-function attachAddStageButton() {
+function attachAddStageButtons() {
+  const addStagePopupButton = document.querySelectorAll('.js-add-stage-popup-button');
 
-  document.querySelectorAll('.add-stage-button').forEach((button) => {
-    button.addEventListener('click', () => {
-
+  addStagePopupButton.forEach(button => {
+    button.addEventListener('click' , () => {
       const fieldName = button.dataset.fieldName;
-      const cleanFieldName = fieldName.replace(" ", "-")
-
-      const name = document.querySelector(`.temporary-name-input-${cleanFieldName}`);
-      const description = document.querySelector(`.temporary-description-input-${cleanFieldName}`);
-
-      const today = dayjs()
-      const todayString = today.format('DD MMM YYYY')
-
-      let matchingField;
 
       fields.forEach((field) => {
         if(field.name === fieldName) {
-          matchingField = field;   
+          currentField = field;   
         }
+        addStagePopup.showModal();
       })
-
-      matchingField.stages.push( new Stage(name.value, description.value, todayString));
-
-      renderFieldsStages();
-      toggleStageContainer();
-      addFieldsToStorage();
-      
     })
   })
 }
-//               ^
-//fix this later.|
 
 function toggleStageContainer() {
   const stageContainer = document.querySelectorAll('.js-stage-card-container');
