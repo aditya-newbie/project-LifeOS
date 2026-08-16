@@ -1,11 +1,13 @@
 export class Stage {
+  id;
   name;
   description;
   milestones = [];
   completed = false;
   startedOn;
 
-  constructor(name, description, startedOn) {
+  constructor(id, name, description, startedOn) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.startedOn = startedOn;

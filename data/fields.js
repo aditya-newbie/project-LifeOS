@@ -48,14 +48,13 @@ function loadFieldsFromStorage() {
 
   fields = savedFields.map(fieldData => {
     const stages = fieldData.stages.map((stageData) => {
-      return new Stage(stageData.name, stageData.description)
+      return new Stage(stageData.id, stageData.name, stageData.description, stageData.startedOn)
     })
 
     const field = new Field(fieldData.name, fieldData.iconFakePath);
     field.stages = stages;
     
     return field;
-    
   })
 }
 

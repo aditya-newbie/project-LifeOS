@@ -1,0 +1,287 @@
+body {
+  font-family: arial;
+  padding: 1rem;
+  background-color: rgb(248, 246, 250);
+  padding-bottom: 100rem;
+}
+
+p {
+  margin: 0;
+}
+
+.stage-details {
+  display: flex;
+  column-gap: 2rem;
+
+  height: 14em;
+  width: 60rem;
+  padding: 2rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 0.6rem;
+  background-color: white;
+}
+
+.details-left-section {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.stage-icon-container {
+  height: 14rem;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.stage-icon-background {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 1rem;
+  background-color: rgb(229, 223, 255);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stage-icon-map {
+  transform: scale(2.2);
+  color: rgb(108, 45, 255);
+}
+
+.left-section-text {
+  height: 14rem;
+  width: 25rem;
+}
+
+.stage-number {
+  font-size: 1.1rem;
+  margin-top: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: rgb(0, 0, 201);
+}
+
+.stage-name {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1.7rem;
+}
+
+.stage-description {
+  color: rgb(39, 39, 39);
+}
+
+.stage-detail-devider-line {
+  transform: translateY(-1rem);
+  height: 15rem;
+  width: 0.7px;
+  background-color: rgb(201, 201, 201);
+  border: none;
+}
+
+.details-right-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  height: 14rem;
+  width: 20rem;
+}
+
+.milestone-count-container , .start-date-container {
+  height: 4.5rem;
+  width: 20rem;
+  display: flex;
+  padding: 1rem;
+  border: solid 0.7px rgb(201, 201, 201);
+  border-radius: 1rem;
+}
+
+.milestone-icon-background , .start-date-icon-background {
+  height: 4.5rem;
+  width: 4.5rem;
+  border-radius: 0.6rem;
+  background-color: rgb(229, 223, 255);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.flag-icon , .calender-icon {
+  transform: scale(1.5);
+  color: rgb(108, 45, 255);
+}
+
+.milestone-text , .start-date-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+}
+
+.milestone-count  {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.started-on {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.milestone-container {
+  margin-top: 1.8rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  background-color: white;
+  width: 62rem;
+  padding: 1rem;
+}
+
+.milestone-heading {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.milestone-heading-icon {
+  height: 0.8rem;
+  margin-right: 0.25rem;
+}
+
+.milestone-heading-text {
+  color: rgb(108, 45, 255);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.milestone-card {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.milestone-checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 5rem;
+  position: relative;
+  margin-top: 1.6rem;
+}
+
+#functional-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.milestone-checkbox {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border: solid 2.6px rgb(71, 71, 71);
+  border-radius: 50%;
+}
+
+.milestone-checkbox.in-progress {
+  border: solid 4.4px rgb(0, 53, 228);
+}
+
+.milestone-checkbox.completed {
+  background-color: rgb(0, 211, 0);
+  border: solid 4px rgb(0, 211, 0);
+} 
+
+.checkmark-icon {
+  transform: translate(-0.3rem , 0.1rem);
+  height: 0.8rem;
+  color: white;
+}
+
+.stage-card:not(:last-child) .milestone-checkbox::after{
+  content: "";
+  height: 7.87rem;
+  width: 0.125rem;
+  background: linear-gradient(rgb(241, 241, 241), rgb(159, 159, 159), rgb(241, 241, 241));
+  position: absolute;
+  transform: translate(0.4rem, 0.13rem);
+}
+
+.milestone-detials-and-step-cards-container {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgb(201, 201, 201);
+  border-radius: 0.4rem;
+}
+
+.milestone-details{
+  display: grid;
+  grid-template-columns: 6rem 46rem;
+  padding: 1.8rem;
+  margin-left: 1rem;
+  position: relative;
+}
+
+.milestone-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+}
+
+.milestone-description {
+  font-size: 1rem;
+  color: rgb(39, 39, 39);
+  margin-top: 1rem;
+}
+
+.extend-milestone {
+  background-color: white;
+  position: absolute;
+  right: 3rem;
+  top: 3.5rem;
+  border: none;
+}
+
+.steps-card {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgb(201, 201, 201);
+  border-radius: 0.4rem;
+  margin-left: 3rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.step {
+  display: flex;
+  padding: 1rem;
+}
+
+.step + .step {
+    position: relative;
+}
+
+.step + .step::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+
+    background: linear-gradient(
+        to left,
+        transparent,
+        #ddd 15%,
+        #ddd 85%,
+        transparent
+    );
+}
+
+.step-checkbox {
+  margin-right: 1rem;
+}

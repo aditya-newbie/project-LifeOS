@@ -201,6 +201,16 @@ p {
   align-items: center;
   justify-content: space-around;
   font-weight: 600;
+  border:dashed 1px gray;
+  border-radius: 1rem;
+  margin: 0rem 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: -0.3rem;
+}
+
+.stage-add-milestone-anchor {
+  text-decoration: none;
+  color: black;
 }
 
 .stage-add-milestone-anchor {
@@ -370,6 +380,7 @@ p {
   border-color: rgb(210, 210, 210);
   border-radius: 0.5rem;
   color: rgb(29, 29, 29);
+  text-decoration: none;
 }
 
 .stage-view-details-text {
@@ -459,6 +470,9 @@ p {
 
 .stage-card-container {
   height: 22rem;
+  transition: 
+  box-shadow 
+  0.15s;
 }
 
 .stage-card-container.empty {

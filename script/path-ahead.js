@@ -39,6 +39,7 @@ addFieldButton.addEventListener('click' , () => {
 addStageButton.addEventListener('click' , () => {
   const nameElement = document.querySelector('.js-add-stage-name');
   const descriptionElement = document.querySelector('.js-add-stage-description');
+  const id = crypto.randomUUID();
   const today = dayjs().format('DD MMM YYYY');
 
   if(!nameElement.value) {
@@ -52,7 +53,7 @@ addStageButton.addEventListener('click' , () => {
   }
 
       
-  currentField.stages.push( new Stage(nameElement.value, descriptionElement.value, today));
+  currentField.stages.push( new Stage(id, nameElement.value, descriptionElement.value, today));
   addStagePopup.close();
   renderFieldsStages();
   toggleStageContainer();
@@ -85,7 +86,6 @@ function renderFieldsCards() {
 function attachAddFieldPopup() {
   document.querySelector('.js-add-field')
       .addEventListener('click', () => {
-        console.log('click')
         addFieldPopup.showModal();
       });
 
@@ -185,7 +185,7 @@ function renderStageCards(field) {
             <svg class="stage-task-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
             <p class="stage-task-status-text">31 of 60 tasks completed</p>
           </div>
-          <a class="stage-view-details">
+          <a class="stage-view-details" href="roadmap.html?stageId=${stage.id}">
             <p class="stage-view-details-text">View Details</p>
             <svg class="stage-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -215,7 +215,7 @@ function renderStageCards(field) {
             <svg class="stage-task-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
             <p class="stage-task-status-text">31 of 60 tasks completed</p>
           </div>
-          <a class="stage-view-details">
+          <a class="stage-view-details" href="roadmap.html?stageId=${stage.id}">
             <p class="stage-view-details-text">View Details</p>
             <svg class="stage-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -245,7 +245,7 @@ function renderStageCards(field) {
             <svg class="stage-task-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check-icon lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
             <p class="stage-task-status-text">31 of 60 tasks completed</p>
           </div>
-          <a class="stage-view-details">
+          <a class="stage-view-details" href="roadmap.html?stageId=${stage.id}">
             <p class="stage-view-details-text">View Details</p>
             <svg class="stage-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -279,7 +279,7 @@ function renderProgressNMilestones(stage) {
       <p class="stage-empty-state-text">
         No milestones added yet
       </p>
-      <a class="stage-add-milestone-anchor">
+      <a class="stage-add-milestone-anchor" href="roadmap.html?stageId=${stage.id}">
         <p class="stage-add-mileston-text">Add milestones</p>
         <svg class="stage-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
