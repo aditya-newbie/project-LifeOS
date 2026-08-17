@@ -134,9 +134,8 @@ p {
 
 .milestone-container {
   margin-top: 1.8rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-  border-top-left-radius: 0.6rem;
-  border-top-right-radius: 0.6rem;
+  box-shadow: 0px -3px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 0.6rem;
   background-color: white;
   width: 62rem;
   padding: 1rem;
@@ -174,7 +173,7 @@ p {
   margin-top: 1.6rem;
 }
 
-#functional-checkbox {
+.milestone-functional-checkbox {
   position: absolute;
   opacity: 0;
 }
@@ -202,7 +201,7 @@ p {
   color: white;
 }
 
-.stage-card:not(:last-child) .milestone-checkbox::after{
+.milestone-card:not(:last-child) .milestone-checkbox::after{
   content: "";
   height: 7.87rem;
   width: 0.125rem;
@@ -282,6 +281,45 @@ p {
     );
 }
 
-.step-checkbox {
+.step-checkbox-container {
   margin-right: 1rem;
+  position: relative
+}
+
+.step-functional-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.step-functional-checkbox:checked + .step-checkbox {
+  background-color:rgb(0, 211, 0);
+}
+
+.step-checkbox {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border: solid 1px gray;
+  border-radius: 10%;
+}
+
+.step-text {
+  font-weight: bold;
+}
+
+.add-milestone-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-top: solid 1px rgb(201, 201, 201);
+  background-color: white;
+  padding-top: 1rem;
+  color: blue;
+}
+
+.add-milestone-text {
+  margin-left: 1rem;
+  transform: translateY(0.25rem);
+  font-weight: bold;
 }

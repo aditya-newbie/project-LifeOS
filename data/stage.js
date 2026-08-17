@@ -21,9 +21,11 @@ export class Stage {
 
 export class MileStone {
   name;
+  description;
   completed = false;
 
-  constructor(name) {
+  constructor(name, description) {
     this.name = name;
+    this.description = description;
   }
 }

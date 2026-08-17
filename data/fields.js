@@ -1,6 +1,30 @@
 import { Stage } from "./stage.js";
 
-export let fields = [];
+export let fields = [{
+  iconFakePath: '' , 
+  name: 'Fitness',
+  stages: [{
+    id: '46ccb8b7-4b6e-4071-9d80-cd63e589eb7c' , 
+    name: 'Basic Calisthenics skills' ,
+    description: 'learn fundamental skill of calistenics' ,
+    milestones: [{
+      name: 'Bench',
+      description: 'bench 45kgs X 15reps',
+      completed: false
+    }],
+    completed: false,
+    startedOn: '17 Aug 2026',
+    getStageNumber(index) {
+      const num = index + 1;
+      return String(num).padStart(2, '0');
+    }
+  }],
+  getIcon() {
+    if(this.iconFakePath) {
+      return URL.createObjectURL(this.iconFakePath);
+    } else {return 'images/blank.png'};
+  }
+}];
 
 export class Field {
   iconFakePath;
@@ -44,8 +68,7 @@ export function addFieldsToStorage() {
 }
 
 function loadFieldsFromStorage() {
-  const savedFields = JSON.parse(localStorage.getItem('fields')) || [];
-
+  const savedFields = JSON.parse(localStorage.getItem('fields')) || []
   fields = savedFields.map(fieldData => {
     const stages = fieldData.stages.map((stageData) => {
       return new Stage(stageData.id, stageData.name, stageData.description, stageData.startedOn)
@@ -58,5 +81,5 @@ function loadFieldsFromStorage() {
   })
 }
 
-loadFieldsFromStorage();
+//loadFieldsFromStorage();
 
