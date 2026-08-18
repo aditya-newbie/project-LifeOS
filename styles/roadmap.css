@@ -178,7 +178,7 @@ p {
   opacity: 0;
 }
 
-.milestone-checkbox {
+.milestone-visual-checkbox {
   display: inline-block;
   height: 1rem;
   width: 1rem;
@@ -186,11 +186,11 @@ p {
   border-radius: 50%;
 }
 
-.milestone-checkbox.in-progress {
+.milestone-visual-checkbox.in-progress {
   border: solid 4.4px rgb(0, 53, 228);
 }
 
-.milestone-checkbox.completed {
+.milestone-visual-checkbox.completed {
   background-color: rgb(0, 211, 0);
   border: solid 4px rgb(0, 211, 0);
 } 
@@ -201,7 +201,7 @@ p {
   color: white;
 }
 
-.milestone-card:not(:last-child) .milestone-checkbox::after{
+.milestone-card:not(:last-child) .milestone-visual-checkbox::after{
   content: "";
   height: 7.87rem;
   width: 0.125rem;
@@ -213,7 +213,7 @@ p {
 .milestone-detials-and-step-cards-container {
   display: flex;
   flex-direction: column;
-  border: solid 1px rgb(201, 201, 201);
+  border: solid 1px rgb(231, 231, 231);
   border-radius: 0.4rem;
 }
 
@@ -248,11 +248,14 @@ p {
 .steps-card {
   display: flex;
   flex-direction: column;
-  border: solid 1px rgb(201, 201, 201);
+  /*border: solid 1px rgb(231, 231, 231);
   border-radius: 0.4rem;
   margin-left: 3rem;
   margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;*/
+
+  height: 0;
+  overflow: hidden;
 }
 
 .step {
@@ -274,10 +277,10 @@ p {
 
     background: linear-gradient(
         to left,
-        transparent,
-        #ddd 15%,
-        #ddd 85%,
-        transparent
+        #fafafa,
+        #eeeded 30%,
+        #eeeded 70%,
+        #fafafa
     );
 }
 

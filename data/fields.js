@@ -8,9 +8,25 @@ export let fields = [{
     name: 'Basic Calisthenics skills' ,
     description: 'learn fundamental skill of calistenics' ,
     milestones: [{
-      name: 'Bench',
-      description: 'bench 45kgs X 15reps',
-      completed: false
+      id: 'testid1',
+      name: 'Html and Css',
+      description: 'Html and Css are tools to create website structure',
+      completed: false ,
+      steps: ['button', 'paragraph', 'img', 'inputs', 'grid and flexbox', 'position']
+    },
+    {
+      id: 'testid2',
+      name: 'JavaScript',
+      description: 'JavaScript makes website interactive',
+      completed: false ,
+      steps: ['string and numbers','variables', 'function', 'objects', 'array and loops', 'dom' ]
+    },
+    {
+      id: 'testid3',
+      name: 'Build LifeOS',
+      description: 'completed LifeOS make it interactive',
+      completed: false ,
+      steps: ['field cards', 'stage cards', 'roadmap']
     }],
     completed: false,
     startedOn: '17 Aug 2026',
