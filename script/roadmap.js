@@ -76,7 +76,7 @@ function renderMilestoneCards(milestones) {
               ${milestone.description}
             </p>
 
-            <button class="extend-milestone">
+            <button class="extend-milestone js-extend-milestone" data-milestone-id="${milestone.id}">
               <svg
                 class="extend-milestone-icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ function renderMilestoneCards(milestones) {
             </button>
           </div>
         </div>
-        <div class="steps-card">
+        <div class="steps-card js-steps-card-${milestone.id}">
           ${renderStepsCard(milestone.steps)}
         </div>
       </div>
@@ -109,13 +109,8 @@ function renderMilestoneCards(milestones) {
 
 function attachMilestoneCheckmark() {
   document.querySelectorAll('.js-milestone-functional-checkbox').forEach(trueCheckbox => {
-    let milestone;
     const milestoneId = trueCheckbox.dataset.milestoneId;
-    testMilestones.forEach(testMilestone => {
-      if (testMilestone.id === milestoneId) {
-        milestone = testMilestone;
-      }
-    })
+    const milestone = findMilestoneById(milestoneId);
 
     trueCheckbox.addEventListener('click' , () => {
       console.log('clicked');
@@ -140,13 +135,8 @@ function updateMilestoneCheckmarks() {
     visualCheckbox.classList.remove('completed');
     visualCheckbox.classList.remove('in-progress');
 
-    let milestone;
     const milestoneId = visualCheckbox.dataset.milestoneId;
-    testMilestones.forEach(testMilestone => {
-      if (testMilestone.id === milestoneId) {
-        milestone = testMilestone;
-      }
-    })
+    const milestone = findMilestoneById(milestoneId);
 
     console.log(milestone);
     const trueCheckbox = document.querySelector(`.js-milestone-functional-checkbox-${milestoneId}`);
@@ -166,14 +156,26 @@ function updateMilestoneCheckmarks() {
   })
 }
 
+function attachExtendMilestoneCard() {
+  document.querySelectorAll('.js-extend-milestone').forEach(extendButton => {
+    extendButton.addEventListener('click', () => {
+      const milestoneId = extendButton.dataset.milestoneId;
+      const stepsCard = document.querySelector(`.js-steps-card-${milestoneId}`);
+
+      stepsCard.classList.toggle('expanded');
+    })
+  })
+}
+
+attachExtendMilestoneCard();
+
 function renderStepsCard(steps) {
   let stepsHTML = '';
   steps.forEach((step) => {
     stepsHTML += `
     <div class="step">
-      <label class="step-checkbox-container" for="step-functional-checkbox-1">
-        <input type="checkbox" class="step-functional-checkbox js-step-functional-checkbox" id="step-functional-checkbox-1">
-        <span class="step-checkbox js-step-checkbox">
+      <div class="step-checkbox-container">
+        <div class="step-checkbox js-step-checkbox">
           <svg
             class="checkmark-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -189,10 +191,21 @@ function renderStepsCard(steps) {
             <path d="M 9 17 L 4 12" />
             <path d="M22.5 4 L9 17" />
           </svg>
-        </span>
-      </label>
+        </div>
+      </div>
       <p class="step-text">${step}</p>
     </div>`
   })
   return stepsHTML;
+}
+
+function findMilestoneById(id) {
+  let milestone;
+  testMilestones.forEach(testMilestone => {
+    if (testMilestone.id === id) {
+      milestone = testMilestone;
+    }
+  })
+
+  return milestone;
 }

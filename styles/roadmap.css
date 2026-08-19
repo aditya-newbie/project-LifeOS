@@ -248,14 +248,25 @@ p {
 .steps-card {
   display: flex;
   flex-direction: column;
-  /*border: solid 1px rgb(231, 231, 231);
-  border-radius: 0.4rem;
-  margin-left: 3rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;*/
 
   height: 0;
   overflow: hidden;
+  transition: height 0.3s cubic-bezier(0, 0.51, 0.58, 1)
+}
+
+.steps-card.expanded {
+  height: 18rem;
+  overflow: auto;
+
+  border: solid 1px rgb(231, 231, 231);
+  border-radius: 0.4rem;
+  margin-left: 3rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.steps-card::-webkit-scrollbar {
+  display: none;
 }
 
 .step {
@@ -289,12 +300,7 @@ p {
   position: relative
 }
 
-.step-functional-checkbox {
-  position: absolute;
-  opacity: 0;
-}
-
-.step-functional-checkbox:checked + .step-checkbox {
+.step-checkbox.completed {
   background-color:rgb(0, 211, 0);
 }
 
