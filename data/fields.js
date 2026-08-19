@@ -12,21 +12,36 @@ export let fields = [{
       name: 'Html and Css',
       description: 'Html and Css are tools to create website structure',
       completed: false ,
-      steps: ['button', 'paragraph', 'img', 'inputs', 'grid and flexbox', 'position']
-    },
-    {
-      id: 'testid2',
-      name: 'JavaScript',
-      description: 'JavaScript makes website interactive',
-      completed: false ,
-      steps: ['string and numbers','variables', 'function', 'objects', 'array and loops', 'dom' ]
-    },
-    {
-      id: 'testid3',
-      name: 'Build LifeOS',
-      description: 'completed LifeOS make it interactive',
-      completed: false ,
-      steps: ['field cards', 'stage cards', 'roadmap']
+      steps: [{
+        id: 'teststep0' ,
+        name: 'button' ,
+        completed: false ,
+      },
+      {
+        id: 'teststep1',
+        name: 'paragraph',
+        completed: false ,
+      },
+      {
+        id: 'teststep2',
+        name: 'img',
+        completed: false ,
+      },
+      {
+        id: 'teststep3',
+        name: 'inputs',
+        completed: false ,
+      },
+      {
+        id: 'teststep4',
+        name: 'grid and flexbox',
+        completed: false ,
+      },
+      {
+        id: 'teststep5',
+        name: 'position',
+        completed: false ,
+      }]
     }],
     completed: false,
     startedOn: '17 Aug 2026',
