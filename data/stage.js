@@ -2,15 +2,17 @@ export class Stage {
   id;
   name;
   description;
-  milestones = [];
-  completed = false;
+  milestones;
+  completed;
   startedOn;
 
-  constructor(id, name, description, startedOn) {
+  constructor(id, name, description, startedOn, milestones = [], completed = false) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.startedOn = startedOn;
+    this.milestones = milestones;
+    this.completed = completed
   }
 
   getStageNumber(index) {
@@ -30,5 +32,17 @@ export class MileStone {
     this.id = id;
     this.name = name;
     this.description = description;
+  }
+}
+
+export class Step {
+  id;
+  name;
+  completed;
+  saved = false;
+
+  constructor(id, name = '') {
+    this.id = id;
+    this.name = name;
   }
 }

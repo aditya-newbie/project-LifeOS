@@ -28,6 +28,7 @@ addFieldButton.addEventListener('click' , () => {
   }
 
   fields.push(new Field(fieldName.value, fieldIcon.files[0]));
+  fieldName.value = '';
   
   addFieldPopup.close();
   renderFieldsCards();
@@ -54,6 +55,8 @@ addStageButton.addEventListener('click' , () => {
 
       
   currentField.stages.push( new Stage(id, nameElement.value, descriptionElement.value, today));
+  nameElement.value = '';
+  descriptionElement.value = '';
   addStagePopup.close();
   renderFieldsStages();
   toggleStageContainer();
@@ -307,7 +310,7 @@ function renderProgressNMilestones(stage) {
     <div class="stage-milestone-preview">
       <div class="stage-milestone-color"></div>
       <div class="stage-milestone-info">
-        <p class="stage-milestone-name">PROJECT</p>
+        <p class="stage-milestone-name">${milestone.name}</p>
         <p class="stage-task-percent">80%</p>
         <p class="stage-task-count">8/10</p>
       </div>
@@ -316,13 +319,13 @@ function renderProgressNMilestones(stage) {
 
   const progressNMilestonesHTML = progressHTML + `
   <div class="stage-milestone">
-    ${milestonesHTML};
+    ${milestonesHTML}
   </div>`
-
-  if (stage.milestone) {
-    return progressNMilestonesHTML;
+  
+  if (stage.milestones.length === 0) {
+    return emptyStateHTML
   } else {
-    return emptyStateHTML;
+    return progressNMilestonesHTML;
   }
 }
 

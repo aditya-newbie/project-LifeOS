@@ -418,3 +418,45 @@ p {
   color: white;
   cursor: pointer;
 }
+
+.unsaved-step {
+  padding: 0
+}
+
+.step-name-input {
+  margin-left: 2.1rem;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 1rem;
+  height: 1rem;
+}
+
+.save-step-button {
+  margin-left: 28rem;
+  padding: 0.4rem 1rem;
+  font-weight: bold;
+  color: white;
+  border: solid 1px rgb(0, 81, 255);
+  border-radius: 999rem;
+  background-color: rgb(59, 121, 255);
+  cursor: pointer;
+  opacity: 0;
+  transition:
+  color 0.15s,
+  background-color 0.15s;
+}
+
+.save-step-button:active {
+  background-color: white;
+  color: rgb(59, 121, 255);
+}
+
+.unsaved-step:hover .save-step-button {
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+.step-name-input:focus + .save-step-button {
+  opacity: 1;
+}
