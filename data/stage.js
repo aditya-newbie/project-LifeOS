@@ -20,11 +20,14 @@ export class Stage {
 }
 
 export class MileStone {
+  id;
   name;
   description;
   completed = false;
+  steps = [];
 
-  constructor(name, description) {
+  constructor(id, name, description) {
+    this.id = id;
     this.name = name;
     this.description = description;
   }

@@ -94,10 +94,19 @@
         <div class="milestone-card-container js-milestone-card-container">
           
         </div>
-        <button class="add-milestone-button">
+        <button class="add-milestone-button js-add-milestone-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
           <p class="add-milestone-text">Add Milestone</p>
         </button>
+        <dialog class="add-milestone-popup js-add-milestone-popup">
+          <div class="add-milestone-flexbox">
+            <input class="milestone-name-input js-milestone-name-input" type="text" placeholder="Milestone Name">
+            <textarea class="milestone-description-input js-milestone-description-input" placeholder="Milestone Description"></textarea>
+            <div class="add-milestone-popup-button-container">
+              <button class="save-milestone-button js-save-milestone-button">Save Milestone</button>
+            </div>
+          </div>
+        </dialog>
       </section>
     </main>
 

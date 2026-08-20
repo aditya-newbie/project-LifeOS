@@ -1,4 +1,6 @@
 import {fields} from "../data/fields.js";
+import {MileStone} from "../data/stage.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 /*const param = new URLSearchParams(window.location.search);
 const stageId = param.get("stageId");
@@ -14,12 +16,26 @@ fields.forEach(field => {
 */
 
 const testMilestones = fields[0].stages[0].milestones
-
+const addMilestonePopup = document.querySelector('.js-add-milestone-popup')
 const milestoneCountElement = document.querySelector('.js-milestone-count')
 
 milestoneCountElement.textContent = testMilestones.length;
 
 renderMilestoneCards(testMilestones)
+
+document.querySelector('.js-add-milestone-button').addEventListener('click', () => {
+  addMilestonePopup.showModal();
+})
+
+document.querySelector('.js-save-milestone-button').addEventListener('click', () => {
+  const name = document.querySelector('.js-milestone-name-input').value;
+  const description = document.querySelector('.js-milestone-description-input').value;
+  const id = crypto.randomUUID();
+
+  testMilestones.push(new MileStone(id, name, description));
+  addMilestonePopup.close();
+  renderMilestoneCards(testMilestones);
+})
 
 function renderMilestoneCards(milestones) {
   let milestoneHTML = '';
