@@ -25,20 +25,22 @@ export class MileStone {
   id;
   name;
   description;
+  colorSet;
   completed = false;
   steps = [];
 
-  constructor(id, name, description) {
+  constructor(id, name, description, colorSet) {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.colorSet = colorSet;
   }
 }
 
 export class Step {
   id;
   name;
-  completed;
+  completed = false;
   saved = false;
 
   constructor(id, name = '') {

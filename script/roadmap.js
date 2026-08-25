@@ -1,6 +1,8 @@
 import {fields, addFieldsToStorage} from "../data/fields.js";
 import {MileStone , Step} from "../data/stage.js";
-import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import { getUniqueColor } from "./utils/colors.js";
+import { getMilestone, getStep } from "./utils/data-utils.js";
+import { capitalize } from "./utils/format.js";
 
 const param = new URLSearchParams(window.location.search);
 const stageId = param.get("stageId");
@@ -34,14 +36,25 @@ document.querySelector('.js-add-milestone-button').addEventListener('click', () 
 })
 
 document.querySelector('.js-save-milestone-button').addEventListener('click', () => {
-  const name = document.querySelector('.js-milestone-name-input').value;
-  const description = document.querySelector('.js-milestone-description-input').value;
+  const nameElement = document.querySelector('.js-milestone-name-input');
+  const name = capitalize(nameElement.value);
+  const descriptionElement = document.querySelector('.js-milestone-description-input');
+  const description = capitalize(descriptionElement.value);
   const id = crypto.randomUUID();
+  const colorSet = getUniqueColor(milestones);
 
-  milestones.push(new MileStone(id, name, description));
+  if (!name) {
+    nameElement.focus()
+    return;
+  }
+
+  milestones.push(new MileStone(id, name, description, colorSet));
   addMilestonePopup.close();
   addFieldsToStorage();
   renderMilestoneCards(milestones);
+
+  nameElement.value = '';
+  descriptionElement.value = '';
 })
 
 function renderMilestoneCards(milestones) {
@@ -135,14 +148,18 @@ function renderMilestoneCards(milestones) {
   attachMilestoneCheckmark();
   updateMilestoneCheckmarks();
   attachExpandMilestoneCard();
+
   attachAddStepButton();
   attachStepCheckbox();
+  updateStepCheckbox();
+  updateStepCard();
+
 }
 
 function attachMilestoneCheckmark() {
   document.querySelectorAll('.js-milestone-functional-checkbox').forEach(trueCheckbox => {
     const milestoneId = trueCheckbox.dataset.milestoneId;
-    const milestone = getMilestone(milestoneId);
+    const milestone = getMilestone(milestoneId, milestones);
 
     trueCheckbox.addEventListener('click' , () => {
       if (!milestone.completed) {
@@ -150,6 +167,7 @@ function attachMilestoneCheckmark() {
       } else{ milestone.completed = false;}
 
       updateMilestoneCheckmarks();
+      addFieldsToStorage();
     })
   })
 }
@@ -164,7 +182,7 @@ function updateMilestoneCheckmarks() {
     visualCheckbox.classList.remove('in-progress');
 
     const milestoneId = visualCheckbox.dataset.milestoneId;
-    const milestone = getMilestone(milestoneId);
+    const milestone = getMilestone(milestoneId, milestones);
 
     const trueCheckbox = document.querySelector(`.js-milestone-functional-checkbox-${milestoneId}`);
     trueCheckbox.disabled = false;
@@ -183,6 +201,8 @@ function updateMilestoneCheckmarks() {
 }
 
 function expandMilestoneCard(milestoneId) {
+
+
   const stepsCardContainer = document.querySelector(`.js-steps-card-container-${milestoneId}`);
   const visualCheckbox = document.querySelector(`.js-milestone-visual-checkbox-${milestoneId}`);
   const expandButton = document.querySelector(`.js-expand-milestone-${milestoneId}`);
@@ -197,6 +217,59 @@ function expandMilestoneCard(milestoneId) {
   stepsCardContainer.classList.toggle('expanded');
   visualCheckbox.classList.toggle('expanded');
   expandButton.classList.toggle('expanded')
+
+  updateExpandButton(milestoneId)
+}
+
+function updateExpandButton(milestoneId) {
+  const expandButton = document.querySelector(`.js-expand-milestone-${milestoneId}`);
+
+  if (expandButton.classList.contains('expanded')) {
+
+    expandButton.innerHTML = `
+    <svg
+      class="expand-milestone-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M12 9 L4 15" />
+      <path d="M20 15 L12 9" />
+    </svg>` 
+  } else {
+    expandButton.innerHTML = `
+    <svg
+      class="expand-milestone-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M12 15 L20 9" />
+      <path d="M4 9 L12 15" />
+    </svg>`
+  }
+}
+
+function expandCheckboxHeight(id) {
+  const milestone = getMilestone(id, milestones);
+  const stepsCount = milestone.steps.length;
+  const lineHeight = stepsCount * 3 + 9
+  const root = document.documentElement;
+
+
+  root.style.setProperty('--line-height', `${lineHeight}rem`)
 }
 
 function attachExpandMilestoneCard() {
@@ -206,70 +279,15 @@ function attachExpandMilestoneCard() {
       
       expandMilestoneCard(milestoneId);
       expandCheckboxHeight(milestoneId);
-      updateExpandButton();
     })
   })
-}
-
-function updateExpandButton() {
-  const expandedButton = document.querySelector('.js-expand-milestone.expanded');
-  const normalButton = document.querySelector('.js-expand-milestone');
-
-  normalButton.innerHTML = `
-  <svg
-    class="expand-milestone-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M12 15 L20 9" />
-    <path d="M4 9 L12 15" />
-  </svg>`
-
-
-  if (!expandedButton) {
-    return;
-  }
-
-  expandedButton.innerHTML = `
-  <svg
-    class="expand-milestone-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M12 9 L4 15" />
-    <path d="M20 15 L12 9" />
-  </svg>`
-}
-
-function expandCheckboxHeight(id) {
-  const milestone = getMilestone(id);
-  const stepsCount = milestone.steps.length;
-  const lineHeight = stepsCount * 3 + 9
-  const root = document.documentElement;
-
-
-  root.style.setProperty('--line-height', `${lineHeight}rem`)
 }
 
 function attachAddStepButton() {
   document.querySelectorAll('.js-add-step-button').forEach((button) => {
     button.addEventListener('click', () => {
       const milestoneId = button.dataset.milestoneId;
-      const milestone = getMilestone(milestoneId);
+      const milestone = getMilestone(milestoneId, milestones);
       const id = crypto.randomUUID();
       milestone.steps.push(new Step(id));
 
@@ -277,48 +295,57 @@ function attachAddStepButton() {
 
       expandMilestoneCard(milestoneId);
       expandCheckboxHeight(milestoneId);
-      updateExpandButton();
-      updateStepCard(milestone);
-      attachSaveStepButton(milestoneId)
     })
   })
 }
 
-function updateStepCard(milestone) {
-  milestone.steps.forEach(step => {
-    if (step.name) {
-      return;
-    }
+function updateStepCard() {
+  milestones.forEach(milestone => {
+    milestone.steps.forEach(step => {
+      if (step.name) {
+        return;
+      }
+  
+      const stepCard = document.querySelector(`.js-step-${step.id}`)
+      const unsavedStepHTML = `
+      <div class="unsaved-step">
+        <input class="step-name-input js-step-name-input-${step.id}" type="text" placeholder="Step name">
+        <button class="save-step-button js-save-step-button" data-step-id="${step.id}" data-milestone-id="${milestone.id}">
+          Save
+        </button>
+      </div>`
+  
+      stepCard.innerHTML = unsavedStepHTML;
+  
+      document.querySelector(`.js-step-name-input-${step.id}`).focus();
+      attachSaveStepButton();
+  })
 
-    const stepCard = document.querySelector(`.js-step-${step.id}`)
-    const unsavedStepHTML = `
-    <div class="unsaved-step">
-      <input class="step-name-input js-step-name-input-${step.id}" type="text" placeholder="Step name">
-      <button class="save-step-button js-save-step-button" data-step-id="${step.id}">
-        Save
-      </button>
-    </div>`
-
-    stepCard.innerHTML = unsavedStepHTML;
-
-    document.querySelector(`.js-step-name-input-${step.id}`).focus();
   })
 }
 
-function attachSaveStepButton(milestoneId) {
+function attachSaveStepButton() {
   document.querySelectorAll('.js-save-step-button').forEach(button => {
     button.addEventListener('click', () => {
       const stepId = button.dataset.stepId;
-      const step = getStep(stepId);
+      const step = getStep(stepId, milestones);
+      const milestoneId = button.dataset.milestoneId;
       const nameElement = document.querySelector(`.js-step-name-input-${stepId}`);
+
+      if (!nameElement.value.trim()) {
+        nameElement.focus();
+        return;
+      }
   
       step.name = nameElement.value;
-  
+      step.saved = true;
+
       renderMilestoneCards(milestones);
-      
+  
       expandMilestoneCard(milestoneId);
       expandCheckboxHeight(milestoneId);
-      updateExpandButton();
+      updateStepCard();
+
       addFieldsToStorage();
     })
   })
@@ -355,64 +382,28 @@ function renderStepsCard(steps) {
 function attachStepCheckbox() {
   document.querySelectorAll('.js-step-checkbox').forEach(checkbox => {
     const stepId = checkbox.dataset.stepId;
-    const step = getStep(stepId);
+    const step = getStep(stepId, milestones);
     
     checkbox.addEventListener('click' , () => {
       if (step.completed === false) {
         step.completed = true;
       } else{step.completed = false;}
 
-      checkbox.classList.toggle('completed')
-    })
-
-  })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//move this else where
-function getMilestone(id) {
-  let milestone;
-  milestones.forEach(milestn => {
-    if (milestn.id === id) {
-      milestone = milestn;
-    }
-  })
-
-  return milestone;
-}
-
-function getStep(id) {
-   let step;
-  milestones.forEach(milestone => {
-    milestone.steps.forEach(stp => {
-      if (stp.id === id) {
-        step = stp;
-      }
+      updateStepCheckbox();
+      addFieldsToStorage();
     })
   })
-  return step;
 }
+
+function updateStepCheckbox() {
+  document.querySelectorAll('.js-step-checkbox').forEach(checkbox => {
+    const stepId = checkbox.dataset.stepId;
+    const step = getStep(stepId, milestones);
+
+    if(step.completed) {
+      checkbox.classList.add('completed') 
+    } else {checkbox.classList.remove('completed')}
+  })
+}
+
+

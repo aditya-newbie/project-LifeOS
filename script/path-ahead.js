@@ -1,6 +1,8 @@
 import {fields,addFieldsToStorage, Field} from "../data/fields.js"
 import {Stage} from "../data/stage.js";
-import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"
+import { getMilestone, getStage } from "./utils/data-utils.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import { capitalize } from "./utils/format.js";
 
 const addFieldButton = document.querySelector('.js-add-field-button');
 const addFieldPopup = document.querySelector('.js-add-field-popup');
@@ -10,7 +12,7 @@ let currentField;
 
 renderFieldsCards();
 renderFieldsStages();
-toggleStageContainer();
+updateStageContainer();
 
 addStagePopup.addEventListener('click' , (event) => {
   if (event.target === addStagePopup) {
@@ -20,26 +22,29 @@ addStagePopup.addEventListener('click' , (event) => {
 
 addFieldButton.addEventListener('click' , () => {
   const fieldIcon = document.querySelector('.js-fieldicon-input');
-  const fieldName = document.querySelector('.js-fieldname-input');
+  const fieldNameElement = document.querySelector('.js-fieldname-input');
+  const fieldName = fieldNameElement.value.toUpperCase();
 
-  if(!fieldName.value) {
+  if(!fieldNameElement.value) {
     alert('Enter field name');
     return;
   }
 
-  fields.push(new Field(fieldName.value, fieldIcon.files[0]));
-  fieldName.value = '';
+  fields.push(new Field(fieldName, fieldIcon.files[0]));
+  fieldNameElement.value = '';
   
   addFieldPopup.close();
   renderFieldsCards();
   renderFieldsStages();
-  toggleStageContainer()
+  updateStageContainer()
   addFieldsToStorage();
 });
 
 addStageButton.addEventListener('click' , () => {
   const nameElement = document.querySelector('.js-add-stage-name');
+  const name = nameElement.value.toUpperCase();
   const descriptionElement = document.querySelector('.js-add-stage-description');
+  const description = capitalize(descriptionElement.value);
   const id = crypto.randomUUID();
   const today = dayjs().format('DD MMM YYYY');
 
@@ -54,12 +59,12 @@ addStageButton.addEventListener('click' , () => {
   }
 
       
-  currentField.stages.push( new Stage(id, nameElement.value, descriptionElement.value, today));
+  currentField.stages.push( new Stage(id, name, description, today));
   nameElement.value = '';
   descriptionElement.value = '';
   addStagePopup.close();
   renderFieldsStages();
-  toggleStageContainer();
+  updateStageContainer();
   addFieldsToStorage();
 })
 
@@ -106,7 +111,7 @@ function renderFieldsStages() {
     fieldsStagesHTML += `
     <div class="stage-cards-section js-stage-cards-section">
 
-      <h2 class="roadmap-heading">${field.name} Roadmap</h2>
+      <h2 class="roadmap-heading">${field.name} ROADMAP</h2>
 
       ${renderStageCards(field)}
 
@@ -118,9 +123,10 @@ function renderFieldsStages() {
     </div>`;
 
   })
-  document.querySelector('.js-stage-cards-container').innerHTML = fieldsStagesHTML;
+  document.querySelector('.js-field-stage-cards-container').insertAdjacentHTML('beforeend', fieldsStagesHTML);
 
   attachAddStageButtons();
+  addMilestoneColors(); 
 }
 
 function attachAddStageButtons() {
@@ -140,7 +146,7 @@ function attachAddStageButtons() {
   })
 }
 
-function toggleStageContainer() {
+function updateStageContainer() {
   const stageContainer = document.querySelectorAll('.js-stage-card-container');
 
   
@@ -308,7 +314,7 @@ function renderProgressNMilestones(stage) {
   stage.milestones.forEach(milestone => {
     milestonesHTML += `
     <div class="stage-milestone-preview">
-      <div class="stage-milestone-color"></div>
+      <div class="stage-milestone-color js-stage-milestone-color" data-stage-id="${stage.id}" data-milestone-id="${milestone.id}"></div>
       <div class="stage-milestone-info">
         <p class="stage-milestone-name">${milestone.name}</p>
         <p class="stage-task-percent">80%</p>
@@ -328,6 +334,18 @@ function renderProgressNMilestones(stage) {
     return progressNMilestonesHTML;
   }
 }
+
+function addMilestoneColors() {
+  document.querySelectorAll('.js-stage-milestone-color').forEach(container => {
+    const stageId = container.dataset.stageId;
+    const stage = getStage(stageId, fields)
+    const milestoneId = container.dataset.milestoneId;
+    const milestone = getMilestone(milestoneId, stage.milestones)
+
+    container.style.backgroundColor = milestone.colorSet.shade
+  })
+}
+
 
 
 
