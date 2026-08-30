@@ -8,11 +8,11 @@ const addFieldButton = document.querySelector('.js-add-field-button');
 const addFieldPopup = document.querySelector('.js-add-field-popup');
 const addStageButton = document.querySelector('.js-add-stage-button');
 const addStagePopup = document.querySelector('.js-add-stage-popup');
+const fieldStageContainer = document.querySelector('.js-field-stages-wrapper');
 let currentField;
 
 renderFieldsCards();
 renderFieldsStages();
-updateStageContainer();
 
 addStagePopup.addEventListener('click' , (event) => {
   if (event.target === addStagePopup) {
@@ -36,7 +36,6 @@ addFieldButton.addEventListener('click' , () => {
   addFieldPopup.close();
   renderFieldsCards();
   renderFieldsStages();
-  updateStageContainer()
   addFieldsToStorage();
 });
 
@@ -64,9 +63,24 @@ addStageButton.addEventListener('click' , () => {
   descriptionElement.value = '';
   addStagePopup.close();
   renderFieldsStages();
-  updateStageContainer();
   addFieldsToStorage();
 })
+
+document.querySelector('.js-field-left-button')
+    .addEventListener('click', () => {
+      fieldStageContainer.scrollBy({
+        left: -fieldStageContainer.clientWidth,
+        behavior: 'smooth'
+      })
+    })
+    
+document.querySelector('.js-field-right-button')
+    .addEventListener('click', () => {
+      fieldStageContainer.scrollBy({
+        left: fieldStageContainer.clientWidth,
+        behavior: 'smooth'
+      })
+    })
 
 function renderFieldsCards() {
   let fieldHTML = '';
@@ -109,7 +123,7 @@ function renderFieldsStages() {
   fields.forEach((field) => {
     const cleanFieldName = field.name.replace(" ", "-")
     fieldsStagesHTML += `
-    <div class="stage-cards-section js-stage-cards-section">
+    <div class="stage-cards-section js-stage-cards-section" id="${field.name}-roadmap">
 
       <h2 class="roadmap-heading">${field.name} ROADMAP</h2>
 
@@ -123,10 +137,13 @@ function renderFieldsStages() {
     </div>`;
 
   })
-  document.querySelector('.js-field-stage-cards-container').insertAdjacentHTML('beforeend', fieldsStagesHTML);
+  document.querySelector('.js-field-stages-wrapper').innerHTML = fieldsStagesHTML;
 
   attachAddStageButtons();
   addMilestoneColors(); 
+  attachStageMenu();
+  attachDeleteStage();
+  updateStageContainer();
 }
 
 function attachAddStageButtons() {
@@ -160,8 +177,6 @@ function updateStageContainer() {
   } else {container.classList.remove('empty')}
   })
 }
-
-  
 
 function renderStageCards(field) {
 
@@ -200,6 +215,20 @@ function renderStageCards(field) {
           </a>
         </div>
 
+        <button class="stage-menu-button js-stage-menu-button" data-stage-id="${stage.id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+        
+        <div class="stage-menu-popup js-stage-menu-popup-${stage.id}">
+
+          <button class="delete-stage-button js-delete-stage-button" data-stage-id="${stage.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="delete-stage-icon lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+            <p class="delete-stage-text">Delete</p>
+          </button>
+
+        </div>
+
       </div>`
     } else if (stage === currentStage){
       currentCardHTML += `
@@ -230,6 +259,20 @@ function renderStageCards(field) {
           </a>
         </div>
 
+        <button class="stage-menu-button js-stage-menu-button" data-stage-id="${stage.id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+        
+        <div class="stage-menu-popup js-stage-menu-popup-${stage.id}">
+    
+          <button class="delete-stage-button js-delete-stage-button" data-stage-id="${stage.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="delete-stage-icon lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+            <p class="delete-stage-text">Delete</p>
+          </button>
+
+        </div>
+
       </div>`
     } else {
       upcomingCardsHTML += `
@@ -258,6 +301,20 @@ function renderStageCards(field) {
             <p class="stage-view-details-text">View Details</p>
             <svg class="stage-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
+        </div>
+
+        <button class="stage-menu-button js-stage-menu-button" data-stage-id="${stage.id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+        
+        <div class="stage-menu-popup js-stage-menu-popup-${stage.id}">
+
+          <button class="delete-stage-button js-delete-stage-button" data-stage-id="${stage.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="delete-stage-icon lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+
+            <p class="delete-stage-text">Delete</p>
+          </button>
+
         </div>
 
       </div>`
@@ -343,6 +400,34 @@ function addMilestoneColors() {
     const milestone = getMilestone(milestoneId, stage.milestones)
 
     container.style.backgroundColor = milestone.colorSet.shade
+  })
+}
+
+function attachStageMenu() {
+  document.querySelectorAll('.js-stage-menu-button').forEach(button => {
+    const stageId = button.dataset.stageId;
+    const popup = document.querySelector(`.js-stage-menu-popup-${stageId}`);
+
+    button.addEventListener('click', () => {
+      popup.classList.toggle('open')
+    })
+  })
+}
+
+function attachDeleteStage() {
+  document.querySelectorAll('.js-delete-stage-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const stageId = button.dataset.stageId;
+      const stage = getStage(stageId, fields);
+  
+      fields.forEach(field => {
+        const newStages = field.stages.filter(stg => stage !== stg);
+        field.stages = newStages;
+      })
+  
+      renderFieldsStages();
+      addFieldsToStorage();
+    })
   })
 }
 

@@ -159,19 +159,22 @@ p {
 }
 
 .field-stage-cards-container {
+  position: relative;
+}
+
+.field-stages-wrapper {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   width: 100%;
-  position: relative;
 }
 
-.field-stage-cards-container::-webkit-scrollbar {
+.field-stages-wrapper::-webkit-scrollbar {
   display: none;
 }
 
 .field-right-button, .field-left-button {
-  position: fixed;
+  position: absolute;
   top: 50%;
 
   display: flex;
@@ -225,18 +228,21 @@ p {
 }
 
 .completed-stage-card-container:hover {
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  background-color: rgb(253, 253, 253);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
 }
 
 .current-stage-card-container:hover {
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  background-color: rgb(253, 253, 253);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
 }
 
 .upcoming-stage-card-container:hover {
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  background-color: rgb(253, 253, 253);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -262,6 +268,8 @@ p {
   width: 40rem;
   border-radius: 1rem;
   font-family: 'Inter';
+  background-color: white;
+  position: relative;
 }
 
 .stage-info {
@@ -287,6 +295,70 @@ p {
 .stage-description {
   font-size: 0.75rem;
   color: rgb(100, 100, 100);
+}
+
+.stage-menu-button {
+  position: absolute;
+  right: 0.3rem;
+  top: 1rem;
+
+  background: none;
+  border: none;
+}
+
+.stage-menu-popup {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.3rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: 
+  opacity 0.15s;
+
+  position: absolute;
+  right: 2.4rem;
+  top: 1rem;
+
+  z-index: 10;
+}
+
+.stage-menu-popup.open {
+  opacity: 1;
+}
+
+.add-milestone-button, .delete-stage-button {
+  display: none;
+  align-items: center;
+
+  padding: 0.5rem 1rem;
+  border:none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.stage-menu-popup.open .add-milestone-button, .stage-menu-popup.open .delete-stage-button {
+  display: flex;
+}
+
+.add-milestone-button {
+  color: rgb(16, 111, 255);
+}
+
+.add-milestone-icon{
+  margin-right: 0.5rem;
+  height: 2rem;
+}
+
+.delete-stage-button {
+  color: rgb(194, 0, 0)
+}
+
+.delete-stage-icon {
+  margin-right: 1rem;
+  height: 2rem;
 }
 
 .stage-empty-state-ui {
