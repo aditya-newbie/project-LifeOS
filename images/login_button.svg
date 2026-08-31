@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="480" viewBox="0 0 1600 480">
+  <defs>
+    <linearGradient id="purpleGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#C77CFF"/>
+      <stop offset="48%" stop-color="#9748F2"/>
+      <stop offset="100%" stop-color="#7430E8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded login button -->
+  <rect x="70" y="80" width="1460" height="320" rx="160"
+        fill="url(#purpleGradient)"/>
+
+  <!-- Login/enter icon -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="28"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M360 175 H475 Q515 175 515 215 V265"/>
+    <path d="M515 265 V305 Q515 345 475 345 H360"/>
+    <path d="M275 260 H435"/>
+    <path d="M385 210 L435 260 L385 310"/>
+  </g>
+
+  <!-- Divider -->
+  <line x1="650" y1="165" x2="650" y2="315"
+        stroke="#E8D8FF" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Login text -->
+  <text x="785" y="285"
+        fill="#FFFFFF"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="150"
+        font-weight="700"
+        letter-spacing="-4">Login</text>
+</svg>

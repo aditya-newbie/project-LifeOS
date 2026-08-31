@@ -1,70 +1,53 @@
 header {
   position: fixed;
-  top: 0px;
-  right: 0px;
-  left: 0px;
-  height: 60px;
-  display: flex;
-  border: solid 1px black;
+  top: 0rem;
+  left: 0rem;
+
+  display:grid;
+  grid-template-columns: 0.7fr 1.7fr 0.6fr;
+
+  height: 4.5rem;
+  width: 100%;
+  border-bottom: solid 2px rgb(190, 190, 190);
   background-color: white;
+
   z-index: 100;
 }
 
-.left-section { 
-  width: 200px;
-}
+.lifeos-logo-container {
+  height: 4.5rem;
+  margin-left: 4rem;
 
-.logo {
-  height: 50px;
-  margin-right: 20px;
-  margin-left: 5px;
-  margin-top: 4.5px;
-}
-
-.middle-section {
-  flex: 1;
   display: flex;
+  gap: 0.7rem;
   align-items: center;
 }
 
-.search-bar {
-  height: 25px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-width: 1px;
-  /*there is a default min width for search bar*/
+.lifeos-logo {
+  height: 60%;
 }
 
-.search-button {
-  height: 29px;
-  width: 40px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-width: 1px;
+.lifeos-logo-text {
+  font-size: 2rem;
 }
 
-.search-icon {
-  height : 100%
-}
-
-.right-section {
-  width: 160px;
+.header-middle-section {
   display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-
-.profile {
-  display: flex;
-  flex-direction: column;
-
-  margin-left: 110px;
+.header-anchor {
+  color: rgb(63, 63, 63);
+  text-decoration: none;
 }
 
-.profile-pic {
-  margin-top: 4px;
-  height: 30px;
+.header-right-section {
+  height: inherit
 }
 
-.profile-text {
-  font-size: 12px;
+.header-login {
+  margin-top: 1.2rem;
+  margin-left: 2rem;
+  height: 50%;
 }

@@ -123,7 +123,7 @@ function renderFieldsStages() {
   fields.forEach((field) => {
     const cleanFieldName = field.name.replace(" ", "-")
     fieldsStagesHTML += `
-    <div class="stage-cards-section js-stage-cards-section" id="${field.name}-roadmap">
+    <div class="stage-cards-section js-stage-cards-section-${cleanFieldName}" id="${field.name}-roadmap">
 
       <h2 class="roadmap-heading">${field.name} ROADMAP</h2>
 
@@ -139,6 +139,7 @@ function renderFieldsStages() {
   })
   document.querySelector('.js-field-stages-wrapper').innerHTML = fieldsStagesHTML;
 
+  updateEmptyField();
   attachAddStageButtons();
   addMilestoneColors(); 
   attachStageMenu();
@@ -390,6 +391,45 @@ function renderProgressNMilestones(stage) {
   } else {
     return progressNMilestonesHTML;
   }
+}
+
+function updateEmptyField() {
+
+  fields.forEach(field => {
+    const cleanFieldName = field.name.replace(" ", "-")
+    const emptyFieldContainer = document.querySelector(`.js-stage-cards-section-${cleanFieldName}`);
+
+    if (field.stages.length === 0) {
+      const emptyFieldHTML = `
+      <h2 class="roadmap-heading">${field.name} ROADMAP</h2>
+
+      <div class="field-empty-state">
+
+        <div class="stage-icon-background">
+          <img src="images/lifeos-path-nodes-icon.svg" class="stage-icon">
+        </div>
+      
+        <div class="field-empty-state-text">
+          <p class="no-stage-text">
+            No stages yet
+          </p>
+          <span class="field-empty-state-guide">
+            start building your roadmap <br>
+            by adding your first stage.
+          </span>
+        </div>
+
+        <button class="add-stage-button-empty-state js-add-stage-popup-button" data-field-name="${field.name}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          Add Stage
+        </button>
+
+      </div>`
+
+      emptyFieldContainer.innerHTML = emptyFieldHTML;
+
+    }
+  })
 }
 
 function addMilestoneColors() {

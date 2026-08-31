@@ -154,7 +154,7 @@ function renderMilestoneCards(milestones) {
           </div>
         </div>
         <div class="steps-card-container js-steps-card-container js-steps-card-container-${milestone.id}">
-          <div class="steps-card">
+          <div class="steps-card js-steps-card-${milestone.id}">
           ${renderStepsCard(milestone.steps)}
           </div>
         </div>
@@ -164,6 +164,7 @@ function renderMilestoneCards(milestones) {
   })
   document.querySelector('.js-milestone-card-container').innerHTML = milestoneHTML;
 
+  updateEmptyMilestone();
   attachMilestoneCheckmark();
   updateMilestoneCheckmarks();
   attachExpandMilestoneCard();
@@ -171,10 +172,47 @@ function renderMilestoneCards(milestones) {
   attachAddStepButton();
   attachDeleteMilestone();
 
+  updateEmptySteps();
   attachStepCheckbox();
   updateStepCheckbox();
   updateStepCard();
 
+}
+
+function updateEmptyMilestone() {
+  const emptyMilestoneHTML = `
+  <div class="empty-milestone-state">
+    <div class="milestone-icon-background-empty-state">
+      <svg
+        class="flag-icon-empty-state"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" />
+      </svg>
+    </div>
+
+    <div class="milestone-empty-state-text">
+      <p class="no-milestone-text">
+        No milestones yet
+      </p>
+      <span class="milestone-empty-state-guide">
+        Break down this stage by adding milestones. <br>
+        it helps you track progress better.
+      </span>
+    </div>
+  </div>`
+
+  if (stage.milestones.length === 0) {
+    document.querySelector('.js-milestone-card-container').innerHTML = emptyMilestoneHTML;
+  }
 }
 
 function attachMilestoneCheckmark() {
@@ -341,58 +379,7 @@ function attachDeleteMilestone() {
       stage.milestones = newMilestones;
       addFieldsToStorage();
       renderMilestoneCards(stage.milestones);
-    })
-  })
-}
-
-function updateStepCard() {
-  stage.milestones.forEach(milestone => {
-    milestone.steps.forEach(step => {
-      if (step.name) {
-        return;
-      }
-  
-      const stepCard = document.querySelector(`.js-step-${step.id}`)
-      const unsavedStepHTML = `
-      <div class="unsaved-step">
-        <input class="step-name-input js-step-name-input-${step.id}" type="text" placeholder="Step name">
-        <button class="save-step-button js-save-step-button" data-step-id="${step.id}" data-milestone-id="${milestone.id}">
-          Save
-        </button>
-      </div>`
-  
-      stepCard.innerHTML = unsavedStepHTML;
-  
-      document.querySelector(`.js-step-name-input-${step.id}`).focus();
-      attachSaveStepButton();
-  })
-
-  })
-}
-
-function attachSaveStepButton() {
-  document.querySelectorAll('.js-save-step-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const stepId = button.dataset.stepId;
-      const step = getStep(stepId, stage.milestones);
-      const milestoneId = button.dataset.milestoneId;
-      const nameElement = document.querySelector(`.js-step-name-input-${stepId}`);
-
-      if (!nameElement.value.trim()) {
-        nameElement.focus();
-        return;
-      }
-  
-      step.name = nameElement.value;
-      step.saved = true;
-
-      renderMilestoneCards(stage.milestones);
-  
-      expandMilestoneCard(milestoneId);
-      expandCheckboxHeight(milestoneId);
-      updateStepCard();
-
-      addFieldsToStorage();
+      updateMilestoneCount();
     })
   })
 }
@@ -423,6 +410,66 @@ function renderStepsCard(steps) {
     </div>`
   })
   return stepsHTML;
+}
+
+function updateEmptySteps() {
+  const emptyStepsCardHTML = `<p class="no-step-text">No steps yet</p>`
+  stage.milestones.forEach(milestone => {
+    if (milestone.steps.length === 0) {
+      document.querySelector(`.js-steps-card-${milestone.id}`).innerHTML = emptyStepsCardHTML;
+    }
+  })
+}
+
+function updateStepCard() {
+  stage.milestones.forEach(milestone => {
+    milestone.steps.forEach(step => {
+      if (step.name) {
+        return;
+      }
+  
+      const stepCard = document.querySelector(`.js-step-${step.id}`)
+      const unsavedStepHTML = `
+      <div class="unsaved-step">
+        <input class="step-name-input js-step-name-input-${step.id}" type="text" placeholder="Step name">
+        <button class="save-step-button js-save-step-button" data-step-id="${step.id}" data-milestone-id="${milestone.id}">
+          Save
+        </button>
+      </div>`
+  
+      stepCard.innerHTML = unsavedStepHTML;
+  
+      document.querySelector(`.js-step-name-input-${step.id}`).focus();
+      attachSaveStepButton();
+    })
+  })
+}
+
+function attachSaveStepButton() {
+  document.querySelectorAll('.js-save-step-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const stepId = button.dataset.stepId;
+      const step = getStep(stepId, stage.milestones);
+      const milestoneId = button.dataset.milestoneId;
+      const nameElement = document.querySelector(`.js-step-name-input-${stepId}`);
+
+      if (!nameElement.value.trim()) {
+        nameElement.focus();
+        return;
+      }
+  
+      step.name = nameElement.value;
+      step.saved = true;
+
+      renderMilestoneCards(stage.milestones);
+  
+      expandMilestoneCard(milestoneId);
+      expandCheckboxHeight(milestoneId);
+      updateStepCard();
+
+      addFieldsToStorage();
+    })
+  })
 }
 
 function attachStepCheckbox() {

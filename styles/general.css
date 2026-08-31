@@ -1,8 +1,7 @@
 body {
   font-family: arial;
-  padding-top: 4.375rem;
-  padding-left: 8rem;
-  padding-right: 0.625rem;
+  padding: 4.5rem 0.5rem;
+  background-color: rgb(248, 246, 250);
 }
 
 p {

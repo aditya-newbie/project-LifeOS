@@ -2,15 +2,8 @@
   --line-height: 7.87rem;
 }
 
-body {
-  font-family: arial;
-  padding: 1rem;
-  background-color: rgb(248, 246, 250);
-  padding-bottom: 100rem;
-}
-
-p {
-  margin: 0;
+body{
+  padding-top: 6.5rem;
 }
 
 .stage-details {
@@ -500,4 +493,50 @@ p {
 
 .step-name-input:focus + .save-step-button {
   opacity: 1;
+}
+
+.milestone-icon-background-empty-state {
+  background-color: rgb(229, 223, 255);
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  margin: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center
+}
+
+.flag-icon-empty-state {
+  color: rgb(108, 45, 255);
+}
+
+.milestone-empty-state-text {
+  justify-self: center;
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+.no-milestone-text {
+  color: rgb(61, 61, 61);
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.milestone-empty-state-guide {
+  font-weight: 100;
+  font-size: 1rem;
+  line-height: 1.7rem;
+  font-size: 1.2rem;
+  color: rgb(80, 80, 80)
+}
+
+.no-step-text {
+  font-weight: bold;
+  align-self: center;
+  margin: 1rem;
+  color: rgb(60, 60, 60);
 }

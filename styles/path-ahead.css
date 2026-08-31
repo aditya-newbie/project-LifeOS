@@ -1,13 +1,3 @@
-body {
-  font-family: arial;
-  padding-top: 70px;
-  padding-bottom: 100rem;
-}
-
-p {
-  margin: 0;
-}
-
 .path-ahead-heading {
   margin-top: 10rem;
   font-size: 3rem;
@@ -79,6 +69,7 @@ p {
   position: absolute;
   left: 0.5rem;
   top: 0.5rem;
+  cursor: pointer;
 }
 
 .popup-input-container {
@@ -156,6 +147,7 @@ p {
   padding: 0.6rem 8.8rem;
   background-color: rgb(255, 19, 70);
   border: none;
+  cursor: pointer;
 }
 
 .field-stage-cards-container {
@@ -188,6 +180,7 @@ p {
   border: none;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   z-index: 100;
+  cursor: pointer;
 }
 
 .field-left-button {
@@ -301,6 +294,7 @@ p {
   position: absolute;
   right: 0.3rem;
   top: 1rem;
+  cursor: pointer;
 
   background: none;
   border: none;
@@ -345,6 +339,7 @@ p {
 
 .add-milestone-button {
   color: rgb(16, 111, 255);
+  cursor: pointer;
 }
 
 .add-milestone-icon{
@@ -353,7 +348,8 @@ p {
 }
 
 .delete-stage-button {
-  color: rgb(194, 0, 0)
+  color: rgb(194, 0, 0);
+  cursor: pointer;
 }
 
 .delete-stage-icon {
@@ -583,6 +579,7 @@ p {
   border:solid 2px rgb(0, 86, 214);
   border-radius: 0.4rem;
   color: white;
+  cursor: pointer;
 
   position: absolute;
   top: 0;
@@ -631,5 +628,71 @@ p {
   border: none;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 }
 
+.field-empty-state {
+  height: 24rem;
+  width: 50rem;
+  justify-self: center;
+
+  border: solid 1px rgb(209, 209, 209);
+  border-radius: 1rem;
+  background-color: white;
+}
+
+.stage-icon-background {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  background-color: rgb(229, 223, 255);
+  margin-top: 2rem;
+  margin-bottom: 1.7rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.stage-icon {
+  width: 75%;
+  color: rgb(108, 45, 255);
+}
+
+.field-empty-state-text {
+  justify-self: center;
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+.no-stage-text {
+  color: rgb(61, 61, 61);
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+.field-empty-state-guide {
+  font-weight: 100;
+  font-size: 1rem;
+  line-height: 1.7rem;
+  font-size: 1.2rem;
+  color: rgb(80, 80, 80)
+}
+
+.add-stage-button-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+
+  color: rgb(108, 45, 255);
+  border: solid 2px rgb(108, 45, 255);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  background: none;
+  cursor: pointer;
+}

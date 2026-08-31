@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="lifeos-path-nodes-transparent.svg" inkscape:version="1.3 (vectorviewereditor)" width="600" height="600" viewBox="0 0 600 600">
+  <sodipodi:namedview id="namedview1" inkscape:cx="346.3663" inkscape:cy="312.2331" inkscape:zoom="0.4728" showguides="true" showpageshadow="true" showborder="true"/>
+  <g inkscape:groupmode="layer" inkscape:label="Layer 1" id="node-96203777">
+    <g id="node-ab940397" transform="matrix(1,0,0,1,0,1)" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none">
+      <path d="M142.867 471.431 L280.5 439" id="node-c0d7e417" sodipodi:nodetypes="cc" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+      <path d="M308.254 387.863 L264.01 294.347" id="node-d72b85e3" sodipodi:nodetypes="cc" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+      <path d="M276.86 225.819 L418 149" id="node-156fb893" sodipodi:nodetypes="cc" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+    </g>
+    <g id="node-b01ce0ac" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none">
+      <circle r="48" id="node-039cce68" transform="matrix(1,0,0,1,95,476)" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+      <circle r="48" id="node-32176431" transform="matrix(1,0,0,1,333,430)" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+      <circle r="48" id="node-bcb5536d" transform="matrix(1,0,0,1,238,255)" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+      <circle r="48" id="node-85a322e9" transform="matrix(1,0,0,1,466,126)" fill="none" stroke="rgb(108, 45, 255)" stroke-opacity="1" stroke-width="30" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" stroke-dasharray="none" marker-start="none" marker-mid="none" marker-end="none"/>
+    </g>
+  </g>
+</svg>

@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="styles/path-ahead.css">
     <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/general.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -14,28 +15,21 @@
   </head>
   <body>
     <header>
-      <a class="left-section" href="website.html">
-         <img class="logo" src="images/logo.png">
-      </a>
-      <div class="middle-section">
-        <input class="search-bar" type="text" placeholder="search">
-        <button class="search-button">
-        <svg class="search-icon size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-        </button>
-      </div>
-      <div class="right-section">
-        <div class="profile">
-           <svg class="profile-pic size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
-
-        <p class="profile-text">profile</p>
+      <div class="header-left-section">
+        <div class="lifeos-logo-container">
+          <img src="images/LifeOS-icon-only.svg" class="lifeos-logo">
+          <p class="lifeos-logo-text">LifeOS</p>
         </div>
       </div>
-      
 
+      <div class="header-middle-section">
+        <a class="header-anchor" href="index.html">Home</a>
+        <a class="header-anchor" href="path-ahead.html">Path Ahead</a>
+      </div>
+
+      <div class="header-right-section">
+        <img src="images/login_button.svg" class="header-login">
+      </div>
     </header>
 
     <main id="path-ahead">
