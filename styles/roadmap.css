@@ -16,6 +16,7 @@ body{
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   border-radius: 0.6rem;
   background-color: white;
+  position: relative;
 }
 
 .details-left-section {
@@ -71,11 +72,13 @@ body{
 }
 
 .stage-detail-devider-line {
-  transform: translateY(-1rem);
-  height: 15rem;
-  width: 0.7px;
-  background-color: rgb(201, 201, 201);
-  border: none;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  
+  transform: rotate(90deg);
+  border-color: rgb(255, 255, 255);
+  width: 15rem;
 }
 
 .details-right-section {

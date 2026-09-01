@@ -1,0 +1,15 @@
+@media (max-width: 600px) {
+  body {
+    padding: 3rem 0.2rem;
+  }
+
+  p {
+    margin: 0px;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 20px
+  }
+}
