@@ -1,4 +1,4 @@
-import {fields,addFieldsToStorage, Field} from "../data/fields.js"
+import {fields, saveToStorage, Field} from "../data/fields.js"
 import {Stage} from "../data/stage.js";
 import { getMilestone, getStage } from "./utils/data-utils.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
@@ -36,7 +36,7 @@ addFieldButton.addEventListener('click' , () => {
   addFieldPopup.close();
   renderFieldsCards();
   renderFieldsStages();
-  addFieldsToStorage();
+  saveToStorage();
 });
 
 addStageButton.addEventListener('click' , () => {
@@ -63,7 +63,7 @@ addStageButton.addEventListener('click' , () => {
   descriptionElement.value = '';
   addStagePopup.close();
   renderFieldsStages();
-  addFieldsToStorage();
+  saveToStorage();
 })
 
 document.querySelector('.js-field-left-button')
@@ -466,7 +466,7 @@ function attachDeleteStage() {
       })
   
       renderFieldsStages();
-      addFieldsToStorage();
+      saveToStorage();
     })
   })
 }

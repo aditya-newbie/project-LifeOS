@@ -1,4 +1,4 @@
-import {fields, addFieldsToStorage} from "../data/fields.js";
+import {fields, saveToStorage} from "../data/fields.js";
 import {MileStone , Step} from "../data/stage.js";
 import { getUniqueColor } from "./utils/colors.js";
 import { getMilestone, getStep } from "./utils/data-utils.js";
@@ -48,7 +48,7 @@ document.querySelector('.js-save-milestone-button').addEventListener('click', ()
 
   stage.milestones.push(new MileStone(id, name, description, colorSet));
   addMilestonePopup.close();
-  addFieldsToStorage();
+  saveToStorage();
   renderMilestoneCards(stage.milestones);
   updateMilestoneCount();
   
@@ -69,23 +69,7 @@ function renderMilestoneCards(milestones) {
     <div class="milestone-card">
       <label class="milestone-checkbox-container" for="milestone-functional-checkbox-${index}">
         <input type="checkbox" class="milestone-functional-checkbox js-milestone-functional-checkbox js-milestone-functional-checkbox-${milestone.id}" id="milestone-functional-checkbox-${index}" data-milestone-id="${milestone.id}">
-        <span class="milestone-visual-checkbox js-milestone-visual-checkbox js-milestone-visual-checkbox-${milestone.id}" data-milestone-id="${milestone.id}">
-          <svg
-            class="checkmark-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="4"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M 9 17 L 4 12" />
-            <path d="M22.5 4 L9 17" />
-          </svg>
-        </span>
+        <span class="milestone-visual-checkbox js-milestone-visual-checkbox js-milestone-visual-checkbox-${milestone.id}" data-milestone-id="${milestone.id}"></span>
       </label>
       <div class="milestone-detials-and-step-cards-container">
         <div class="milestone-details">
@@ -134,10 +118,10 @@ function renderMilestoneCards(milestones) {
             </button>
             
             <button class="milestone-menu-button js-milestone-menu-button" data-milestone-id="${milestone.id}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="milestone-three-dot lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
             </button>
             
-            <div class="milestone-menu-popup js-milestone-menu-popup-${milestone.id}">
+            <div class="milestone-menu-popup  js-milestone-menu-popup js-milestone-menu-popup-${milestone.id}">
             
               <button class="add-step-button js-add-step-button" data-milestone-id="${milestone.id}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="add-step-icon lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
@@ -226,7 +210,7 @@ function attachMilestoneCheckmark() {
       } else{ milestone.completed = false;}
 
       updateMilestoneCheckmarks();
-      addFieldsToStorage();
+      saveToStorage();
     })
   })
 }
@@ -249,12 +233,34 @@ function updateMilestoneCheckmarks() {
     if (milestone.completed) {
       visualCheckbox.classList.add('completed')
 
+      visualCheckbox.innerHTML = `
+      <svg
+        class="checkmark-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M 9 17 L 4 12" />
+        <path d="M22.5 4 L9 17" />
+      </svg>`
+
       if (milestone !== lastCompletedMilestone) {
         trueCheckbox.disabled = true;
       }
+
     } else if ( milestone === currentMilestone) {
-      visualCheckbox.classList.add('in-progress')
-    } else {trueCheckbox.disabled = true;}
+      visualCheckbox.classList.add('in-progress');
+      visualCheckbox.innerHTML = '';
+    } else {
+      trueCheckbox.disabled = true;
+      visualCheckbox.innerHTML = '';
+    }
 
   })
 }
@@ -324,7 +330,7 @@ function updateExpandButton(milestoneId) {
 function expandCheckboxHeight(id) {
   const milestone = getMilestone(id, stage.milestones);
   const stepsCount = milestone.steps.length;
-  const lineHeight = stepsCount * 3 + 9
+  const lineHeight = stepsCount === 0 ? 12 : stepsCount * 3 + 9
   const root = document.documentElement;
 
 
@@ -343,14 +349,27 @@ function attachExpandMilestoneCard() {
 }
 
 function attachMilestoneMenu() {
-  document.querySelectorAll('.js-milestone-menu-button').forEach(button => {
-    const milestoneId = button.dataset.milestoneId;
-    const popup = document.querySelector(`.js-milestone-menu-popup-${milestoneId}`);
+  const buttons = document.querySelectorAll('.js-milestone-menu-button');
+  const popups = document.querySelectorAll('.js-milestone-menu-popup');
 
+  buttons.forEach(button => {
+    const milestoneId = button.dataset.milestoneId;
+    const thisPopup  = document.querySelector(`.js-milestone-menu-popup-${milestoneId}`);
+    
     button.addEventListener('click', () => {
-      popup.classList.toggle('open')
+      console.log(thisPopup);
+      thisPopup.classList.toggle('open')
     })
   })
+
+  document.body.addEventListener('click', (event) => {
+    const close = ![...popups].some(popup => popup.contains(event.target)) && ![...buttons].some(button => button.contains(event.target));
+
+    if (close) {
+      [...popups].forEach(popup => popup.classList.remove('open'));
+    }
+  })
+
 }
 
 function attachAddStepButton() {
@@ -377,7 +396,7 @@ function attachDeleteMilestone() {
     button.addEventListener('click', () => {
       const newMilestones  = stage.milestones.filter(milestn => milestn !== milestone)
       stage.milestones = newMilestones;
-      addFieldsToStorage();
+      saveToStorage();
       renderMilestoneCards(stage.milestones);
       updateMilestoneCount();
     })
@@ -467,7 +486,7 @@ function attachSaveStepButton() {
       expandCheckboxHeight(milestoneId);
       updateStepCard();
 
-      addFieldsToStorage();
+      saveToStorage();
     })
   })
 }
@@ -483,7 +502,7 @@ function attachStepCheckbox() {
       } else{step.completed = false;}
 
       updateStepCheckbox();
-      addFieldsToStorage();
+      saveToStorage();
     })
   })
 }

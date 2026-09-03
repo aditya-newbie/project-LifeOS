@@ -208,7 +208,7 @@ body{
   width: 0.125rem;
   background: linear-gradient(rgb(241, 241, 241), rgb(159, 159, 159), rgb(241, 241, 241));
   position: absolute;
-  transform: translate(0.4rem, 0.13rem);
+  transform: translate(0.4rem, 1.3rem);
   transition: height 0.3s cubic-bezier(0, 0.51, 0.58, 1);
 }
 
@@ -390,10 +390,10 @@ body{
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   border: none;
   border-top: solid 1px rgb(201, 201, 201);
   background-color: white;
-  padding-top: 1rem;
   color: blue;
 }
 
@@ -457,7 +457,12 @@ body{
 }
 
 .unsaved-step {
-  padding: 0
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
 }
 
 .step-name-input {
@@ -470,7 +475,10 @@ body{
 }
 
 .save-step-button {
-  margin-left: 28rem;
+  position: absolute;
+  right: 2rem;
+  top: -0.3rem;
+
   padding: 0.4rem 1rem;
   font-weight: bold;
   color: white;
