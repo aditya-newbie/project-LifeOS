@@ -123,18 +123,59 @@
         </div>
         <button class="add-milestone-button js-add-milestone-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plus-icon lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-          <p class="add-milestone-text">Add Milestone</p>
+          <p class="add-milestone-button-text">Add Milestone</p>
         </button>
-        <dialog class="add-milestone-popup js-add-milestone-popup">
-          <div class="add-milestone-flexbox">
-            <input class="milestone-name-input js-milestone-name-input" type="text" placeholder="Milestone Name">
-            <textarea class="milestone-description-input js-milestone-description-input" placeholder="Milestone Description"></textarea>
-            <div class="add-milestone-popup-button-container">
-              <button class="save-milestone-button js-save-milestone-button">Save Milestone</button>
-            </div>
-          </div>
-        </dialog>
       </section>
+      <div class="add-milestone-popup js-add-milestone-popup">
+        <div class="add-milestone-title">
+          <div class="milestone-icon-background">
+            <svg
+              class="flag-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" />
+            </svg>
+          </div>
+          <div class="milestone-title-txt">
+            <p class="milestone-title-main">Add Milestone</p>
+            <p class="milestone-title-description">Mark an important checkpoint on your journey</p>
+          </div>
+        </div>
+        <div class="add-milestone-name">
+          <input class="milestone-name-input js-milestone-name-input" type="text" placeholder="Milestone-name">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pencile-icon lucide lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+
+          <p class="milestone-name-txt">Keep it clear and concise.</p>
+        </div>
+        <div class="add-milestone-description">
+          <textarea class="milestone-description-input js-milestone-description-input" placeholder="Milestone Description"></textarea>
+          <p class="milestone-description-txt">Add a bit more content it needed</p>
+        </div>
+        <div class="add-milestone-buttons">
+          <button class="cancel-add-milestone js-cancel-add-milestone">
+            Cancel
+          </button>
+          <button class="save-milestone-button js-save-milestone-button">Save Milestone</button>
+        </div>
+      </div>
+
+      <div class="dialog-toast js-dialog-toast">
+        <p class="dialog-toast-main js-dialog-toast-main">
+          Content Content Content
+        </p>
+        <p class="dialog-toast-secondary js-dialog-toast-secondary">
+          Description Description Description 
+        </p>
+      </div>
     </main>
 
     

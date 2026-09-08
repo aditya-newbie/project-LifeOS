@@ -141,8 +141,15 @@
     border: solid 2px rgb(0, 53, 228);
   }
 
+  .milestone-visual-checkbox.comleted {
+    position: relative;
+  }
+
   .checkmark-icon {
-    transform: translate(-0.6rem , -0.4rem);
+    position: absolute;
+    top: 0rem;
+    left: -0.6rem;
+    
     height: 0.5rem;
   }
 

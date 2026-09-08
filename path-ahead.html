@@ -74,15 +74,40 @@
         <button class="add-field-button js-add-field-button">Add</button>
       </dialog>
 
-      <dialog class="add-stage-popup js-add-stage-popup">
-        <div class="add-stage-popup-flexbox">
-          <input class="add-stage-name js-add-stage-name" placeholder="Name">
-          <textarea class="add-stage-description js-add-stage-description" placeholder="Description"></textarea>
-          <button class="add-stage-button js-add-stage-button">
-            Add
-          </button>
+      <div class="create-stage-popup js-create-stage-popup">
+        <button class="cancel-create-stage js-cancel-create-stage">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div class="create-stage-title">
+          <p class="create-stage-txt">Create New Stage</p>
+          <img src="images/stage-icon.svg" class="create-stage-icon">
         </div>
-      </dialog>
+
+        <div class="create-stage-name">
+          <input class="create-stage-name-input js-create-stage-name-input" placeholder="Stage name">
+          <p class="create-stage-name-txt">
+            A short name that represents this stage
+          </p>
+        </div>
+
+        <hr class="create-stage-devider">
+
+        <textarea class="create-stage-description js-create-stage-description" placeholder="write a description , a project brief, or collected ideas"></textarea>
+
+        <button class="save-stage-button js-save-stage-button">
+          Create 
+          <svg class="create-stage-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div class="dialog-toast js-dialog-toast">
+        <p class="dialog-toast-main js-dialog-toast-main">
+          Content Content Content
+        </p>
+        <p class="dialog-toast-secondary js-dialog-toast-secondary">
+          Description Description Description 
+        </p>
+      </div>
 
       <section class="field-stage-cards-container js-field-stage-cards-container">
         <button class="field-left-button js-field-left-button">

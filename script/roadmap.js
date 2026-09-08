@@ -3,6 +3,7 @@ import {MileStone , Step} from "../data/stage.js";
 import { getUniqueColor } from "./utils/colors.js";
 import { getMilestone, getStep } from "./utils/data-utils.js";
 import { capitalize } from "./utils/format.js";
+import {dialogToast} from './utils/notification.js';
 
 const param = new URLSearchParams(window.location.search);
 const stageId = param.get("stageId");
@@ -17,9 +18,12 @@ fields.forEach(field => {
 })
 
 const addMilestonePopup = document.querySelector('.js-add-milestone-popup')
+const addMilestoneButton = document.querySelector('.js-add-milestone-button')
+const cancelMilestonePopup = document.querySelector('.js-cancel-add-milestone')
 const startedOn = document.querySelector('.js-started-on')
 const stageName = document.querySelector('.js-stage-name');
 const stageDescription = document.querySelector('.js-stage-description');
+let timeoutID
 
 startedOn.textContent = stage.startedOn;
 stageName.textContent = stage.name;
@@ -29,8 +33,21 @@ stageDescription.textContent = stage.description;
 renderMilestoneCards(stage.milestones);
 updateMilestoneCount();
 
-document.querySelector('.js-add-milestone-button').addEventListener('click', () => {
-  addMilestonePopup.showModal();
+document.body.addEventListener('click' , (event) => {
+  const addMilestoneButton = document.querySelectorAll('.js-add-milestone-button');
+  
+  if (!addMilestonePopup.contains(event.target) && ![...addMilestoneButton].some(button => button.contains(event.target))) {
+    addMilestonePopup.classList.remove('show');
+  }
+})
+
+
+addMilestoneButton.addEventListener('click', () => {
+  addMilestonePopup.classList.add('show');
+})
+
+cancelMilestonePopup.addEventListener('click', () => {
+  addMilestonePopup.classList.remove('show');
 })
 
 document.querySelector('.js-save-milestone-button').addEventListener('click', () => {
@@ -42,12 +59,13 @@ document.querySelector('.js-save-milestone-button').addEventListener('click', ()
   const colorSet = getUniqueColor(stage.milestones);
 
   if (!name) {
+    timeoutID = dialogToast('Milestone Name Required', 'Enter a name for your milestone', timeoutID)
     nameElement.focus()
     return;
   }
 
   stage.milestones.push(new MileStone(id, name, description, colorSet));
-  addMilestonePopup.close();
+  addMilestonePopup.classList.remove('show');
   saveToStorage();
   renderMilestoneCards(stage.milestones);
   updateMilestoneCount();
@@ -139,7 +157,7 @@ function renderMilestoneCards(milestones) {
         </div>
         <div class="steps-card-container js-steps-card-container js-steps-card-container-${milestone.id}">
           <div class="steps-card js-steps-card-${milestone.id}">
-          ${renderStepsCard(milestone.steps)}
+          ${renderStepsCard(milestone.steps, milestone.id)}
           </div>
         </div>
         
@@ -160,7 +178,7 @@ function renderMilestoneCards(milestones) {
   attachStepCheckbox();
   updateStepCheckbox();
   updateStepCard();
-
+  attachRemoveStep();
 }
 
 function updateEmptyMilestone() {
@@ -357,7 +375,6 @@ function attachMilestoneMenu() {
     const thisPopup  = document.querySelector(`.js-milestone-menu-popup-${milestoneId}`);
     
     button.addEventListener('click', () => {
-      console.log(thisPopup);
       thisPopup.classList.toggle('open')
     })
   })
@@ -403,7 +420,7 @@ function attachDeleteMilestone() {
   })
 }
 
-function renderStepsCard(steps) {
+function renderStepsCard(steps, milestoneId) {
   let stepsHTML = '';
   steps.forEach((step) => {
     stepsHTML += `
@@ -426,6 +443,22 @@ function renderStepsCard(steps) {
         </svg>
       </div>
       <p class="step-text">${step.name}</p>
+      <button class="remove-step js-remove-step" data-step-id="${step.id}" data-milestone-id="${milestoneId}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
     </div>`
   })
   return stepsHTML;
@@ -515,6 +548,32 @@ function updateStepCheckbox() {
     if(step.completed) {
       checkbox.classList.add('completed') 
     } else {checkbox.classList.remove('completed')}
+  })
+}
+
+function attachRemoveStep() {
+  document.querySelectorAll('.js-remove-step').forEach(button => {
+    button.addEventListener('click', () => {
+      const stepId = button.dataset.stepId;
+      const milestoneId = button.dataset.milestoneId;
+      const step = getStep(stepId, stage.milestones);
+
+      const newMilestones = stage.milestones.map(milestone => {
+        const newSteps = milestone.steps.filter(s => s !== step)
+        milestone.steps = newSteps;
+        return milestone
+      })
+
+      stage.milestones = newMilestones;
+      renderMilestoneCards(stage.milestones);
+
+      expandMilestoneCard(milestoneId);
+      expandCheckboxHeight(milestoneId);
+      updateStepCard();
+
+    
+      saveToStorage();
+    })
   })
 }
 

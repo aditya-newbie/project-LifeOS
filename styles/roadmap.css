@@ -194,10 +194,14 @@ body{
 .milestone-visual-checkbox.completed {
   background-color: rgb(0, 211, 0);
   border: solid 4px rgb(0, 211, 0);
+  position: relative;
 } 
 
 .checkmark-icon {
-  transform: translate(-0.3rem , 0.1rem);
+  position: absolute;
+  top: 0.2rem;
+  left: -0.3rem;
+
   height: 0.8rem;
   color: white;
 }
@@ -347,6 +351,7 @@ body{
 .step {
   display: flex;
   padding: 1rem;
+  position: relative;
 }
 
 .step + .step {
@@ -386,6 +391,28 @@ body{
   font-weight: bold;
 }
 
+.remove-step {
+  background-color: rgb(219, 0, 0);
+  border-color: rgb(219, 0, 0);
+  color: white;
+  transition: opacity 0.15s ease;
+
+  position: absolute;
+  top: 0.75rem;
+  right: 2rem;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.step:hover .remove-step {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  cursor: pointer;
+}
+
 .add-milestone-button {
   width: 100%;
   display: flex;
@@ -397,63 +424,196 @@ body{
   color: blue;
 }
 
-.add-milestone-text {
-  margin-left: 1rem;
-  transform: translateY(0.25rem);
-  font-weight: bold;
-}
-
 .add-milestone-popup {
-  background-image: radial-gradient(circle, rgb(231, 231, 231), rgb(255, 255, 255));
   border: groove 0.4px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   border-radius: 0.6rem;
   padding: 2rem;
-}
-
-.add-milestone-flexbox {
+  width: 22.5rem;
+  height: 25rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: none;
-  row-gap: 1rem;
+  background-color: white;
+
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 60%);
+  
+  z-index: 1000;
+  transition:
+  transform 0.3s cubic-bezier(0.71, 0.29, 0.72, 0.3),
+  opacity 0.3s cubic-bezier(0.71, 0.29, 0.72, 0.3);
+  padding: 2rem 1rem;
+}
+
+.add-milestone-popup.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  z-index: 1000;
+  transition:
+  transform 0.2s cubic-bezier(0.71, 0.29, 0.72, 0.3),
+  opacity 0.2s cubic-bezier(0.71, 0.29, 0.72, 0.3);
+}
+
+.add-milestone-button-text {
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.add-milestone-title {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.milestone-title-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-left: -0.7rem;
+}
+
+.milestone-title-main {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.milestone-title-description {
+  font-size: 0.8rem;
+  color: rgb(88, 88, 88);
+  width: 14rem;
+}
+
+.add-milestone-name {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 1.7rem;
 }
 
 .milestone-name-input {
   padding-left: 0.5em;
-  width: 16rem;
+  width: 22.5rem;
   height: 1.8rem;
-  border-radius: 1rem;
-  border: solid 1px gray;
+  border-radius: 0.4rem;
+  border: solid 1px rgb(190, 190, 190);
   outline: none;
 }
 
 .milestone-name-input::placeholder {
-  text-align: center;
+  padding-left: 2rem;
+}
+
+.milestone-name-input:focus + .pencile-icon {
+  visibility: hidden;
+}
+
+.pencile-icon {
+  height: 1rem;
+  color: rgb(88, 88, 88);
+  
+  position: absolute;
+  top: 0.5rem;
+  left: 0.8rem;
+}
+
+.milestone-name-txt {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  color: rgb(88, 88, 88);
+}
+
+.add-milestone-description {
+  margin-bottom: 6.75rem;
 }
 
 .milestone-description-input {
-  width: 15rem;
+  width: 22.5rem;
   height: 4rem;
   resize: none;
-  padding: 0.3rem 0.5rem;
-  border-radius: 1rem;
-  border: solid 1px gray;
+  border-radius: 0.4rem;
+  border: solid 1px rgb(190, 190, 190);
   outline: none;
+  font-family: arial;
 }
 
 .milestone-description-input::placeholder {
-  text-align: center;
-  font-family: arial
+  font-family: arial;
+  padding-left: 2rem;
+  padding-top: 0.4rem;
+}
+
+.milestone-description-txt {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  color: rgb(88, 88, 88);
+}
+
+.add-milestone-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cancel-add-milestone {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: rgb(20, 20, 20);
+  cursor: pointer;
 }
 
 .save-milestone-button {
-  background-color: rgb(255, 33, 118);
-  padding: 0.5rem 4.5rem;
+  background:linear-gradient(90deg, rgb(146, 62, 255) , rgb(66, 52, 255) );
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: solid 2px rgb(255, 0, 50);
+  border: none;
   color: white;
   cursor: pointer;
+}
+
+.dialog-toast {
+  position: fixed;
+  bottom: 0rem;
+  right: 0rem;
+
+  background-color: rgb(255, 25, 64);
+  color: white;
+  padding: 1.5rem 3rem;
+  border-radius: 1rem;
+  z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.15s;
+}
+
+.dialog-toast-main {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-toast-secondary {
+  font-size: 0.9rem;
+}
+
+.dialog-toast.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .unsaved-step {

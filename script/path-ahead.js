@@ -3,20 +3,26 @@ import {Stage} from "../data/stage.js";
 import { getMilestone, getStage } from "./utils/data-utils.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { capitalize } from "./utils/format.js";
+import { dialogToast } from "./utils/notification.js";
 
 const addFieldButton = document.querySelector('.js-add-field-button');
 const addFieldPopup = document.querySelector('.js-add-field-popup');
-const addStageButton = document.querySelector('.js-add-stage-button');
-const addStagePopup = document.querySelector('.js-add-stage-popup');
+const createStagePopup = document.querySelector('.js-create-stage-popup');
+const saveStageButton = document.querySelector('.js-save-stage-button');
+const cancelCreateStage = document.querySelector('.js-cancel-create-stage');
 const fieldStageContainer = document.querySelector('.js-field-stages-wrapper');
 let currentField;
+let timeoutID;
 
 renderFieldsCards();
 renderFieldsStages();
+updateCarouselArrow();
 
-addStagePopup.addEventListener('click' , (event) => {
-  if (event.target === addStagePopup) {
-    addStagePopup.close();
+document.body.addEventListener('click' , (event) => {
+  const addStagePopupButton = document.querySelectorAll('.js-add-stage-popup-button');
+  
+  if (!createStagePopup.contains(event.target) && ![...addStagePopupButton].some(button => button.contains(event.target))) {
+    createStagePopup.classList.remove('show');
   }
 })
 
@@ -36,34 +42,44 @@ addFieldButton.addEventListener('click' , () => {
   addFieldPopup.close();
   renderFieldsCards();
   renderFieldsStages();
+  updateCarouselArrow();
   saveToStorage();
 });
 
-addStageButton.addEventListener('click' , () => {
-  const nameElement = document.querySelector('.js-add-stage-name');
+saveStageButton.addEventListener('click' , () => {
+
+  const nameElement = document.querySelector('.js-create-stage-name-input');
   const name = nameElement.value.toUpperCase();
-  const descriptionElement = document.querySelector('.js-add-stage-description');
+  const descriptionElement = document.querySelector('.js-create-stage-description');
   const description = capitalize(descriptionElement.value);
   const id = crypto.randomUUID();
   const today = dayjs().format('DD MMM YYYY');
 
   if(!nameElement.value) {
-    alert('Enter stage name');
+    timeoutID = dialogToast('Stage Name Required', 'Enter a name for your stage', timeoutID)
     return;
   }
 
   if(!descriptionElement.value) {
-    alert('Enter stage description');
+    timeoutID = dialogToast('Stage Description Required', 'Description cannot by empty', timeoutID)
     return;
   }
-
-      
+  
   currentField.stages.push( new Stage(id, name, description, today));
   nameElement.value = '';
   descriptionElement.value = '';
-  addStagePopup.close();
+  createStagePopup.classList.remove('show');
   renderFieldsStages();
   saveToStorage();
+})
+
+cancelCreateStage.addEventListener('click', () => {
+  const nameElement = document.querySelector('.js-create-stage-name-input');
+  const descriptionElement = document.querySelector('.js-create-stage-description');
+
+  createStagePopup.classList.remove('show');
+  nameElement.value = '';
+  descriptionElement.value = '';
 })
 
 document.querySelector('.js-field-left-button')
@@ -117,11 +133,24 @@ function attachAddFieldPopup() {
       });
 }
 
+function updateCarouselArrow() {
+  const rightArrow = document.querySelector('.js-field-right-button');
+  const leftArrow = document.querySelector('.js-field-left-button');
+
+  rightArrow.classList.remove('hide');
+  leftArrow.classList.remove('hide');
+
+  if (fields.length < 2) {
+    rightArrow.classList.add('hide');
+    leftArrow.classList.add('hide');
+  }
+}
+
 function renderFieldsStages() {
   let fieldsStagesHTML = '';
 
   fields.forEach((field) => {
-    const cleanFieldName = field.name.replace(" ", "-")
+    const cleanFieldName = field.name.replace(" ", "-");
     fieldsStagesHTML += `
     <div class="stage-cards-section js-stage-cards-section-${cleanFieldName}" id="${field.name}-roadmap">
 
@@ -152,14 +181,16 @@ function attachAddStageButtons() {
 
   addStagePopupButton.forEach(button => {
     button.addEventListener('click' , () => {
+      console.log('runs')
       const fieldName = button.dataset.fieldName;
 
       fields.forEach((field) => {
         if(field.name === fieldName) {
           currentField = field;   
         }
-        addStagePopup.showModal();
       })
+      createStagePopup.classList.add('show');
+      document.querySelector('.js-create-stage-name-input').focus();
     })
   })
 }
