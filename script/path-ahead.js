@@ -181,7 +181,6 @@ function attachAddStageButtons() {
 
   addStagePopupButton.forEach(button => {
     button.addEventListener('click' , () => {
-      console.log('runs')
       const fieldName = button.dataset.fieldName;
 
       fields.forEach((field) => {

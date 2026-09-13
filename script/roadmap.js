@@ -1,7 +1,7 @@
 import {fields, saveToStorage} from "../data/fields.js";
-import {MileStone , Step} from "../data/stage.js";
+import {MileStone , Step, Task} from "../data/stage.js";
 import { getUniqueColor } from "./utils/colors.js";
-import { getMilestone, getStep } from "./utils/data-utils.js";
+import { getMilestone, getStep, getTask } from "./utils/data-utils.js";
 import { capitalize } from "./utils/format.js";
 import {dialogToast} from './utils/notification.js';
 
@@ -72,6 +72,18 @@ document.querySelector('.js-save-milestone-button').addEventListener('click', ()
   
   nameElement.value = '';
   descriptionElement.value = '';
+})
+
+document.querySelector('.js-add-task-button').addEventListener('click', () => {
+  const milestoneButton = document.querySelector('.js-expand-milestone.expanded');
+  const milestoneId = milestoneButton.dataset.milestoneId;
+  const milestone = getMilestone(milestoneId, stage.milestones);
+  const id = crypto.randomUUID();
+
+  milestone.tasks.push(new Task(id));
+  updateTaskbox(milestoneId);
+  updateTask();
+  saveToStorage();
 })
 
 function updateMilestoneCount() {
@@ -362,6 +374,9 @@ function attachExpandMilestoneCard() {
       
       expandMilestoneCard(milestoneId);
       expandCheckboxHeight(milestoneId);
+      toggleTaskbox();
+      updateTaskbox(milestoneId);
+      updateTask();
     })
   })
 }
@@ -577,4 +592,163 @@ function attachRemoveStep() {
   })
 }
 
+function toggleTaskbox() {
+  const taskbox = document.querySelector('.js-taskbox');
+  if (taskbox.classList.contains('show')) {
+    return;
+  }
+  taskbox.classList.add('show');
+}
 
+
+function updateTaskbox(milestoneId) {
+  const milestone = getMilestone(milestoneId, stage.milestones)
+  let taskHTML = '';
+
+  milestone.tasks.forEach(task => {
+    taskHTML += `
+    <div class="task js-task-${task.id}">
+      <div class="task-checkbox js-task-checkbox" data-task-id="${task.id}">
+        <svg
+          class="checkmark-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M 9 17 L 4 12" />
+          <path d="M22.5 4 L9 17" />
+        </svg>
+      </div>
+      <p class="task-text">${task.name}</p>
+      <button class="remove-task js-remove-task" data-task-id="${task.id}" data-milestone-id="${milestoneId}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="remove-task-icon lucide lucide-x"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+    `
+  });
+
+  document.querySelector('.js-taskbox-content').innerHTML = taskHTML;
+
+  attachTaskCheckbox();
+  updateTaskCheckbox();
+  attachRemoveTask();
+  updateTask()
+}
+
+function updateTask() {
+  stage.milestones.forEach(milestone => {
+    milestone.tasks.forEach(task => {
+      if (task.saved) {
+        return;
+      }
+
+      const taskCard = document.querySelector(`.js-task-${task.id}`);
+      if (!taskCard) {
+        return;
+      }
+
+      const unsavedTaskHTML = `
+      <div class="unsaved-task">
+        <input class="task-name-input js-task-name-input-${task.id}" type="text" placeholder="Task name">
+        <button class="save-task-button js-save-task-button" data-task-id="${task.id}" data-milestone-id="${milestone.id}">
+          Save
+        </button>
+      </div>`;
+
+      taskCard.innerHTML = unsavedTaskHTML;
+
+      document.querySelector(`.js-task-name-input-${task.id}`).focus();
+      attachSaveTaskButton();
+    })
+  })
+}
+
+function attachSaveTaskButton() {
+  document.querySelectorAll('.js-save-task-button').forEach(button => {
+    const taskId = button.dataset.taskId;
+    const task = getTask(taskId, stage.milestones);
+    const milestoneId = button.dataset.milestoneId;
+    const nameElement = document.querySelector(`.js-task-name-input-${taskId}`);
+
+    button.addEventListener('click', () => {
+
+      if (!nameElement.value.trim()) {
+        nameElement.focus();
+        return;
+      }
+
+      task.name = nameElement.value;
+      task.saved = true;
+
+      updateTaskbox(milestoneId);
+      saveToStorage();
+    })
+  })
+}
+
+function attachTaskCheckbox() {
+  document.querySelectorAll('.js-task-checkbox').forEach(checkbox => {
+    const taskId = checkbox.dataset.taskId;
+    const task = getTask(taskId, stage.milestones);
+
+    checkbox.addEventListener('click' , () => {
+      if (task.completed === false) {
+        task.completed = true;
+      } else{task.completed = false;}
+
+      updateTaskCheckbox();
+      saveToStorage();
+    })
+  })
+}
+
+function updateTaskCheckbox() {
+  document.querySelectorAll('.js-task-checkbox').forEach(checkbox => {
+    const taskId = checkbox.dataset.taskId;
+    const task = getTask(taskId, stage.milestones);
+
+    if(task.completed) {
+      checkbox.classList.add('completed') 
+    } else {checkbox.classList.remove('completed')}
+  })
+}
+
+function attachRemoveTask() {
+  document.querySelectorAll('.js-remove-task').forEach(button => {
+    button.addEventListener('click', () => {
+      const taskId = button.dataset.taskId;
+      const milestoneId = button.dataset.milestoneId;
+      const task = getTask(taskId, stage.milestones);
+
+      const newMilestones = stage.milestones.map(milestone => {
+        const newTasks = milestone.tasks.filter(t => t !== task)
+        milestone.tasks = newTasks;
+        return milestone
+      })
+
+      stage.milestones = newMilestones;
+      updateTaskbox(milestoneId);
+      saveToStorage();
+    })
+  })
+}

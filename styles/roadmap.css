@@ -711,3 +711,197 @@ body{
   margin: 1rem;
   color: rgb(60, 60, 60);
 }
+
+.taskbox {
+  position: fixed;
+  top: 6.5rem;
+  left: 66rem;
+
+  height: 18rem;
+  width: 17rem;
+  background-color: white;
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+
+  transform: translateY(-150%);
+  transition: transform 0.15s cubic-bezier(0, 0.51, 0.58, 1);
+}
+
+.taskbox.show {
+  transform: translateY(0);
+}
+
+.taskbox-header {
+  display: flex;
+  align-items: center;
+  width: 17rem;
+  height: 2.5rem;
+
+  position: relative;
+}
+
+.taskbox-icon-background {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 0.6rem;
+  border-radius: 0.5rem;
+  background-color: rgb(229, 223, 255);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-icon {
+  color: rgb(108, 45, 255);
+  transform: scale(0.75);
+}
+
+.taskbox-header-text {
+  font-weight: bolder;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: rgb(20, 20, 20)
+}
+
+.add-task-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  background: none;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.4rem;
+  color: rgb(108, 45, 255);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.taskbox-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  height: 14rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.taskbox-content::-webkit-scrollbar {
+  display: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+
+  height: 1.5rem;
+  width: 17rem;
+  position: relative;
+}
+
+.task-checkbox {
+  display: inline-block;
+  height: 0.85rem;
+  width: 0.85rem;
+  border: solid 1px gray;
+  border-radius: 10%;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
+}
+
+.task-checkbox .checkmark-icon {
+  transform: scale(0.8);
+  position: absolute;
+  top: 0.2rem;
+  left: 0.25rem;
+
+  height: 0.8rem;
+  color: white;
+}
+
+.task-checkbox.completed {
+  background-color: rgb(0, 211, 0);
+}
+
+.task-text {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.remove-task {
+  background-color: rgb(219, 0, 0);
+  border-color: rgb(219, 0, 0);
+  color: white;
+  padding: 0.3rem;
+  transition: opacity 0.15s ease;
+
+  position: absolute;
+  top: 0rem;
+  right: 1rem;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.task:hover .remove-task {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.remove-task-icon {
+  height: 0.7rem;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.task-name-input {
+  margin-left: 2.4rem;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 0.8rem;
+  height: 1rem;
+}
+
+.save-task-button {
+  position: absolute;
+  right: 1.5rem;
+  top: 0.2rem;
+
+  padding: 0.2rem 0.6rem;
+  font-weight: bold;
+  color: white;
+  border: solid 1px rgb(0, 81, 255);
+  border-radius: 999rem;
+  background-color: rgb(59, 121, 255);
+  font-size: 0.6rem;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+  color 0.15s,
+  background-color 0.15s;
+}
+
+.save-task-button:active {
+  background-color: white;
+  color: rgb(59, 121, 255);
+}
+
+.task-name-input:focus + .save-task-button {
+  opacity: 1;
+}
+
+.task:hover .save-task-button {
+  opacity: 1;
+}

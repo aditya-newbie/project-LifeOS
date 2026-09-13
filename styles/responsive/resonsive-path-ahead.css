@@ -1,6 +1,5 @@
 @media (max-width: 600px) {
   .path-ahead-heading {
-    margin-top: 1rem;
     font-size: 2rem;
   }
 
@@ -33,10 +32,7 @@
   }
 
   .roadmap-heading {
-    text-decoration:underline;
-    font-size:2rem;
-
-    position: absolute;
+    font-size: 2rem;
     top: -4rem;
     left: 2rem;
   }
@@ -44,14 +40,64 @@
   .add-stage-popup-button {
     padding: 0.5rem 1rem; 
     font-size: 1.6rem;
-
-    position: absolute;
     top: -3rem;
     right: 0rem;
   }
 
   .stage-cards-section {
-    transform:scale(0.46);
+    transform: scale(0.46);
   }
 
+  .create-stage-popup {
+    width: 18rem;
+    height: 23rem;
+  }
+
+  .create-stage-popup.show {
+    transform: translate(-50%, -25%);
+  }
+
+  .create-stage-txt {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .create-stage-icon {
+    height: 3rem;
+  }
+
+  .create-stage-name {
+    padding: 0.5rem 0rem;
+  }
+
+  .create-stage-name-input {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .create-stage-name-input::placeholder {
+    font-size: 1rem;
+  }
+
+  .create-stage-name-txt {
+    margin-left: 0.2rem;
+    font-size: 0.8rem;
+  }
+
+  .create-stage-devider {
+    background-color: rgb(156, 156, 156);
+  }
+
+  .create-stage-description {
+    margin: 0.5rem 0rem;
+    height: 6rem;
+  }
+
+  .create-stage-description::placeholder {
+    font-size: 1rem;
+  }
+
+  .save-stage-button {
+    margin-top: 3rem;
+  }
 }

@@ -28,6 +28,7 @@ export class MileStone {
   colorSet;
   completed = false;
   steps = [];
+  tasks = [];
 
   constructor(id, name, description, colorSet) {
     this.id = id;
@@ -38,6 +39,18 @@ export class MileStone {
 }
 
 export class Step {
+  id;
+  name;
+  completed = false;
+  saved = false;
+
+  constructor(id, name = '') {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+export class Task {
   id;
   name;
   completed = false;

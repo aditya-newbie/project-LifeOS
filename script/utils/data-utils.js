@@ -35,3 +35,15 @@ export function getStep(stepId, milestones) {
   })
   return step;
 }
+
+export function getTask(taskId, milestones) {
+  let task;
+  milestones.forEach(milestone => {
+    milestone.tasks.forEach(tsk => {
+      if (tsk.id === taskId) {
+        task = tsk;
+      }
+    })
+  })
+  return task;
+}

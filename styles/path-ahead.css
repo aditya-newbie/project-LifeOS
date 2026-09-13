@@ -695,6 +695,7 @@
 .create-stage-description::placeholder {
   font-family: arial;
   font-size: 1.1rem;
+  color: rgb(80,80,80);
 }
 
 .save-stage-button {
