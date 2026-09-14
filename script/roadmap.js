@@ -24,6 +24,8 @@ const startedOn = document.querySelector('.js-started-on')
 const stageName = document.querySelector('.js-stage-name');
 const stageDescription = document.querySelector('.js-stage-description');
 let timeoutID
+let previousExpandedMilestoneId = null;
+let taskboxOpen = false;
 
 startedOn.textContent = stage.startedOn;
 stageName.textContent = stage.name;
@@ -37,6 +39,12 @@ document.body.addEventListener('click' , (event) => {
   const addMilestoneButton = document.querySelectorAll('.js-add-milestone-button');
   
   if (!addMilestonePopup.contains(event.target) && ![...addMilestoneButton].some(button => button.contains(event.target))) {
+    addMilestonePopup.classList.remove('show');
+  }
+})
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
     addMilestonePopup.classList.remove('show');
   }
 })
@@ -317,44 +325,47 @@ function expandMilestoneCard(milestoneId) {
 }
 
 function updateExpandButton(milestoneId) {
-  const expandButton = document.querySelector(`.js-expand-milestone-${milestoneId}`);
 
-  if (expandButton.classList.contains('expanded')) {
+  document.querySelectorAll(`.js-expand-milestone`).forEach(expandButton => {
 
-    expandButton.innerHTML = `
-    <svg
-      class="expand-milestone-icon"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M12 9 L4 15" />
-      <path d="M20 15 L12 9" />
-    </svg>` 
-  } else {
-    expandButton.innerHTML = `
-    <svg
-      class="expand-milestone-icon"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M12 15 L20 9" />
-      <path d="M4 9 L12 15" />
-    </svg>`
-  }
+    if (expandButton.classList.contains('expanded')) {
+  
+      expandButton.innerHTML = `
+      <svg
+        class="expand-milestone-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 9 L4 15" />
+        <path d="M20 15 L12 9" />
+      </svg>` 
+    } else {
+      expandButton.innerHTML = `
+      <svg
+        class="expand-milestone-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 15 L20 9" />
+        <path d="M4 9 L12 15" />
+      </svg>`
+    }
+  })
+
 }
 
 function expandCheckboxHeight(id) {
@@ -371,12 +382,13 @@ function attachExpandMilestoneCard() {
   document.querySelectorAll('.js-expand-milestone').forEach(expandButton => {
     expandButton.addEventListener('click', () => {
       const milestoneId = expandButton.dataset.milestoneId;
-      
+
       expandMilestoneCard(milestoneId);
       expandCheckboxHeight(milestoneId);
-      toggleTaskbox();
+      toggleTaskbox(milestoneId);
       updateTaskbox(milestoneId);
-      updateTask();
+
+      previousExpandedMilestoneId = milestoneId;
     })
   })
 }
@@ -592,12 +604,16 @@ function attachRemoveStep() {
   })
 }
 
-function toggleTaskbox() {
+function toggleTaskbox(milestoneId) {
   const taskbox = document.querySelector('.js-taskbox');
-  if (taskbox.classList.contains('show')) {
-    return;
+
+  if (!taskboxOpen) {
+    taskbox.classList.add('show');
+    taskboxOpen = true;
+  }else if (previousExpandedMilestoneId === milestoneId) {
+    taskbox.classList.remove('show'); 
+    taskboxOpen = false;
   }
-  taskbox.classList.add('show');
 }
 
 

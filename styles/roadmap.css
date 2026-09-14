@@ -387,6 +387,16 @@ body{
 .step-checkbox.completed {
   background-color:rgb(0, 211, 0);
 }
+
+.step-checkbox .checkmark-icon {
+  position: absolute;
+  top: 1.25rem;
+  left: 0.75rem;
+
+  height: 0.8rem;
+  color: white;
+}
+
 .step-text {
   font-weight: bold;
 }

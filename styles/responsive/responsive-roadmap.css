@@ -5,7 +5,6 @@
     height: 5.25rem;
     width: 22.5rem;
     padding: 0.75rem;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     border-radius: 0.225rem;
   }
 
@@ -16,7 +15,6 @@
   .stage-icon-container {
     height: 5.25rem;
     width: 3rem;
-    
   }
 
   .stage-icon-background {
@@ -50,11 +48,7 @@
   }
 
   .stage-detail-devider-line {
-    position: absolute;
     top: 45%;
-    left: 45%;
-    
-    transform: rotate(90deg);
     width: 5.625rem;
   }
 
@@ -69,7 +63,6 @@
     height: 1.6875rem;
     width: 7.5rem;
     padding: 0.375rem;
-    border: solid 0.7px rgb(201, 201, 201);
     border-radius: 0.375rem;
   }
 
@@ -77,8 +70,6 @@
     height: 1.6875rem;
     width: 1.6875rem;
     border-radius: 0.225rem;
-    background-color: rgb(229, 223, 255);
-
     margin-right: 0.75rem;
   }
 
@@ -141,15 +132,9 @@
     border: solid 2px rgb(0, 53, 228);
   }
 
-  .milestone-visual-checkbox.comleted {
-    position: relative;
-  }
-
-  .checkmark-icon {
-    position: absolute;
+  .milestone-visual-checkbox .checkmark-icon {
     top: 0rem;
     left: -0.6rem;
-    
     height: 0.5rem;
   }
 
@@ -204,18 +189,8 @@
 
   .milestone-menu-popup {
     border-radius: 0.1125rem;
-    transition: 
-    opacity 0.15s;
-
-    position: absolute;
     right: 0.9rem;
     top: 0.375rem;
-
-    z-index: 10;
-  }
-
-  .milestone-menu-popup.open {
-    opacity: 1;
   }
 
   .add-step-button, .delete-milestone-button {
@@ -233,27 +208,118 @@
     height: 0.75rem;
   }
 
-  .steps-card-container {
-    margin-bottom: 0rem;
-  }
-
   .steps-card-container.expanded {
-    margin-bottom: 0.375rem;
-    margin-left: 1.125rem;
-    margin-right: 0.375rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1.05rem;
+    margin-right: 0.675rem;
   }
 
   .steps-card {
-    border-radius: 0.15rem;
+    border-radius: 0.2rem;
   }
+
   .step {
-    padding: 0.375rem;
+    align-items: center;
+    padding: 0.35rem 0.5rem;
   }
 
   .step-checkbox {
-    height: 0.375rem;
-    width: 0.375rem;
-    margin-right: 0.375rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    height: 0.55rem;
+    width: 0.55rem;
+    margin-right: 0.4rem;
+    border-radius: 0.1rem;
+    cursor: pointer;
+  }
+
+  .step-checkbox.completed {
+    border-color: rgb(0, 211, 0);
+  }
+
+  .step-checkbox .checkmark-icon {
+    position: static;
+    top: auto;
+    left: auto;
+    height: 0.38rem;
+    width: 0.38rem;
+    transform: none;
+  }
+
+  .step-text {
+    font-size: 0.5rem;
+    color: rgb(30, 30, 30);
+    line-height: 1.2;
+    padding-right: 1.5rem;
+    word-break: break-word;
+  }
+
+  .remove-step {
+    right: 0.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 0.75rem;
+    width: 0.75rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    visibility: visible;
+    pointer-events: all;
+    cursor: pointer;
+  }
+
+  .remove-step:active {
+    opacity: 1;
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  .remove-step svg {
+    height: 0.45rem;
+    width: 0.45rem;
+  }
+
+  .unsaved-step {
+    min-height: 0.8rem;
+  }
+
+  .step-name-input {
+    margin-left: 0.95rem;
+    font-size: 0.5rem;
+    height: 0.8rem;
+    width: calc(100% - 3.2rem);
+    padding: 0;
+    color: rgb(30, 30, 30);
+  }
+
+  .step-name-input::placeholder {
+    font-size: 0.45rem;
+  }
+
+  .save-step-button {
+    right: 0.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.15rem 0.45rem;
+    font-size: 0.42rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .no-step-text {
+    font-size: 0.45rem;
+    margin: 0.45rem;
+    color: rgb(80, 80, 80);
   }
 
   .add-milestone-button {
@@ -267,7 +333,7 @@
   }
 
   .plus-icon {
-    transform: scale(0.8)
+    transform: scale(0.8);
   }
 
   .add-milestone-popup {
@@ -280,7 +346,6 @@
   }
 
   .milestone-name-input {
-    padding-left: 0.5em;
     width: 6rem;
     height: 0.675rem;
     border-radius: 0.375rem;
@@ -296,19 +361,6 @@
   .save-milestone-button {
     padding: 0.1875rem 1.6875rem;
     border-radius: 0.1875rem;
-  }
-
-  .step-name-input {
-    margin-left: 0.7875rem;
-    font-size: 0.375rem;
-    height: 0.375rem;
-  }
-
-  .save-step-button {
-    right: 0.8rem;
-    top: 0.14rem;
-    font-size: 0.4rem;
-    padding: 0.15rem 0.375rem;
   }
 
   .milestone-icon-background-empty-state {
@@ -327,13 +379,7 @@
   }
 
   .milestone-empty-state-guide {
-    font-size: 0.375rem;
     line-height: 0.6375rem;
     font-size: 0.45rem;
   }
-
-  .no-step-text {
-    margin: 0.375rem;
-  }
-
 }

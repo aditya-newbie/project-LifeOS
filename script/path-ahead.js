@@ -26,6 +26,13 @@ document.body.addEventListener('click' , (event) => {
   }
 })
 
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    createStagePopup.classList.remove('show');
+  }
+})
+
 addFieldButton.addEventListener('click' , () => {
   const fieldIcon = document.querySelector('.js-fieldicon-input');
   const fieldNameElement = document.querySelector('.js-fieldname-input');
