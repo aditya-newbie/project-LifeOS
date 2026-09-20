@@ -25,7 +25,7 @@ const stageName = document.querySelector('.js-stage-name');
 const stageDescription = document.querySelector('.js-stage-description');
 let timeoutID
 let previousExpandedMilestoneId = null;
-let taskboxOpen = false;
+let taskProgressOpen = false;
 
 startedOn.textContent = stage.startedOn;
 stageName.textContent = stage.name;
@@ -189,7 +189,7 @@ function renderMilestoneCards(milestones) {
   updateEmptyMilestone();
   attachMilestoneCheckmark();
   updateMilestoneCheckmarks();
-  attachExpandMilestoneCard();
+  attachToggleMilestoneCard();
   attachMilestoneMenu();
   attachAddStepButton();
   attachDeleteMilestone();
@@ -197,8 +197,8 @@ function renderMilestoneCards(milestones) {
   updateEmptySteps();
   attachStepCheckbox();
   updateStepCheckbox();
-  updateStepCard();
   attachRemoveStep();
+  updateStepCard();
 }
 
 function updateEmptyMilestone() {
@@ -304,6 +304,23 @@ function updateMilestoneCheckmarks() {
 }
 
 function expandMilestoneCard(milestoneId) {
+  const stepsCardContainer = document.querySelector(`.js-steps-card-container-${milestoneId}`);
+  const visualCheckbox = document.querySelector(`.js-milestone-visual-checkbox-${milestoneId}`);
+  const expandButton = document.querySelector(`.js-expand-milestone-${milestoneId}`);
+  const taskProgressContainer = document.querySelector('.js-task-progress-container');
+
+  stepsCardContainer.classList.add('expanded');
+  visualCheckbox.classList.add('expanded');
+  expandButton.classList.add('expanded');
+  taskProgressContainer.classList.add('expanded');
+
+  updateExpandButton();
+  expandCheckboxHeight(milestoneId); 
+  taskProgressOpen = true;
+  previousExpandedMilestoneId = milestoneId;
+}
+
+function toggleMilestoneCard(milestoneId) {
 
 
   const stepsCardContainer = document.querySelector(`.js-steps-card-container-${milestoneId}`);
@@ -321,10 +338,10 @@ function expandMilestoneCard(milestoneId) {
   visualCheckbox.classList.toggle('expanded');
   expandButton.classList.toggle('expanded')
 
-  updateExpandButton(milestoneId)
+  updateExpandButton()
 }
 
-function updateExpandButton(milestoneId) {
+function updateExpandButton() {
 
   document.querySelectorAll(`.js-expand-milestone`).forEach(expandButton => {
 
@@ -378,15 +395,14 @@ function expandCheckboxHeight(id) {
   root.style.setProperty('--line-height', `${lineHeight}rem`)
 }
 
-function attachExpandMilestoneCard() {
+function attachToggleMilestoneCard() {
   document.querySelectorAll('.js-expand-milestone').forEach(expandButton => {
     expandButton.addEventListener('click', () => {
       const milestoneId = expandButton.dataset.milestoneId;
 
-      expandMilestoneCard(milestoneId);
+      toggleMilestoneCard(milestoneId);
       expandCheckboxHeight(milestoneId);
-      toggleTaskbox(milestoneId);
-      updateTaskbox(milestoneId);
+      toggleTaskProgress(milestoneId);
 
       previousExpandedMilestoneId = milestoneId;
     })
@@ -425,9 +441,7 @@ function attachAddStepButton() {
       milestone.steps.push(new Step(id));
 
       renderMilestoneCards(stage.milestones);
-
       expandMilestoneCard(milestoneId);
-      expandCheckboxHeight(milestoneId);
     })
   })
 }
@@ -452,7 +466,7 @@ function renderStepsCard(steps, milestoneId) {
   steps.forEach((step) => {
     stepsHTML += `
     <div class="step js-step-${step.id}">
-      <div class="step-checkbox js-step-checkbox" data-step-id="${step.id}">
+      <div class="step-checkbox js-step-checkbox" data-step-id="${step.id}" data-milestone-id="${milestoneId}">
         <svg
           class="checkmark-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -541,11 +555,8 @@ function attachSaveStepButton() {
       step.saved = true;
 
       renderMilestoneCards(stage.milestones);
-  
       expandMilestoneCard(milestoneId);
-      expandCheckboxHeight(milestoneId);
-      updateStepCard();
-
+      updateProgressBox(milestoneId)
       saveToStorage();
     })
   })
@@ -562,6 +573,7 @@ function attachStepCheckbox() {
       } else{step.completed = false;}
 
       updateStepCheckbox();
+      updateProgressBox(checkbox.dataset.milestoneId);
       saveToStorage();
     })
   })
@@ -593,27 +605,27 @@ function attachRemoveStep() {
 
       stage.milestones = newMilestones;
       renderMilestoneCards(stage.milestones);
-
-      expandMilestoneCard(milestoneId);
-      expandCheckboxHeight(milestoneId);
-      updateStepCard();
-
-    
+      expandMilestoneCard(milestone.id);
+      updateProgressBox(milestoneId);
+  
       saveToStorage();
     })
   })
 }
 
-function toggleTaskbox(milestoneId) {
-  const taskbox = document.querySelector('.js-taskbox');
+function toggleTaskProgress(milestoneId) {
+  const taskProgressContainer = document.querySelector('.js-task-progress-container');
 
-  if (!taskboxOpen) {
-    taskbox.classList.add('show');
-    taskboxOpen = true;
+  if (!taskProgressOpen) {
+    taskProgressContainer.classList.add('expanded');
+    taskProgressOpen = true;
   }else if (previousExpandedMilestoneId === milestoneId) {
-    taskbox.classList.remove('show'); 
-    taskboxOpen = false;
+    taskProgressContainer.classList.remove('expanded'); 
+    taskProgressOpen = false;
   }
+
+  updateTaskbox(milestoneId);
+  updateProgressBox(milestoneId)
 }
 
 
@@ -624,7 +636,7 @@ function updateTaskbox(milestoneId) {
   milestone.tasks.forEach(task => {
     taskHTML += `
     <div class="task js-task-${task.id}">
-      <div class="task-checkbox js-task-checkbox" data-task-id="${task.id}">
+      <div class="task-checkbox js-task-checkbox" data-task-id="${task.id}" data-milestone-id="${milestoneId}">
         <svg
           class="checkmark-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -717,7 +729,9 @@ function attachSaveTaskButton() {
       task.saved = true;
 
       updateTaskbox(milestoneId);
+      updateProgressBox(milestoneId);
       saveToStorage();
+      
     })
   })
 }
@@ -726,6 +740,7 @@ function attachTaskCheckbox() {
   document.querySelectorAll('.js-task-checkbox').forEach(checkbox => {
     const taskId = checkbox.dataset.taskId;
     const task = getTask(taskId, stage.milestones);
+    const milestoneId = checkbox.dataset.milestoneId;
 
     checkbox.addEventListener('click' , () => {
       if (task.completed === false) {
@@ -733,6 +748,7 @@ function attachTaskCheckbox() {
       } else{task.completed = false;}
 
       updateTaskCheckbox();
+      updateProgressBox(milestoneId);
       saveToStorage();
     })
   })
@@ -764,7 +780,63 @@ function attachRemoveTask() {
 
       stage.milestones = newMilestones;
       updateTaskbox(milestoneId);
+      updateProgressBox(milestoneId);
       saveToStorage();
     })
   })
+}
+
+function updateProgressBox(milestoneId) {
+  
+  updateStepCount(milestoneId);
+  updateTaskProgress(milestoneId);
+  updateOverallProgress(milestoneId);
+}
+
+function updateStepCount(milestoneId) {
+  const stepsCount = document.querySelector('.js-steps-total-number');
+  const stepsCompletedCount = document.querySelector('.js-steps-completed-number');
+  const milestone = getMilestone(milestoneId , stage.milestones);
+  const completedSteps = milestone.steps.filter(s => s.completed);
+
+  stepsCount.textContent = milestone.steps.length;
+  stepsCompletedCount.textContent = completedSteps.length;
+}
+
+function updateTaskProgress(milestoneId) {
+  const milestone = getMilestone(milestoneId, stage.milestones);
+  const totalTask = milestone.tasks.length;
+  const taskCompleted = milestone.tasks.filter(t => t.completed).length;
+  const progress = totalTask === 0 ? 0 : taskCompleted / totalTask * 100;
+  const progressFill = document.querySelector('.js-progress-box-task-progress-fill');
+  const progressPercent = document.querySelector('.js-progress-box-task-progress-percentage')
+  const progressCount = document.querySelector('.js-progress-box-task-progress-count')
+
+  progressFill.style.background = `
+      conic-gradient(
+          from -90deg,
+          #5AD68A 0deg,
+          #5BA8E8 ${progress * 3.6}deg,
+          #E8E5F8 ${progress * 3.6}deg
+      )
+  `;
+
+  progressPercent.textContent =`${Math.round(progress)} %`
+  progressCount.textContent = `${taskCompleted}/${totalTask}`;
+}
+
+function updateOverallProgress(milestoneId) {
+  const milestone = getMilestone(milestoneId, stage.milestones);
+  const totalSteps = milestone.steps.length;
+  const totalTasks = milestone.tasks.length;
+  const completedSteps = milestone.steps.filter(s => s.completed).length;
+  const completedTasks = milestone.tasks.filter(t => t.completed).length;
+  const stepsProgress = totalSteps === 0 ? 0 : completedSteps / totalSteps * 100;
+  const tasksProgress = totalTasks === 0 ? 0 : completedTasks / totalTasks * 100;
+  const overallProgress = (stepsProgress * 0.7) + (tasksProgress * 0.3);
+  const progressBar = document.querySelector('.js-overall-progress-bar');
+  const progressPercentage = document.querySelector('.js-overall-progress-percentage')
+
+  progressBar.value = overallProgress;
+  progressPercentage.textContent = `${Math.round(overallProgress)}%`;
 }

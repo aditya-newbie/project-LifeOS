@@ -326,7 +326,8 @@
     padding-top: 0.375rem;
   }
   
-  .add-milestone-text {
+  .add-milestone-text,
+  .add-milestone-button-text {
     margin-left: 0.375rem;
     transform: translateY(0.01rem);
     font-size: 0.7rem;
@@ -337,30 +338,126 @@
   }
 
   .add-milestone-popup {
-    border-radius: 0.225rem;
-    padding: 0.75rem;
+    width: 21.5rem;
+    max-width: calc(100vw - 2rem);
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 0.45rem;
+    padding: 1.25rem 1rem;
+    box-sizing: border-box;
   }
 
-  .add-milestone-flexbox {
-    row-gap: 0.375rem;
+  .add-milestone-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    gap: 0.65rem;
+  }
+
+  .add-milestone-title .milestone-icon-background {
+    height: 2.2rem;
+    width: 2.2rem;
+    border-radius: 0.35rem;
+    margin-right: 0;
+    flex-shrink: 0;
+  }
+
+  .add-milestone-title .flag-icon {
+    transform: scale(0.9);
+  }
+
+  .add-milestone-title .milestone-title-txt {
+    margin-left: 0;
+    gap: 0.2rem;
+  }
+
+  .milestone-title-main {
+    font-size: 1rem;
+  }
+
+  .milestone-title-description {
+    font-size: 0.62rem;
+    width: auto;
+  }
+
+  .add-milestone-name {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 1rem;
+    width: 100%;
   }
 
   .milestone-name-input {
-    width: 6rem;
-    height: 0.675rem;
-    border-radius: 0.375rem;
+    width: 100%;
+    height: 2rem;
+    padding-left: 2rem;
+    padding-right: 0.5rem;
+    border-radius: 0.35rem;
+    font-size: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  .milestone-name-input::placeholder {
+    padding-left: 0;
+    font-size: 0.75rem;
+  }
+
+  .pencile-icon {
+    height: 0.85rem;
+    width: 0.85rem;
+    top: 0.55rem;
+    left: 0.65rem;
+  }
+
+  .milestone-name-txt {
+    margin-top: 0.25rem;
+    font-size: 0.6rem;
+  }
+
+  .add-milestone-description {
+    margin-bottom: 1.25rem;
+    width: 100%;
   }
 
   .milestone-description-input {
-    width: 5.625rem;
-    height: 1.5rem;
-    padding: 0.1125rem 0.1875rem;
-    border-radius: 0.375rem;
+    width: 100%;
+    height: 3.8rem;
+    border-radius: 0.35rem;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.65rem;
+    box-sizing: border-box;
+    resize: none;
+  }
+
+  .milestone-description-input::placeholder {
+    padding-left: 0;
+    padding-top: 0;
+    font-size: 0.75rem;
+  }
+
+  .milestone-description-txt {
+    margin-top: 0.25rem;
+    font-size: 0.6rem;
+  }
+
+  .add-milestone-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+  }
+
+  .cancel-add-milestone {
+    padding: 0.4rem 0.85rem;
+    border-radius: 0.35rem;
+    font-size: 0.68rem;
   }
 
   .save-milestone-button {
-    padding: 0.1875rem 1.6875rem;
-    border-radius: 0.1875rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 0.35rem;
+    font-size: 0.68rem;
   }
 
   .milestone-icon-background-empty-state {
@@ -382,4 +479,366 @@
     line-height: 0.6375rem;
     font-size: 0.45rem;
   }
+
+  .task-progress-container {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    height: 0rem;
+    overflow: hidden;
+    margin-top: 0;
+
+    width: 24rem;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+
+    transition: height 0.15s cubic-bezier(0, 0.51, 0.58, 1), margin-top 0.15s cubic-bezier(0, 0.51, 0.58, 1);
+  }
+
+  .task-progress-container.expanded {
+    height: 8.75rem;
+    margin-top: 0.675rem;
+    transform: none;
+  }
+
+  .taskbox {
+    height: 8.75rem;
+    width: 12rem;
+    border-radius: 0.225rem;
+    padding: 0.375rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .taskbox-header {
+    width: 100%;
+    height: 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .taskbox-icon-background {
+    height: 1.25rem;
+    width: 1.25rem;
+    margin-left: 0.2rem;
+    border-radius: 0.25rem;
+  }
+
+  .task-icon {
+    transform: scale(0.65);
+  }
+
+  .taskbox-header-text {
+    font-size: 0.55rem;
+    margin-left: 0.3rem;
+  }
+
+  .add-task-button {
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.48rem;
+    padding: 0.15rem 0.3rem;
+  }
+
+  .taskbox-content {
+    margin-top: 0.25rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    height: calc(100% - 1.85rem);
+    row-gap: 0.25rem;
+  }
+
+  .task {
+    display: flex;
+    align-items: center;
+    height: 1.2rem;
+    width: 100%;
+    position: relative;
+  }
+
+  .task-checkbox {
+    height: 0.65rem;
+    width: 0.65rem;
+    margin-right: 0.35rem;
+    margin-left: 0.2rem;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .task-checkbox .checkmark-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0.55rem;
+    width: 0.55rem;
+  }
+
+  .task-text {
+    font-size: 0.55rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 2.5rem);
+  }
+
+  .remove-task {
+    right: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 0.75rem;
+    width: 0.75rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    visibility: visible;
+    pointer-events: all;
+    cursor: pointer;
+  }
+
+  .remove-task:active {
+    opacity: 1;
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  .remove-task-icon {
+    height: 0.45rem;
+    width: 0.45rem;
+    position: static;
+    transform: none;
+    
+  }
+
+  .unsaved-task {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .task-name-input {
+    margin-left: 0.3rem;
+    font-size: 0.55rem;
+    height: 0.9rem;
+    width: calc(100% - 2.8rem);
+    padding: 0;
+    border: none;
+    outline: none;
+    color: rgb(30, 30, 30);
+  }
+
+  .task-name-input::placeholder {
+    font-size: 0.48rem;
+  }
+
+  .save-task-button {
+    right: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.15rem 0.45rem;
+    font-size: 0.45rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .progress-box {
+    height: 8.75rem;
+    width: 11.4rem;
+    margin-top: 0;
+    border-radius: 0.225rem;
+    padding: 0.375rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .progress-box-header {
+    width: 100%;
+    height: 1.4rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .progress-icon-background {
+    height: 1.25rem;
+    width: 1.25rem;
+    margin-left: 0.15rem;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .progress-icon {
+    transform: scale(0.65);
+  }
+
+  .progress-box-header-text {
+    margin-left: 0.3rem;
+    width: calc(100% - 1.6rem);
+  }
+
+  .progress-box-header-title {
+    font-size: 0.55rem;
+    letter-spacing: 0.02rem;
+  }
+
+  .progress-box-header-subtitle {
+    font-size: 0.4rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .progress-box-stats {
+    padding-bottom: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+
+  .progress-box-steps-count {
+    width: 50%;
+  }
+
+  .progress-box-steps-count + .progress-box-task-progress::before {
+    height: 90%;
+    top: 0.15rem;
+    left: -0.2rem;
+  }
+
+  .steps-title {
+    gap: 0.2rem;
+    margin-top: 0.15rem;
+    margin-left: 0.2rem;
+  }
+
+  .lucide-footprints {
+    height: 0.75rem;
+    width: 0.75rem;
+  }
+
+  .steps-title-text {
+    font-size: 0.52rem;
+  }
+
+  .steps-total {
+    margin-left: 0.85rem;
+    margin-top: 0.1rem;
+    gap: 0;
+  }
+
+  .steps-total-number {
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .steps-total-text {
+    font-size: 0.42rem;
+  }
+
+  .steps-completed {
+    margin-left: 0.85rem;
+    margin-top: 0.15rem;
+    gap: 0;
+  }
+
+  .steps-completed-number {
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .steps-completed-text {
+    font-size: 0.42rem;
+  }
+
+  .progress-box-task-progress {
+    width: 50%;
+    margin-left: 0;
+    position: relative;
+  }
+
+  .progress-box-task-title {
+    gap: 0.2rem;
+    top: 0.15rem;
+    left: 0.15rem;
+    position: absolute;
+  }
+
+  .progress-box-task-title .task-icon {
+    transform: scale(0.6);
+  }
+
+  .progress-box-task-title-text {
+    font-size: 0.52rem;
+  }
+
+  .progress-box-task-progress-ring {
+    width: 52px;
+    height: 52px;
+    margin-top: 1.25rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .progress-box-task-progress-center {
+    width: 40px;
+    height: 40px;
+    top: 6px;
+    left: 6px;
+  }
+
+  .progress-box-task-progress-stats {
+    margin-top: 0.1rem;
+  }
+
+  .progress-box-task-progress-percentage {
+    font-size: 0.65rem;
+    word-spacing: -0.1rem;
+  }
+
+  .progress-box-task-progress-count,
+  .progress-box-task-progress-task-text {
+    font-size: 0.42rem;
+  }
+
+  .progress-box-progress-bar {
+    margin-top: 0.2rem;
+    padding: 0 0.15rem;
+    gap: 0.12rem;
+  }
+
+  .overall-progress-title {
+    gap: 0.2rem;
+  }
+
+  .overall-progress-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .overall-progress-title-text {
+    font-size: 0.48rem;
+  }
+
+  .overall-progress-percentage {
+    font-size: 0.52rem;
+  }
+
+  .overall-progress-bar {
+    height: 0.35rem;
+  }
 }
+

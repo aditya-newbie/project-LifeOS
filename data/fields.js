@@ -21,7 +21,12 @@ const savedFields = JSON.parse(localStorage.getItem('fields')) || []
 
 export const fields = savedFields.map(fieldData => {
   const stages = fieldData.stages.map((stageData) => {
-    return new Stage(stageData.id, stageData.name, stageData.description, stageData.startedOn, stageData.milestones, stageData.completed)
+    const milestones = stageData.milestones.map(milestone => {
+      const newSteps = milestone.steps.filter(step => step.saved);
+      milestone.steps = newSteps
+      return milestone;
+    })
+    return new Stage(stageData.id, stageData.name, stageData.description, stageData.startedOn, milestones, stageData.completed)
   })
 
   const field = new Field(fieldData.name, fieldData.iconFakePath);
