@@ -84,6 +84,9 @@ document.querySelector('.js-save-milestone-button').addEventListener('click', ()
 
 document.querySelector('.js-add-task-button').addEventListener('click', () => {
   const milestoneButton = document.querySelector('.js-expand-milestone.expanded');
+  if (!milestoneButton) {
+    return;
+  }
   const milestoneId = milestoneButton.dataset.milestoneId;
   const milestone = getMilestone(milestoneId, stage.milestones);
   const id = crypto.randomUUID();
@@ -316,6 +319,8 @@ function expandMilestoneCard(milestoneId) {
 
   updateExpandButton();
   expandCheckboxHeight(milestoneId); 
+  updateTaskbox(milestoneId);
+  updateProgressBox(milestoneId);
   taskProgressOpen = true;
   previousExpandedMilestoneId = milestoneId;
 }
@@ -630,8 +635,39 @@ function toggleTaskProgress(milestoneId) {
 
 
 function updateTaskbox(milestoneId) {
-  const milestone = getMilestone(milestoneId, stage.milestones)
+  const milestone = getMilestone(milestoneId, stage.milestones);
   let taskHTML = '';
+
+  if (milestone.tasks.length === 0) {
+    document.querySelector('.js-taskbox-content').innerHTML = `
+    <div class="task-empty-state">
+      <div class="task-icon-background-empty-state">
+        <svg
+          class="task-icon-empty-state"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+          <path d="m9 14 2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="task-empty-state-text">
+        <p class="no-task-text">No tasks yet</p>
+        <span class="task-empty-state-guide">
+          Add tasks to track your progress.
+        </span>
+      </div>
+    </div>`;
+    return;
+  }
 
   milestone.tasks.forEach(task => {
     taskHTML += `

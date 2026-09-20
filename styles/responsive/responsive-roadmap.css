@@ -655,6 +655,53 @@
     justify-content: center;
   }
 
+  .task-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 0.2rem;
+    box-sizing: border-box;
+  }
+
+  .task-icon-background-empty-state {
+    height: 1.875rem;
+    width: 1.875rem;
+    border-radius: 50%;
+    margin-bottom: 0.35rem;
+    background-color: rgb(229, 223, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .task-icon-empty-state {
+    color: rgb(108, 45, 255);
+    transform: scale(0.65);
+  }
+
+  .task-empty-state-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .no-task-text {
+    font-size: 0.58rem;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+    margin-bottom: 0.15rem;
+  }
+
+  .task-empty-state-guide {
+    font-size: 0.42rem;
+    line-height: 0.6rem;
+    color: rgb(80, 80, 80);
+    max-width: 9rem;
+  }
+
   .progress-box {
     height: 8.75rem;
     width: 11.4rem;
