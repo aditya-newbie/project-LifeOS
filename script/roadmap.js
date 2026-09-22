@@ -875,4 +875,6 @@ function updateOverallProgress(milestoneId) {
 
   progressBar.value = overallProgress;
   progressPercentage.textContent = `${Math.round(overallProgress)}%`;
+
+  /* bug: if there is 0 task it shows 70% progress even when all steps are completed and same for task */
 }

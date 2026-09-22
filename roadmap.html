@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styles/responsive/responsive-header.css">
     <link rel="stylesheet" href="styles/responsive/responsive-roadmap.css">
 
-    <link rel="icon" type="image/svg+xml" href="images/LifeOS-icon-only.svg">
+    <link rel="icon" type="image/svg+xml" href="images/LifeOS-icon-background.svg">
 
   </head>
   <body>
@@ -100,6 +100,7 @@
           </div>
         </div>
       </section>
+
       <section class="milestone-container">
         <div class="milestone-heading">
           <svg
@@ -127,58 +128,8 @@
           <p class="add-milestone-button-text">Add Milestone</p>
         </button>
       </section>
-      <div class="add-milestone-popup js-add-milestone-popup">
-        <div class="add-milestone-title">
-          <div class="milestone-icon-background">
-            <svg
-              class="flag-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" />
-            </svg>
-          </div>
-          <div class="milestone-title-txt">
-            <p class="milestone-title-main">Add Milestone</p>
-            <p class="milestone-title-description">Mark an important checkpoint on your journey</p>
-          </div>
-        </div>
-        <div class="add-milestone-name">
-          <input class="milestone-name-input js-milestone-name-input" type="text" placeholder="Milestone-name">
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pencile-icon lucide lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
-
-          <p class="milestone-name-txt">Keep it clear and concise.</p>
-        </div>
-        <div class="add-milestone-description">
-          <textarea class="milestone-description-input js-milestone-description-input" placeholder="Milestone Description"></textarea>
-          <p class="milestone-description-txt">Add a bit more content it needed</p>
-        </div>
-        <div class="add-milestone-buttons">
-          <button class="cancel-add-milestone js-cancel-add-milestone">
-            Cancel
-          </button>
-          <button class="save-milestone-button js-save-milestone-button">Save Milestone</button>
-        </div>
-      </div>
-
-      <div class="dialog-toast js-dialog-toast">
-        <p class="dialog-toast-main js-dialog-toast-main">
-          Content Content Content
-        </p>
-        <p class="dialog-toast-secondary js-dialog-toast-secondary">
-          Description Description Description 
-        </p>
-      </div>
-
-      <div class="task-progress-container js-task-progress-container">
+      <section class="task-progress-container js-task-progress-container">
 
         <div class="taskbox js-taskbox">
           <div class="taskbox-header">
@@ -299,7 +250,465 @@
 
         </div>
 
+      </section>
+
+      <section class="progress-dashboard js-progress-dashboard">
+        <div class="dashboard-header">
+          <h2 class="dashboard-header-title">Progress-Dashboard</h2>
+          
+          <div class="dashboard-start-date">
+            <svg class="dashboard-calendar-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v3"/>
+              <path d="M16 2v3"/>
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18"/>
+            </svg>
+            <div class="dashboard-start-date-text">
+              <p class="dashboard-start-date-label">Started on</p>
+              <p class="dashboard-start-date-value">21 Sep 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-current-focus">
+          <div class="dashboard-current-milestone">
+            <div class="current-milestone-header">
+              <div class="current-milestone-icon-background">
+                <svg
+                  class="flag-icon current-milestone-flag-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" />
+                </svg>
+              </div>
+              <div class="current-milestone-text-container">
+                <h3 class="current-milestone-title">Current Milestone</h3>
+                <p class="current-milestone-subtitle">your current focus</p>
+              </div>
+            </div>
+
+            <div class="current-milestone-content">
+              <h4 class="current-milestone-name">JavaScript</h4>
+              <p class="current-milestone-description">
+                learn core java script and build small projects to develop strong foundation for modern web development
+              </p>
+            </div>
+
+            <div class="current-milestone-cards">
+              <div class="current-milestone-step-card">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="current-milestone-card-icon lucide lucide-footprints"
+                >
+                  <path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/>
+                  <path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/>
+                  <path d="M16 17h4"/>
+                  <path d="M4 13h4"/>
+                </svg>
+                <div class="current-milestone-card-text">
+                  <p class="current-milestone-card-count js-current-milestone-steps-count">0</p>
+                  <p class="current-milestone-card-label">Steps</p>
+                </div>
+              </div>
+
+              <div class="current-milestone-task-card">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="current-milestone-card-icon lucide lucide-clipboard-check"
+                >
+                  <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                  <path d="m9 14 2 2 4-4"/>
+                </svg>
+                <div class="current-milestone-card-text">
+                  <p class="current-milestone-card-count js-current-milestone-tasks-count">0</p>
+                  <p class="current-milestone-card-label">Tasks</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="current-milestone-progress">
+              <div class="current-milestone-progress-header">
+                <p class="current-milestone-progress-title">Progress</p>
+                <p class="current-milestone-progress-percentage js-current-milestone-progress-percentage">0%</p>
+              </div>
+              <progress class="current-milestone-progress-bar js-current-milestone-progress-bar" value="0" max="100"></progress>
+            </div>
+          </div>
+
+          <div class="dashboards-steps">
+            <div class="dashboards-steps-header">
+              <div class="dashboards-steps-icon-background">
+                <svg
+                  class="dashboards-steps-step-icon lucide lucide-footprints"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/>
+                  <path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/>
+                  <path d="M16 17h4"/>
+                  <path d="M4 13h4"/>
+                </svg>
+              </div>
+              <div class="dashboards-steps-text-container">
+                <h3 class="dashboards-steps-title">Steps</h3>
+                <p class="dashboards-steps-subtitle">Steps in this milestone</p>
+              </div>
+              <span class="dashboards-steps-badge js-dashboards-steps-badge">0 / 0 Completed</span>
+            </div>
+
+            <div class="dashboards-steps-container">
+              <div class="dashboards-step">
+                <div class="dashboard-step-checkbox js-dashboard-step-checkbox">
+                  <svg
+                    class="checkmark-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M 9 17 L 4 12" />
+                    <path d="M22.5 4 L9 17" />
+                  </svg>
+                </div>
+                <p class="dashboard-step-name">Variables and Data Types</p>
+                <button class="dashboard-step-menu-button js-dashboard-step-menu-button" aria-label="Step options">
+                  <svg
+                    class="dashboard-step-three-dot lucide lucide-ellipsis-vertical"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="dashboards-step">
+                <div class="dashboard-step-checkbox js-dashboard-step-checkbox">
+                  <svg
+                    class="checkmark-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M 9 17 L 4 12" />
+                    <path d="M22.5 4 L9 17" />
+                  </svg>
+                </div>
+                <p class="dashboard-step-name">Functions and Scope</p>
+                <button class="dashboard-step-menu-button js-dashboard-step-menu-button" aria-label="Step options">
+                  <svg
+                    class="dashboard-step-three-dot lucide lucide-ellipsis-vertical"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-task">
+            <div class="dashboard-task-left-section">
+              <div class="dashboard-task-header">
+                <div class="dashboard-task-icon-background">
+                  <svg
+                    class="dashboard-task-icon lucide lucide-clipboard-check"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                    <path d="m9 14 2 2 4-4"/>
+                  </svg>
+                </div>
+                <div class="dashboard-task-text-container">
+                  <h3 class="dashboard-task-title">Tasks</h3>
+                  <p class="dashboard-task-subtitle">An overview for your tasks in this stage</p>
+                </div>
+              </div>
+
+              <div class="dashboard-task-counts">
+                <div class="dashboard-task-count-section">
+                  <p class="dashboard-task-count-number js-dashboard-total-tasks-count">0</p>
+                  <p class="dashboard-task-count-label">Total task</p>
+                </div>
+                <div class="dashboard-task-count-section">
+                  <p class="dashboard-task-count-number dashboard-completed-task-count-number js-dashboard-completed-tasks-count">0</p>
+                  <p class="dashboard-task-count-label">Completed</p>
+                  <span class="dashboard-task-percentage dashboard-completed-percentage js-dashboard-completed-percentage">0%</span>
+                </div>
+                <div class="dashboard-task-count-section">
+                  <p class="dashboard-task-count-number js-dashboard-remaining-tasks-count">0</p>
+                  <p class="dashboard-task-count-label">Remaining</p>
+                  <span class="dashboard-task-percentage dashboard-remaining-percentage js-dashboard-remaining-percentage">0%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-task-next-up">
+              <div class="dashboard-task-next-up-header">
+                <h3 class="dashboard-task-next-up-title">Next up</h3>
+                <p class="dashboard-task-next-up-subtitle">Your upcoming tasks</p>
+              </div>
+
+              <div class="dashboard-task-next-up-tasks">
+                <div class="dashboard-next-up-task">
+                  <div class="dashboard-step-checkbox js-dashboard-task-checkbox">
+                    <svg
+                      class="checkmark-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M 9 17 L 4 12" />
+                      <path d="M22.5 4 L9 17" />
+                    </svg>
+                  </div>
+                  <p class="dashboard-next-up-task-name">Task 1</p>
+                </div>
+
+                <div class="dashboard-next-up-task">
+                  <div class="dashboard-step-checkbox js-dashboard-task-checkbox">
+                    <svg
+                      class="checkmark-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M 9 17 L 4 12" />
+                      <path d="M22.5 4 L9 17" />
+                    </svg>
+                  </div>
+                  <p class="dashboard-next-up-task-name">Task 2</p>
+                </div>
+
+                <div class="dashboard-next-up-task">
+                  <div class="dashboard-step-checkbox js-dashboard-task-checkbox">
+                    <svg
+                      class="checkmark-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M 9 17 L 4 12" />
+                      <path d="M22.5 4 L9 17" />
+                    </svg>
+                  </div>
+                  <p class="dashboard-next-up-task-name">Task 3</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-task-progress">
+              <div class="dashboard-task-progress-ring">
+                <div class="dashboard-task-progress-fill js-dashboard-task-progress-fill"></div>
+                <div class="dashboard-task-progress-center"></div>
+                <div class="dashboard-task-progress-content">
+                  <p class="dashboard-task-progress-percentage js-dashboard-task-progress-percentage">0%</p>
+                  <p class="dashboard-task-progress-label">Task completed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-overall-progress">
+          <div class="dashboard-overall-progress-header">
+            <div class="dashboard-overall-progress-header-top">
+              <div class="dashboard-overall-progress-icon-background">
+                <svg
+                  class="dashboard-overall-progress-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 21V9" />
+                  <path d="M19 21V3" />
+                  <path d="M5 21v-6" />
+                </svg>
+              </div>
+              <div class="dashboard-overall-progress-text-container">
+                <p class="dashboard-overall-progress-tag">Stage-progess</p>
+                <h3 class="dashboard-overall-progress-title">Overall progress</h3>
+                <p class="dashboard-overall-progress-subtitle">Your progress along all the milestones in this milestone.</p>
+              </div>
+              <span class="dashboard-overall-progress-percentage js-dashboard-overall-progress-percentage">0%</span>
+            </div>
+
+            <div class="dashboard-overall-progress-header-bottom">
+              <progress class="dashboard-overall-progress-bar js-dashboard-overall-progress-bar" value="0" max="100"></progress>
+            </div>
+          </div>
+
+          <div class="milestone-progress">
+            <div class="milestone-progress-header">
+              <div class="milestone-progress-header-text">
+                <h3 class="milestone-progress-title">Milestone Progress</h3>
+                <p class="milestone-progress-subtitle">Each milestone contribution to your stage progress</p>
+              </div>
+              <span class="milestone-progress-total js-milestone-progress-total">0 Milestones</span>
+            </div>
+
+            <div class="dashboard-overall-milestone-progress">
+              <div class="dashboard-overall-milestone-main">
+                <p class="milestone-name">Milestone 1</p>
+                <div class="dashboard-overall-milestone-progress-row">
+                  <progress class="dashboard-overall-milestone-bar js-dashboard-overall-milestone-bar" value="0" max="100"></progress>
+                  <span class="milestone-progress-percentage js-dashboard-overall-milestone-percentage">0%</span>
+                </div>
+              </div>
+              <span class="badge completed">Completed</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="add-milestone-popup js-add-milestone-popup">
+        <div class="add-milestone-title">
+          <div class="milestone-icon-background">
+            <svg
+              class="flag-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528" />
+            </svg>
+          </div>
+          <div class="milestone-title-txt">
+            <p class="milestone-title-main">Add Milestone</p>
+            <p class="milestone-title-description">Mark an important checkpoint on your journey</p>
+          </div>
+        </div>
+        <div class="add-milestone-name">
+          <input class="milestone-name-input js-milestone-name-input" type="text" placeholder="Milestone-name">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pencile-icon lucide lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+
+          <p class="milestone-name-txt">Keep it clear and concise.</p>
+        </div>
+        <div class="add-milestone-description">
+          <textarea class="milestone-description-input js-milestone-description-input" placeholder="Milestone Description"></textarea>
+          <p class="milestone-description-txt">Add a bit more content it needed</p>
+        </div>
+        <div class="add-milestone-buttons">
+          <button class="cancel-add-milestone js-cancel-add-milestone">
+            Cancel
+          </button>
+          <button class="save-milestone-button js-save-milestone-button">Save Milestone</button>
+        </div>
       </div>
+      
+      <div class="dialog-toast js-dialog-toast">
+        <p class="dialog-toast-main js-dialog-toast-main">
+          Content Content Content
+        </p>
+        <p class="dialog-toast-secondary js-dialog-toast-secondary">
+          Description Description Description 
+        </p>
+      </div>
+
+
+
 
     </main>
 

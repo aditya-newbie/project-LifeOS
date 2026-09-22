@@ -887,5 +887,295 @@
   .overall-progress-bar {
     height: 0.35rem;
   }
+
+  .progress-dashboard {
+    width: 24rem;
+    box-sizing: border-box;
+    padding: 0.75rem;
+    margin-top: 0.675rem;
+  }
+
+  .dashboard-header {
+    padding: 0.25rem 0.35rem;
+  }
+
+  .dashboard-header-title {
+    font-size: 0.85rem;
+    line-height: 0.85rem;
+  }
+
+  .dashboard-start-date {
+    gap: 0.35rem;
+  }
+
+  .dashboard-calendar-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .dashboard-start-date-label {
+    font-size: 0.45rem;
+  }
+
+  .dashboard-start-date-value {
+    font-size: 0.55rem;
+  }
+
+  .dashboard-current-milestone,
+  .dashboards-steps {
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+    min-height: 18rem;
+    padding: 0.85rem;
+    display: block;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .current-milestone-header,
+  .dashboards-steps-header {
+    gap: 0.5rem;
+  }
+
+  .current-milestone-icon-background,
+  .dashboards-steps-icon-background {
+    height: 2.2rem;
+    width: 2.2rem;
+    border-radius: 0.45rem;
+  }
+
+  .current-milestone-flag-icon,
+  .dashboards-steps-step-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .current-milestone-text-container,
+  .dashboards-steps-text-container {
+    gap: 0.1rem;
+  }
+
+  .current-milestone-title,
+  .dashboards-steps-title {
+    font-size: 0.85rem;
+  }
+
+  .current-milestone-subtitle,
+  .dashboards-steps-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .dashboards-steps-badge {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .current-milestone-content {
+    margin-top: 0.85rem;
+    gap: 0.35rem;
+  }
+
+  .current-milestone-name {
+    font-size: 0.95rem;
+  }
+
+  .current-milestone-description {
+    font-size: 0.65rem;
+    line-height: 1.4;
+  }
+
+  .current-milestone-cards {
+    gap: 0.75rem;
+    margin-top: 0.85rem;
+  }
+
+  .current-milestone-step-card,
+  .current-milestone-task-card {
+    width: 7.5rem;
+    height: 3.2rem;
+    padding: 0.4rem 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .current-milestone-card-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .current-milestone-card-count {
+    font-size: 1rem;
+  }
+
+  .current-milestone-card-label {
+    font-size: 0.65rem;
+  }
+
+  .current-milestone-progress {
+    margin-top: 0.85rem;
+    gap: 0.3rem;
+  }
+
+  .current-milestone-progress-title {
+    font-size: 0.65rem;
+  }
+
+  .current-milestone-progress-percentage {
+    font-size: 0.7rem;
+  }
+
+  .current-milestone-progress-bar {
+    height: 0.45rem;
+  }
+
+  .dashboards-steps-container {
+    margin-top: 0.85rem;
+  }
+
+  .dashboards-step {
+    min-height: 2.8rem;
+  }
+
+  .dashboard-step-name {
+    font-size: 0.8rem;
+    color: white;
+  }
+
+  .dashboard-step-checkbox {
+    width: 0.95rem;
+    height: 0.95rem;
+    margin-right: 0.6rem;
+  }
+
+  .dashboard-step-three-dot {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .dashboard-task {
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+    min-height: 8rem;
+    padding: 0.85rem;
+    margin-top: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .dashboard-task-left-section,
+  .dashboard-task-next-up,
+  .dashboard-task-progress {
+    padding: 0;
+    width: 100%;
+  }
+
+  .dashboard-task-next-up::before,
+  .dashboard-task-next-up::after {
+    display: none;
+  }
+
+  .dashboard-task-header {
+    gap: 0.5rem;
+    height: auto;
+  }
+
+  .dashboard-task-icon-background {
+    height: 2.2rem;
+    width: 2.2rem;
+    border-radius: 0.45rem;
+  }
+
+  .dashboard-task-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .dashboard-task-text-container {
+    gap: 0.1rem;
+  }
+
+  .dashboard-task-title {
+    font-size: 0.85rem;
+  }
+
+  .dashboard-task-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .dashboard-task-counts {
+    margin-top: 0.5rem;
+  }
+
+  .dashboard-task-count-section {
+    gap: 0.15rem;
+  }
+
+  .dashboard-task-counts > div + div::before {
+    top: 10%;
+    height: 80%;
+  }
+
+  .dashboard-task-count-number {
+    font-size: 1.15rem;
+  }
+
+  .dashboard-task-count-label {
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+
+  .dashboard-task-percentage {
+    font-size: 0.55rem;
+    padding: 0.12rem 0.35rem;
+  }
+
+  .dashboard-task-next-up-header {
+    height: auto;
+    gap: 0.1rem;
+  }
+
+  .dashboard-task-next-up-title {
+    font-size: 0.85rem;
+  }
+
+  .dashboard-task-next-up-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .dashboard-task-next-up-tasks {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .dashboard-next-up-task-name {
+    font-size: 0.8rem;
+  }
+
+  .dashboard-task-progress {
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .dashboard-task-progress-ring {
+    width: 88px;
+    height: 88px;
+  }
+
+  .dashboard-task-progress-center {
+    width: 70px;
+    height: 70px;
+    top: 9px;
+    left: 9px;
+  }
+
+  .dashboard-task-progress-percentage {
+    font-size: 1.25rem;
+  }
+
+  .dashboard-task-progress-label {
+    font-size: 0.52rem;
+  }
 }
+
 

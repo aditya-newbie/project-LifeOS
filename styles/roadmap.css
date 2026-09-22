@@ -1299,3 +1299,890 @@ body{
   );
   border-radius: 9999px;
 }
+
+.progress-dashboard {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.8rem;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  background-color: rgb(250, 248, 252);
+  border-top: solid 1px rgb(220, 220, 220);
+  border-bottom: solid 1px rgb(220, 220, 220);
+  margin-bottom: 2rem;
+}
+
+.dashboard-header-title {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: black;
+}
+
+.dashboard-start-date {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: black;
+}
+
+.dashboard-calendar-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}
+
+.dashboard-start-date-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1.2;
+}
+
+.dashboard-start-date-label {
+  font-size: 0.8rem;
+}
+
+.dashboard-start-date-value {
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.dashboard-current-focus{
+  display: inline-block;
+  width: 51.4rem;
+  margin-right: 1.5rem;
+  vertical-align: top;
+}
+
+.dashboard-current-milestone,
+.dashboards-steps {
+  width: 24.7rem;
+  height: 21rem;
+  background-color: rgb(248, 247, 250);
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  padding: 1.25rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.dashboard-current-milestone {
+  margin-right: 1.5rem;
+}
+
+.current-milestone-header,
+.dashboards-steps-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.current-milestone-icon-background,
+.dashboards-steps-icon-background {
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 0.6rem;
+  background-color: rgb(229, 223, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.current-milestone-flag-icon,
+.dashboards-steps-step-icon {
+  height: 1.55rem;
+  width: 1.55rem;
+  color: rgb(108, 45, 255);
+  transform: none;
+}
+
+.current-milestone-text-container,
+.dashboards-steps-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.current-milestone-title,
+.dashboards-steps-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.current-milestone-subtitle,
+.dashboards-steps-subtitle {
+  font-size: 0.8rem;
+  color: rgb(110, 110, 110);
+  margin: 0;
+}
+
+.current-milestone-content {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 85%;
+}
+
+.current-milestone-name {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.current-milestone-description {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgb(80, 80, 80);
+  margin: 0;
+}
+
+.current-milestone-cards {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.25rem;
+}
+
+.current-milestone-step-card,
+.current-milestone-task-card {
+  width: 10.5rem;
+  height: 4rem;
+  background-color: rgb(248, 246, 250);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  gap: 0.75rem;
+}
+
+.current-milestone-card-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: rgb(108, 45, 255);
+  flex-shrink: 0;
+}
+
+.current-milestone-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1;
+}
+
+.current-milestone-card-count {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+}
+
+.current-milestone-card-label {
+  font-size: 0.75rem;
+  color: rgb(80, 80, 80);
+}
+
+.current-milestone-progress {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.current-milestone-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-milestone-progress-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(80, 80, 80);
+}
+
+.current-milestone-progress-percentage {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: blue;
+}
+
+.current-milestone-progress-bar {
+  width: 100%;
+  height: 0.9rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 9999px;
+  background-color: #E8E5F8;
+  overflow: hidden;
+  display: block;
+}
+
+.current-milestone-progress-bar::-webkit-progress-bar {
+  background-color: #E8E5F8;
+  border-radius: 9999px;
+}
+
+.current-milestone-progress-bar::-webkit-progress-value {
+  background: linear-gradient(to right, #3b82f6, blueviolet);
+  border-radius: 9999px;
+}
+
+.current-milestone-progress-bar::-moz-progress-bar {
+  background: linear-gradient(to right, #3b82f6, blueviolet);
+  border-radius: 9999px;
+}
+
+.dashboards-steps-badge {
+  margin-left: auto;
+  color: rgb(108, 45, 255);
+  background-color: rgb(229, 223, 255);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dashboards-steps-container {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.dashboards-step {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dashboards-step + .dashboards-step {
+  position: relative;
+}
+
+.dashboards-step + .dashboards-step::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0.6rem;
+  width: 88%;
+  height: 1px;
+  background-color: rgb(230, 230, 230);
+}
+
+.dashboard-step-checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: solid 1.5px rgb(180, 180, 180);
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  background-color: white;
+  margin-right: 0.85rem;
+}
+
+.dashboard-step-checkbox .checkmark-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  display: none;
+}
+
+.dashboard-step-checkbox.completed {
+  background-color: rgb(0, 211, 0);
+  border-color: rgb(0, 211, 0);
+}
+
+.dashboard-step-checkbox.completed .checkmark-icon {
+  display: block;
+}
+
+.dashboard-step-name {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: rgb(80, 80, 80);
+}
+
+.dashboard-step-menu-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(140, 140, 140);
+  flex-shrink: 0;
+}
+
+.dashboard-step-three-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.dashboard-task {
+  width: 51.2rem;
+  height: 10.5rem;
+  background-color: rgb(248, 247, 250);
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.dashboard-task-left-section,
+.dashboard-task-next-up,
+.dashboard-task-progress {
+  box-sizing: border-box;
+  padding: 0 1rem;
+}
+
+.dashboard-task-left-section {
+  padding-left: 0.25rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-task-next-up {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 17rem;
+}
+
+.dashboard-task-progress {
+  padding-right: 0.25rem;
+}
+
+.dashboard-task-next-up::before,
+.dashboard-task-next-up::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  height: 90%;
+  width: 1px;
+  background-color: rgb(225, 225, 225);
+}
+
+.dashboard-task-next-up::before {
+  left: 0;
+}
+
+.dashboard-task-next-up::after {
+  right: 0;
+}
+
+.dashboard-task-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  height: 30%;
+}
+
+.dashboard-task-icon-background {
+  height: 2.35rem;
+  width: 2.35rem;
+  border-radius: 0.5rem;
+  background-color: rgb(229, 223, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dashboard-task-icon {
+  height: 1.3rem;
+  width: 1.3rem;
+  color: rgb(108, 45, 255);
+}
+
+.dashboard-task-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dashboard-task-title {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.dashboard-task-subtitle {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: rgb(110, 110, 110);
+}
+
+.dashboard-task-counts {
+  display: flex;
+  justify-content: space-between;
+  width: 19rem;
+  flex: 1;
+  margin-top: 1.25rem;
+}
+
+.dashboard-task-count-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashboard-task-counts > div + div {
+  position: relative;
+}
+
+.dashboard-task-counts > div + div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 80%;
+  width: 1px;
+  background-color: rgb(225, 225, 225);
+}
+
+.dashboard-task-count-number {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1;
+  color: rgb(20, 20, 20);
+  text-align: center;
+}
+
+
+.dashboard-completed-task-count-number {
+  color: rgb(0, 255, 128);
+}
+
+
+.dashboard-task-count-label {
+  font-size: 0.82rem;
+  color: rgb(110, 110, 110);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dashboard-task-percentage {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.3rem;
+}
+
+.dashboard-completed-percentage {
+  color: rgb(0, 255, 128);
+  background-color: rgba(66, 255, 161, 0.15);
+}
+
+.dashboard-remaining-percentage {
+  color: rgb(110, 110, 110);
+  background-color: rgba(110, 110, 110, 0.15);
+}
+
+.dashboard-task-next-up-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  height: 30%;
+  justify-content: center;
+}
+
+.dashboard-task-next-up-title {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.dashboard-task-next-up-subtitle {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: rgb(110, 110, 110);
+}
+
+.dashboard-task-next-up-tasks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.dashboard-next-up-task {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-next-up-task-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(80, 80, 80);
+}
+
+.dashboard-task-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-task-progress-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #E8E5F8;
+  flex-shrink: 0;
+}
+
+.dashboard-task-progress-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    #5AD68A 0deg,
+    #5BA8E8 360deg
+  );
+  transform: rotate(90deg);
+}
+
+.dashboard-task-progress-center {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  background: white;
+}
+
+.dashboard-task-progress-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.dashboard-task-progress-percentage {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgb(20, 20, 20);
+}
+
+.dashboard-task-progress-label {
+  font-size: 0.58rem;
+  color: rgb(110, 110, 110);
+  margin-top: 0.25rem;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.dashboard-overall-progress {
+  display: inline-block;
+  vertical-align: top;
+  width: 28rem;
+  height: 33rem;
+  background-color: rgb(248, 247, 250);
+  border-radius: 0.7rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  padding: 1.25rem;
+}
+
+.dashboard-overall-progress-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard-overall-progress-header-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dashboard-overall-progress-icon-background {
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 0.6rem;
+  background-color: rgb(229, 223, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dashboard-overall-progress-icon {
+  height: 1.55rem;
+  width: 1.55rem;
+  color: rgb(108, 45, 255);
+}
+
+.dashboard-overall-progress-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.dashboard-overall-progress-tag {
+  margin-top: 0.25rem;
+  font-size: 0.6rem;
+  font-weight: bolder;
+  color: gray;
+}
+
+.dashboard-overall-progress-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.dashboard-overall-progress-subtitle {
+  font-size: 0.55rem;
+  color: rgb(110, 110, 110);
+}
+
+.dashboard-overall-progress-percentage {
+  margin-left: auto;
+  background-color: rgb(239, 235, 253);
+  color: rgb(52, 37, 85);
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.dashboard-overall-progress-header-bottom {
+  width: 100%;
+  padding-bottom: 1.5rem;
+  border-bottom: solid 0.1px rgb(220, 220, 220);
+}
+
+.dashboard-overall-progress-bar {
+  width: 100%;
+  height: 0.9rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 9999px;
+  background-color: #E8E5F8;
+  overflow: hidden;
+  display: block;
+}
+
+.dashboard-overall-progress-bar::-webkit-progress-bar {
+  background-color: #E8E5F8;
+  border-radius: 9999px;
+}
+
+.dashboard-overall-progress-bar::-webkit-progress-value {
+  background: linear-gradient(
+    to right,
+    #5AD68A,
+    #5BA8E8
+  );
+  border-radius: 9999px;
+}
+
+.dashboard-overall-progress-bar::-moz-progress-bar {
+  background: linear-gradient(
+    to right,
+    #5AD68A,
+    #5BA8E8
+  );
+  border-radius: 9999px;
+}
+
+.milestone-progress {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.milestone-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.milestone-progress-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.milestone-progress-title {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.milestone-progress-subtitle {
+  font-size: 0.72rem;
+  color: rgb(110, 110, 110);
+  line-height: 1.35;
+}
+
+.milestone-progress-total {
+  margin-left: auto;
+  background-color: rgb(229, 223, 255);
+  color: rgb(108, 45, 255);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.dashboard-overall-milestone-progress {
+  margin-top: 1.25rem;
+  background-color: white;
+  border-radius: 0.6rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.dashboard-overall-milestone-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.dashboard-overall-milestone-progress .milestone-name {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  margin-top: 0;
+}
+
+.dashboard-overall-milestone-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.dashboard-overall-milestone-bar {
+  width: 10.5rem;
+  height: 0.8rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 9999px;
+  background-color: #E8E5F8;
+  overflow: hidden;
+  display: block;
+}
+
+.dashboard-overall-milestone-bar::-webkit-progress-bar {
+  background-color: #E8E5F8;
+  border-radius: 9999px;
+}
+
+.dashboard-overall-milestone-bar::-webkit-progress-value {
+  background: linear-gradient(
+    to right,
+    #5AD68A,
+    #5BA8E8
+  );
+  border-radius: 9999px;
+}
+
+.dashboard-overall-milestone-bar::-moz-progress-bar {
+  background: linear-gradient(
+    to right,
+    #5AD68A,
+    #5BA8E8
+  );
+  border-radius: 9999px;
+}
+
+.dashboard-overall-milestone-progress .milestone-progress-percentage {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: rgb(110, 110, 110);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  top: -1px;
+  white-space: nowrap;
+}
+
+.dashboard-overall-milestone-progress .badge.completed {
+  margin-left: 1.5rem;
+  color: rgb(0, 180, 80);
+  background-color: rgba(66, 255, 161, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+
+
+
+
