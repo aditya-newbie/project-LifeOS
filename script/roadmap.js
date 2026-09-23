@@ -1,7 +1,7 @@
 import {fields, saveToStorage} from "../data/fields.js";
 import {MileStone , Step, Task} from "../data/stage.js";
 import { getUniqueColor } from "./utils/colors.js";
-import { getMilestone, getStep, getTask } from "./utils/data-utils.js";
+import { getMilestone, getMilestoneProgress, getStage, getStageTask, getStep, getTask } from "./utils/data-utils.js";
 import { capitalize } from "./utils/format.js";
 import {dialogToast} from './utils/notification.js';
 
@@ -33,7 +33,8 @@ stageDescription.textContent = stage.description;
 
 
 renderMilestoneCards(stage.milestones);
-updateMilestoneCount();
+updateMilestoneCount()
+updateDashboard();
 
 document.body.addEventListener('click' , (event) => {
   const addMilestoneButton = document.querySelectorAll('.js-add-milestone-button');
@@ -843,7 +844,7 @@ function updateTaskProgress(milestoneId) {
   const milestone = getMilestone(milestoneId, stage.milestones);
   const totalTask = milestone.tasks.length;
   const taskCompleted = milestone.tasks.filter(t => t.completed).length;
-  const progress = totalTask === 0 ? 0 : taskCompleted / totalTask * 100;
+  const progress = totalTask === 0 ? 100 : taskCompleted / totalTask * 100;
   const progressFill = document.querySelector('.js-progress-box-task-progress-fill');
   const progressPercent = document.querySelector('.js-progress-box-task-progress-percentage')
   const progressCount = document.querySelector('.js-progress-box-task-progress-count')
@@ -863,18 +864,86 @@ function updateTaskProgress(milestoneId) {
 
 function updateOverallProgress(milestoneId) {
   const milestone = getMilestone(milestoneId, stage.milestones);
-  const totalSteps = milestone.steps.length;
-  const totalTasks = milestone.tasks.length;
-  const completedSteps = milestone.steps.filter(s => s.completed).length;
-  const completedTasks = milestone.tasks.filter(t => t.completed).length;
-  const stepsProgress = totalSteps === 0 ? 0 : completedSteps / totalSteps * 100;
-  const tasksProgress = totalTasks === 0 ? 0 : completedTasks / totalTasks * 100;
-  const overallProgress = (stepsProgress * 0.7) + (tasksProgress * 0.3);
+  const overallProgress = getMilestoneProgress(milestone);
   const progressBar = document.querySelector('.js-overall-progress-bar');
   const progressPercentage = document.querySelector('.js-overall-progress-percentage')
 
   progressBar.value = overallProgress;
   progressPercentage.textContent = `${Math.round(overallProgress)}%`;
 
-  /* bug: if there is 0 task it shows 70% progress even when all steps are completed and same for task */
+}
+
+function updateDashboard() {
+  document.querySelector('.js-dashboard-start-date-value').textContent = stage.startedOn;
+
+  updateDashboardCurrentMilestone();
+  updateDashboardTasks()
+}
+
+function updateDashboardCurrentMilestone() {
+  const currentMilestone = stage.milestones.find(m => !m.completed)
+  const progress = getMilestoneProgress(currentMilestone);
+  const steps = currentMilestone.steps.length;
+  const tasks = currentMilestone.tasks.length;
+  
+  document.querySelector('.js-current-milestone-name').textContent = currentMilestone.name;
+  document.querySelector('.js-current-milestone-description').textContent = currentMilestone.description;
+  document.querySelector('.js-current-milestone-steps-count').textContent = steps;
+  document.querySelector('.js-current-milestone-tasks-count').textContent = tasks;
+  document.querySelector('.js-current-milestone-progress-bar').value = progress;
+  document.querySelector('.js-current-milestone-progress-percentage').textContent = `${progress}%`
+}
+
+//add updateDashboardSteps()
+
+function updateDashboardTasks() {
+  const totalTasksCount = getStageTask(stage).totalCount;
+  const completedTasksCount = getStageTask(stage).completedCount;
+  const completedTasksPercentage = Math.round(completedTasksCount * 100 / totalTasksCount);
+  const remainingTasksCount = getStageTask(stage).remainingCount;
+  const remainingTasksPercentage = Math.round(remainingTasksCount * 100 / totalTasksCount);
+  const firstThreeIncomplete = getStageTask(stage).incomplete.slice(0, 3);
+  let tasksHTML = '';
+
+  document.querySelector('.js-dashboard-total-tasks-count').textContent = totalTasksCount;
+  document.querySelector('.js-dashboard-completed-tasks-count').textContent = completedTasksCount;
+  document.querySelector('.js-dashboard-completed-percentage').textContent = `${completedTasksPercentage}%`;
+  document.querySelector('.js-dashboard-remaining-tasks-count').textContent = remainingTasksCount;
+  document.querySelector('.js-dashboard-remaining-percentage').textContent = `${remainingTasksPercentage}%`;
+
+  firstThreeIncomplete.forEach(task => {
+    tasksHTML += `
+    <div class="dashboard-next-up-task">
+      <div class="dashboard-step-checkbox js-dashboard-task-checkbox">
+        <svg
+          class="checkmark-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M 9 17 L 4 12" />
+          <path d="M22.5 4 L9 17" />
+        </svg>
+      </div>
+      <p class="dashboard-next-up-task-name">${task.name}</p>
+    </div>`
+  })
+
+  document.querySelector('.js-dashboard-task-next-up-tasks').innerHTML = tasksHTML;
+  document.querySelector('.js-dashboard-task-progress-percentage').textContent = `${completedTasksPercentage}%`;
+  document.querySelector('.js-dashboard-task-progress-fill').style.background = `
+      conic-gradient(
+          from -90deg,
+          #5AD68A 0deg,
+          #5BA8E8 ${completedTasksPercentage * 3.6}deg,
+          #E8E5F8 ${completedTasksPercentage * 3.6}deg
+      )
+  `;
+
 }
