@@ -1589,7 +1589,7 @@ body{
   background-color: rgb(230, 230, 230);
 }
 
-.dashboard-step-checkbox {
+.dashboard-checkbox {
   width: 1.15rem;
   height: 1.15rem;
   border: solid 1.5px rgb(180, 180, 180);
@@ -1603,19 +1603,20 @@ body{
   margin-right: 0.85rem;
 }
 
-.dashboard-step-checkbox .checkmark-icon {
-  width: 0.75rem;
-  height: 0.75rem;
+.dashboard-checkbox-checkmark-icon {
   display: none;
 }
 
-.dashboard-step-checkbox.completed {
+.dashboard-checkbox.completed {
   background-color: rgb(0, 211, 0);
   border-color: rgb(0, 211, 0);
 }
 
-.dashboard-step-checkbox.completed .checkmark-icon {
+.dashboard-checkbox.completed .dashboard-checkbox-checkmark-icon {
   display: block;
+  color: white;
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
 .dashboard-step-name {

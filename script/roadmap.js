@@ -1,9 +1,9 @@
-import {fields, saveToStorage} from "../data/fields.js";
-import {MileStone , Step, Task} from "../data/stage.js";
+import { fields, saveToStorage } from "../data/fields.js";
+import { MileStone, Step, Task } from "../data/stage.js";
 import { getUniqueColor } from "./utils/colors.js";
 import { getMilestone, getMilestoneProgress, getStage, getStageTask, getStep, getTask } from "./utils/data-utils.js";
 import { capitalize } from "./utils/format.js";
-import {dialogToast} from './utils/notification.js';
+import { dialogToast } from './utils/notification.js';
 
 const param = new URLSearchParams(window.location.search);
 const stageId = param.get("stageId");
@@ -36,9 +36,9 @@ renderMilestoneCards(stage.milestones);
 updateMilestoneCount()
 updateDashboard();
 
-document.body.addEventListener('click' , (event) => {
+document.body.addEventListener('click', (event) => {
   const addMilestoneButton = document.querySelectorAll('.js-add-milestone-button');
-  
+
   if (!addMilestonePopup.contains(event.target) && ![...addMilestoneButton].some(button => button.contains(event.target))) {
     addMilestonePopup.classList.remove('show');
   }
@@ -78,7 +78,7 @@ document.querySelector('.js-save-milestone-button').addEventListener('click', ()
   saveToStorage();
   renderMilestoneCards(stage.milestones);
   updateMilestoneCount();
-  
+
   nameElement.value = '';
   descriptionElement.value = '';
 })
@@ -246,10 +246,10 @@ function attachMilestoneCheckmark() {
     const milestoneId = trueCheckbox.dataset.milestoneId;
     const milestone = getMilestone(milestoneId, stage.milestones);
 
-    trueCheckbox.addEventListener('click' , () => {
+    trueCheckbox.addEventListener('click', () => {
       if (!milestone.completed) {
         milestone.completed = true;
-      } else{ milestone.completed = false;}
+      } else { milestone.completed = false; }
 
       updateMilestoneCheckmarks();
       saveToStorage();
@@ -296,7 +296,7 @@ function updateMilestoneCheckmarks() {
         trueCheckbox.disabled = true;
       }
 
-    } else if ( milestone === currentMilestone) {
+    } else if (milestone === currentMilestone) {
       visualCheckbox.classList.add('in-progress');
       visualCheckbox.innerHTML = '';
     } else {
@@ -319,7 +319,7 @@ function expandMilestoneCard(milestoneId) {
   taskProgressContainer.classList.add('expanded');
 
   updateExpandButton();
-  expandCheckboxHeight(milestoneId); 
+  expandCheckboxHeight(milestoneId);
   updateTaskbox(milestoneId);
   updateProgressBox(milestoneId);
   taskProgressOpen = true;
@@ -334,11 +334,11 @@ function toggleMilestoneCard(milestoneId) {
   const expandButton = document.querySelector(`.js-expand-milestone-${milestoneId}`);
 
   document.querySelectorAll(`.js-steps-card-container:not(.js-steps-card-container-${milestoneId})`)
-  .forEach(container => container.classList.remove('expanded'));
+    .forEach(container => container.classList.remove('expanded'));
   document.querySelectorAll(`.js-milestone-visual-checkbox:not(.js-milestone-visual-checkbox-${milestoneId})`)
-  .forEach(checkbox => checkbox.classList.remove('expanded'));
+    .forEach(checkbox => checkbox.classList.remove('expanded'));
   document.querySelectorAll(`.js-expand-milestone:not(.js-expand-milestone-${milestoneId})`)
-  .forEach(checkbox => checkbox.classList.remove('expanded'));
+    .forEach(checkbox => checkbox.classList.remove('expanded'));
 
   stepsCardContainer.classList.toggle('expanded');
   visualCheckbox.classList.toggle('expanded');
@@ -352,7 +352,7 @@ function updateExpandButton() {
   document.querySelectorAll(`.js-expand-milestone`).forEach(expandButton => {
 
     if (expandButton.classList.contains('expanded')) {
-  
+
       expandButton.innerHTML = `
       <svg
         class="expand-milestone-icon"
@@ -368,7 +368,7 @@ function updateExpandButton() {
       >
         <path d="M12 9 L4 15" />
         <path d="M20 15 L12 9" />
-      </svg>` 
+      </svg>`
     } else {
       expandButton.innerHTML = `
       <svg
@@ -421,8 +421,8 @@ function attachMilestoneMenu() {
 
   buttons.forEach(button => {
     const milestoneId = button.dataset.milestoneId;
-    const thisPopup  = document.querySelector(`.js-milestone-menu-popup-${milestoneId}`);
-    
+    const thisPopup = document.querySelector(`.js-milestone-menu-popup-${milestoneId}`);
+
     button.addEventListener('click', () => {
       thisPopup.classList.toggle('open')
     })
@@ -458,7 +458,7 @@ function attachDeleteMilestone() {
     const milestone = getMilestone(milestoneId, stage.milestones);
 
     button.addEventListener('click', () => {
-      const newMilestones  = stage.milestones.filter(milestn => milestn !== milestone)
+      const newMilestones = stage.milestones.filter(milestn => milestn !== milestone)
       stage.milestones = newMilestones;
       saveToStorage();
       renderMilestoneCards(stage.milestones);
@@ -526,7 +526,7 @@ function updateStepCard() {
       if (step.name) {
         return;
       }
-  
+
       const stepCard = document.querySelector(`.js-step-${step.id}`)
       const unsavedStepHTML = `
       <div class="unsaved-step">
@@ -535,9 +535,9 @@ function updateStepCard() {
           Save
         </button>
       </div>`
-  
+
       stepCard.innerHTML = unsavedStepHTML;
-  
+
       document.querySelector(`.js-step-name-input-${step.id}`).focus();
       attachSaveStepButton();
     })
@@ -556,7 +556,7 @@ function attachSaveStepButton() {
         nameElement.focus();
         return;
       }
-  
+
       step.name = nameElement.value;
       step.saved = true;
 
@@ -572,11 +572,11 @@ function attachStepCheckbox() {
   document.querySelectorAll('.js-step-checkbox').forEach(checkbox => {
     const stepId = checkbox.dataset.stepId;
     const step = getStep(stepId, stage.milestones);
-    
-    checkbox.addEventListener('click' , () => {
+
+    checkbox.addEventListener('click', () => {
       if (step.completed === false) {
         step.completed = true;
-      } else{step.completed = false;}
+      } else { step.completed = false; }
 
       updateStepCheckbox();
       updateProgressBox(checkbox.dataset.milestoneId);
@@ -590,9 +590,9 @@ function updateStepCheckbox() {
     const stepId = checkbox.dataset.stepId;
     const step = getStep(stepId, stage.milestones);
 
-    if(step.completed) {
-      checkbox.classList.add('completed') 
-    } else {checkbox.classList.remove('completed')}
+    if (step.completed) {
+      checkbox.classList.add('completed')
+    } else { checkbox.classList.remove('completed') }
   })
 }
 
@@ -613,7 +613,7 @@ function attachRemoveStep() {
       renderMilestoneCards(stage.milestones);
       expandMilestoneCard(milestone.id);
       updateProgressBox(milestoneId);
-  
+
       saveToStorage();
     })
   })
@@ -625,8 +625,8 @@ function toggleTaskProgress(milestoneId) {
   if (!taskProgressOpen) {
     taskProgressContainer.classList.add('expanded');
     taskProgressOpen = true;
-  }else if (previousExpandedMilestoneId === milestoneId) {
-    taskProgressContainer.classList.remove('expanded'); 
+  } else if (previousExpandedMilestoneId === milestoneId) {
+    taskProgressContainer.classList.remove('expanded');
     taskProgressOpen = false;
   }
 
@@ -768,7 +768,7 @@ function attachSaveTaskButton() {
       updateTaskbox(milestoneId);
       updateProgressBox(milestoneId);
       saveToStorage();
-      
+
     })
   })
 }
@@ -779,10 +779,10 @@ function attachTaskCheckbox() {
     const task = getTask(taskId, stage.milestones);
     const milestoneId = checkbox.dataset.milestoneId;
 
-    checkbox.addEventListener('click' , () => {
+    checkbox.addEventListener('click', () => {
       if (task.completed === false) {
         task.completed = true;
-      } else{task.completed = false;}
+      } else { task.completed = false; }
 
       updateTaskCheckbox();
       updateProgressBox(milestoneId);
@@ -796,9 +796,9 @@ function updateTaskCheckbox() {
     const taskId = checkbox.dataset.taskId;
     const task = getTask(taskId, stage.milestones);
 
-    if(task.completed) {
-      checkbox.classList.add('completed') 
-    } else {checkbox.classList.remove('completed')}
+    if (task.completed) {
+      checkbox.classList.add('completed')
+    } else { checkbox.classList.remove('completed') }
   })
 }
 
@@ -824,7 +824,7 @@ function attachRemoveTask() {
 }
 
 function updateProgressBox(milestoneId) {
-  
+
   updateStepCount(milestoneId);
   updateTaskProgress(milestoneId);
   updateOverallProgress(milestoneId);
@@ -833,7 +833,7 @@ function updateProgressBox(milestoneId) {
 function updateStepCount(milestoneId) {
   const stepsCount = document.querySelector('.js-steps-total-number');
   const stepsCompletedCount = document.querySelector('.js-steps-completed-number');
-  const milestone = getMilestone(milestoneId , stage.milestones);
+  const milestone = getMilestone(milestoneId, stage.milestones);
   const completedSteps = milestone.steps.filter(s => s.completed);
 
   stepsCount.textContent = milestone.steps.length;
@@ -858,7 +858,7 @@ function updateTaskProgress(milestoneId) {
       )
   `;
 
-  progressPercent.textContent =`${Math.round(progress)} %`
+  progressPercent.textContent = `${Math.round(progress)} %`
   progressCount.textContent = `${taskCompleted}/${totalTask}`;
 }
 
@@ -877,7 +877,8 @@ function updateDashboard() {
   document.querySelector('.js-dashboard-start-date-value').textContent = stage.startedOn;
 
   updateDashboardCurrentMilestone();
-  updateDashboardTasks()
+  updateDashboardSteps();
+  updateDashboardTasks();
 }
 
 function updateDashboardCurrentMilestone() {
@@ -885,7 +886,7 @@ function updateDashboardCurrentMilestone() {
   const progress = getMilestoneProgress(currentMilestone);
   const steps = currentMilestone.steps.length;
   const tasks = currentMilestone.tasks.length;
-  
+
   document.querySelector('.js-current-milestone-name').textContent = currentMilestone.name;
   document.querySelector('.js-current-milestone-description').textContent = currentMilestone.description;
   document.querySelector('.js-current-milestone-steps-count').textContent = steps;
@@ -894,7 +895,86 @@ function updateDashboardCurrentMilestone() {
   document.querySelector('.js-current-milestone-progress-percentage').textContent = `${progress}%`
 }
 
-//add updateDashboardSteps()
+function updateDashboardSteps() {
+  const currentMilestone = stage.milestones.find(m => !m.completed);
+  const steps = currentMilestone.steps;
+  let stepHTML = '';
+
+  steps.forEach(step => {
+    stepHTML += `
+    <div class="dashboards-step">
+      <div class="dashboard-checkbox js-dashboard-step-checkbox js-dashboard-step-checkbox-${step.id}" data-step-id="${step.id}">
+        <svg
+          class="dashboard-checkbox-checkmark-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M 9 17 L 4 12" />
+          <path d="M22.5 4 L9 17" />
+        </svg>
+      </div>
+      <p class="dashboard-step-name">${step.name}</p>
+      <button class="dashboard-step-menu-button js-dashboard-step-menu-button" aria-label="Step options">
+        <svg
+          class="dashboard-step-three-dot lucide lucide-ellipsis-vertical"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="1" />
+          <circle cx="12" cy="5" r="1" />
+          <circle cx="12" cy="19" r="1" />
+        </svg>
+      </button>
+    </div>`
+  })
+
+  document.querySelector('.js-dashboard-steps-container').innerHTML = stepHTML;
+
+  attachDashboardStepsCheckbox(steps);
+  updateDashboardStepsCheckbox(steps);
+}
+
+function attachDashboardStepsCheckbox(steps) {
+  document.querySelectorAll('.js-dashboard-step-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('click' , () => {
+      const stepId = checkbox.dataset.stepId;
+      const step = getStep(stepId, stage.milestones);
+
+      if(!step.completed) {
+        step.completed = true;
+      } else {step.completed = false}
+
+      updateDashboardStepsCheckbox(steps);
+      saveToStorage();
+    })
+  })
+}
+
+function updateDashboardStepsCheckbox(steps) {
+
+  steps.forEach(step => {
+    const checkbox = document.querySelector(`.js-dashboard-step-checkbox-${step.id}`);
+    checkbox.classList.remove('completed');
+
+    if (step.completed) {
+      checkbox.classList.add('completed')
+    }
+  })
+}
 
 function updateDashboardTasks() {
   const totalTasksCount = getStageTask(stage).totalCount;
@@ -914,9 +994,9 @@ function updateDashboardTasks() {
   firstThreeIncomplete.forEach(task => {
     tasksHTML += `
     <div class="dashboard-next-up-task">
-      <div class="dashboard-step-checkbox js-dashboard-task-checkbox">
+      <div class="dashboard-checkbox js-dashboard-task-checkbox js-dashboard-task-checkbox-${task.id}" data-task-id="${task.id}">
         <svg
-          class="checkmark-icon"
+          class="dashboard-checkbox-checkmark-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -946,4 +1026,38 @@ function updateDashboardTasks() {
       )
   `;
 
+  attachDashboardTaskCheckbox(firstThreeIncomplete);
+  updateDashboardTaskCheckbox(firstThreeIncomplete);
+}
+
+function attachDashboardTaskCheckbox(tasks) {
+  document.querySelectorAll('.js-dashboard-task-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('click' , () => {
+      const taskId = checkbox.dataset.taskId;
+      const task = getTask(taskId, stage.milestones);
+
+      if(!task.completed) {
+        task.completed = true;
+      } else {task.completed = false}
+
+      updateDashboardTaskCheckbox(tasks);
+      saveToStorage();
+    })
+  })
+}
+
+function updateDashboardTaskCheckbox(tasks) {
+
+  tasks.forEach(task => {
+    const checkbox = document.querySelector(`.js-dashboard-task-checkbox-${task.id}`);
+    checkbox.classList.remove('completed');
+
+    if (task.completed) {
+      checkbox.classList.add('completed')
+    }
+  })
+}
+
+function updateDashboardOverallProgress() {
+  
 }
