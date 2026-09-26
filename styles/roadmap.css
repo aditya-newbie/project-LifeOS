@@ -1567,6 +1567,7 @@ body{
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  overflow-y: auto;
 }
 
 .dashboards-step {
@@ -2090,6 +2091,10 @@ body{
   line-height: 1;
 }
 
+.dashboard-overall-milestone-progress-container {
+  overflow-y: auto;
+}
+
 .dashboard-overall-milestone-progress {
   margin-top: 1.25rem;
   background-color: white;
@@ -2151,6 +2156,10 @@ body{
   border-radius: 9999px;
 }
 
+.dashboard-overall-milestone-bar.current::-webkit-progress-value {
+  background: linear-gradient(to right, #3b82f6, blueviolet);
+}
+
 .dashboard-overall-milestone-bar::-moz-progress-bar {
   background: linear-gradient(
     to right,
@@ -2158,6 +2167,10 @@ body{
     #5BA8E8
   );
   border-radius: 9999px;
+}
+
+.dashboard-overall-milestone-bar.current::-moz-progress-bar {
+  background: linear-gradient(to right, #3b82f6, blueviolet);
 }
 
 .dashboard-overall-milestone-progress .milestone-progress-percentage {
@@ -2172,10 +2185,8 @@ body{
   white-space: nowrap;
 }
 
-.dashboard-overall-milestone-progress .badge.completed {
+.dashboard-overall-milestone-progress .badge {
   margin-left: 1.5rem;
-  color: rgb(0, 180, 80);
-  background-color: rgba(66, 255, 161, 0.2);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.35rem 0.75rem;
@@ -2183,6 +2194,21 @@ body{
   line-height: 1;
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+.dashboard-overall-milestone-progress .badge.completed {
+  color: rgb(0, 180, 80);
+  background-color: rgba(66, 255, 161, 0.2);
+}
+
+.dashboard-overall-milestone-progress .badge.in-progress {
+  color: rgb(22, 22, 255);
+  background-color: rgba(22, 22, 255, 0.12);
+}
+
+.dashboard-overall-milestone-progress .badge.upcoming {
+  color: rgb(110, 110, 110);
+  background-color: rgba(110, 110, 110, 0.15);
 }
 
 

@@ -49,6 +49,7 @@ export function getTask(taskId, milestones) {
 }
 
 export function getMilestoneProgress(milestone) {
+
   const totalSteps = milestone.steps.length;
   const totalTasks = milestone.tasks.length;
   const completedSteps = milestone.steps.filter(s => s.completed).length;

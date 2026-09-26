@@ -1,0 +1,18 @@
+{
+  "javascript.suggest.enabled": true,
+  "typescript.suggest.enabled": true,
+  "javascript.validate.enable": true,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  }
+}

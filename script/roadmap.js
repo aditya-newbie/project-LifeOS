@@ -78,6 +78,7 @@ document.querySelector('.js-save-milestone-button').addEventListener('click', ()
   saveToStorage();
   renderMilestoneCards(stage.milestones);
   updateMilestoneCount();
+  updateDashboard();
 
   nameElement.value = '';
   descriptionElement.value = '';
@@ -191,7 +192,7 @@ function renderMilestoneCards(milestones) {
   document.querySelector('.js-milestone-card-container').innerHTML = milestoneHTML;
 
   updateEmptyMilestone();
-  attachMilestoneCheckmark();
+  attachMilestoneCheckbox();
   updateMilestoneCheckmarks();
   attachToggleMilestoneCard();
   attachMilestoneMenu();
@@ -241,7 +242,7 @@ function updateEmptyMilestone() {
   }
 }
 
-function attachMilestoneCheckmark() {
+function attachMilestoneCheckbox() {
   document.querySelectorAll('.js-milestone-functional-checkbox').forEach(trueCheckbox => {
     const milestoneId = trueCheckbox.dataset.milestoneId;
     const milestone = getMilestone(milestoneId, stage.milestones);
@@ -252,7 +253,9 @@ function attachMilestoneCheckmark() {
       } else { milestone.completed = false; }
 
       updateMilestoneCheckmarks();
-      saveToStorage();
+      console.log(stage.milestones , milestone);
+      updateDashboard();
+      saveToStorage();  const currentMilestone = stage.milestones.find(m => !m.completed)
     })
   })
 }
@@ -322,6 +325,7 @@ function expandMilestoneCard(milestoneId) {
   expandCheckboxHeight(milestoneId);
   updateTaskbox(milestoneId);
   updateProgressBox(milestoneId);
+  updateDashboard();
   taskProgressOpen = true;
   previousExpandedMilestoneId = milestoneId;
 }
@@ -463,6 +467,7 @@ function attachDeleteMilestone() {
       saveToStorage();
       renderMilestoneCards(stage.milestones);
       updateMilestoneCount();
+      updateDashboard();
     })
   })
 }
@@ -563,6 +568,7 @@ function attachSaveStepButton() {
       renderMilestoneCards(stage.milestones);
       expandMilestoneCard(milestoneId);
       updateProgressBox(milestoneId)
+      updateDashboard();
       saveToStorage();
     })
   })
@@ -580,6 +586,7 @@ function attachStepCheckbox() {
 
       updateStepCheckbox();
       updateProgressBox(checkbox.dataset.milestoneId);
+      updateDashboard();
       saveToStorage();
     })
   })
@@ -613,6 +620,7 @@ function attachRemoveStep() {
       renderMilestoneCards(stage.milestones);
       expandMilestoneCard(milestone.id);
       updateProgressBox(milestoneId);
+      updateDashboard();
 
       saveToStorage();
     })
@@ -632,6 +640,7 @@ function toggleTaskProgress(milestoneId) {
 
   updateTaskbox(milestoneId);
   updateProgressBox(milestoneId)
+  updateDashboard();
 }
 
 
@@ -767,6 +776,7 @@ function attachSaveTaskButton() {
 
       updateTaskbox(milestoneId);
       updateProgressBox(milestoneId);
+      updateDashboard();
       saveToStorage();
 
     })
@@ -786,6 +796,7 @@ function attachTaskCheckbox() {
 
       updateTaskCheckbox();
       updateProgressBox(milestoneId);
+      updateDashboard();
       saveToStorage();
     })
   })
@@ -818,6 +829,7 @@ function attachRemoveTask() {
       stage.milestones = newMilestones;
       updateTaskbox(milestoneId);
       updateProgressBox(milestoneId);
+      updateDashboard();
       saveToStorage();
     })
   })
@@ -879,10 +891,18 @@ function updateDashboard() {
   updateDashboardCurrentMilestone();
   updateDashboardSteps();
   updateDashboardTasks();
+  updateDashboardOverallProgress();
 }
 
 function updateDashboardCurrentMilestone() {
+  if (stage.milestones.length === 0) {
+    return;
+  }
+
   const currentMilestone = stage.milestones.find(m => !m.completed)
+  if (!currentMilestone) {
+    return
+  }
   const progress = getMilestoneProgress(currentMilestone);
   const steps = currentMilestone.steps.length;
   const tasks = currentMilestone.tasks.length;
@@ -892,13 +912,25 @@ function updateDashboardCurrentMilestone() {
   document.querySelector('.js-current-milestone-steps-count').textContent = steps;
   document.querySelector('.js-current-milestone-tasks-count').textContent = tasks;
   document.querySelector('.js-current-milestone-progress-bar').value = progress;
-  document.querySelector('.js-current-milestone-progress-percentage').textContent = `${progress}%`
+  document.querySelector('.js-current-milestone-progress-percentage').textContent = `${Math.round(progress)}%`
 }
 
 function updateDashboardSteps() {
+
+   if (stage.milestones.length === 0) {
+    return;
+  }
+
   const currentMilestone = stage.milestones.find(m => !m.completed);
+
+  if (!currentMilestone) {
+    return;
+  }
+
   const steps = currentMilestone.steps;
   let stepHTML = '';
+
+  document.querySelector('.js-dashboards-steps-badge').textContent = `${steps.filter(s => s.completed).length} / ${steps.length} Completed`
 
   steps.forEach(step => {
     stepHTML += `
@@ -959,6 +991,7 @@ function attachDashboardStepsCheckbox(steps) {
       } else {step.completed = false}
 
       updateDashboardStepsCheckbox(steps);
+      updateDashboard();
       saveToStorage();
     })
   })
@@ -977,6 +1010,11 @@ function updateDashboardStepsCheckbox(steps) {
 }
 
 function updateDashboardTasks() {
+
+   if (stage.milestones.length === 0) {
+    return;
+  }
+
   const totalTasksCount = getStageTask(stage).totalCount;
   const completedTasksCount = getStageTask(stage).completedCount;
   const completedTasksPercentage = Math.round(completedTasksCount * 100 / totalTasksCount);
@@ -1059,5 +1097,73 @@ function updateDashboardTaskCheckbox(tasks) {
 }
 
 function updateDashboardOverallProgress() {
-  
+
+   if (stage.milestones.length === 0) {
+    return;
+  }
+
+  const milestoneCount = stage.milestones.length;
+  const totalMilestoneProgress = stage.milestones.reduce((accumulator, milestone) => accumulator + getMilestoneProgress(milestone), 0);
+  const overallProgress = Math.round(totalMilestoneProgress / milestoneCount);
+  const overallProgressBar = document.querySelector('.js-dashboard-overall-progress-bar')
+  const overallprogressPercentage = document.querySelector('.js-dashboard-overall-progress-percentage')
+
+  overallProgressBar.value = overallProgress;
+  overallprogressPercentage.textContent = `${Math.round(overallProgress)}%`;
+
+  document.querySelector('.js-milestone-progress-total').textContent = `${stage.milestones.length} Milestones`
+
+  renderDashboardOverallMilestones()
+}
+
+function renderDashboardOverallMilestones() {
+  const milestoneContainer = document.querySelector('.js-dashboard-overall-milestone-progress-contianer')
+  let milestoneHTML = '';
+
+  stage.milestones.forEach(milestone => {
+    const progress = getMilestoneProgress(milestone);
+    milestoneHTML += `
+    <div class="dashboard-overall-milestone-progress">
+      <div class="dashboard-overall-milestone-main">
+        <p class="milestone-name">${milestone.name}</p>
+        <div class="dashboard-overall-milestone-progress-row">
+          <progress class="dashboard-overall-milestone-bar js-dashboard-overall-milestone-bar" value="${progress}" max="100" data-milestone-id="${milestone.id}"></progress>
+          <span class="milestone-progress-percentage js-dashboard-overall-milestone-percentage">${Math.round(progress)}%</span>
+        </div>
+      </div>
+      <span class="badge js-badge" data-milestone-id="${milestone.id}"></span>
+    </div>`
+  })
+
+  milestoneContainer.innerHTML = milestoneHTML;
+  updateDashboardOverallMilestone();
+}
+
+function updateDashboardOverallMilestone() {
+  const currentMilestone = stage.milestones.find(milestone => !milestone.completed);
+
+  document.querySelectorAll('.js-dashboard-overall-milestone-bar').forEach(bar => {
+    const milestoneId = bar.dataset.milestoneId;
+    const milestone = getMilestone(milestoneId, stage.milestones);
+
+    if (milestone === currentMilestone) {
+      bar.classList.add('current')
+    }
+  })
+
+  document.querySelectorAll('.dashboard-overall-milestone-progress .js-badge').forEach(badge => {
+    const milestoneId = badge.dataset.milestoneId;
+    const milestone = getMilestone(milestoneId, stage.milestones);
+
+    if (milestone.completed) {
+      badge.classList.add('completed')
+      badge.textContent = 'Completed'
+    } else if (milestone === currentMilestone) {
+      badge.classList.add('in-progress')
+      badge.textContent = 'In-progress'
+    } else {
+      badge.classList.add('upcoming')
+      badge.textContent = 'Upcoming'
+    }
+  })
 }
