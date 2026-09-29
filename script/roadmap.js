@@ -1142,9 +1142,9 @@ function updateDashboardTasks() {
 
   const totalTasksCount = getStageTask(stage).totalCount;
   const completedTasksCount = getStageTask(stage).completedCount;
-  const completedTasksPercentage = Math.round(completedTasksCount * 100 / totalTasksCount);
+  const completedTasksPercentage = totalTasksCount === 0 ? 0 : Math.round(completedTasksCount * 100 / totalTasksCount);
   const remainingTasksCount = getStageTask(stage).remainingCount;
-  const remainingTasksPercentage = Math.round(remainingTasksCount * 100 / totalTasksCount);
+  const remainingTasksPercentage = totalTasksCount === 0 ? 0 : Math.round(remainingTasksCount * 100 / totalTasksCount);
   const firstThreeIncomplete = getStageTask(stage).incomplete.slice(0, 3);
   let tasksHTML = '';
 
