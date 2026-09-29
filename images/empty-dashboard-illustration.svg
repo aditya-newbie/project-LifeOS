@@ -1,0 +1,65 @@
+<svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="panel" x1="120" y1="55" x2="385" y2="235" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3F1FF"/>
+      <stop offset="1" stop-color="#E8E7FF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="310" y1="180" x2="360" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B7CFF"/>
+      <stop offset="1" stop-color="#4F35E8"/>
+    </linearGradient>
+    <filter id="shadow" x="90" y="35" width="330" height="225" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#6E63D9" flood-opacity=".10"/>
+    </filter>
+  </defs>
+
+  <!-- Decorative dashed elements -->
+  <circle cx="116" cy="194" r="28" stroke="#D8D4FF" stroke-width="2" stroke-dasharray="7 8"/>
+  <circle cx="382" cy="72" r="27" stroke="#D8D4FF" stroke-width="2" stroke-dasharray="7 8"/>
+
+  <!-- Decorative rays -->
+  <path d="M145 102L136 94M132 118L120 117M145 133L136 140"
+        stroke="#AAA2F5" stroke-width="4" stroke-linecap="round"/>
+  <path d="M375 133L384 125M389 117L401 116M375 101L384 94"
+        stroke="#AAA2F5" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Soft shadow -->
+  <ellipse cx="250" cy="252" rx="145" ry="16" fill="#DCD9F7" fill-opacity=".35"/>
+
+  <!-- Dashboard illustration -->
+  <g filter="url(#shadow)">
+    <rect x="135" y="58" width="250" height="175" rx="22" fill="white" stroke="#D8D5FF" stroke-width="4"/>
+
+    <!-- Header/detail block -->
+    <rect x="158" y="82" width="105" height="58" rx="11" fill="url(#panel)"/>
+
+    <!-- Bar chart -->
+    <rect x="178" y="113" width="9" height="15" rx="4.5" fill="#AAA2F5"/>
+    <rect x="193" y="105" width="9" height="23" rx="4.5" fill="#9187EE"/>
+    <rect x="208" y="96" width="9" height="32" rx="4.5" fill="#7D70E8"/>
+
+    <!-- Donut -->
+    <circle cx="329" cy="111" r="27" stroke="#E1DFFF" stroke-width="10"/>
+    <path d="M329 84A27 27 0 0 1 353 124"
+          stroke="#AAA2F5" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Checklist -->
+    <rect x="158" y="153" width="105" height="58" rx="11" fill="#F7F6FF"/>
+    <circle cx="173" cy="169" r="4" fill="#8175EA"/>
+    <rect x="184" y="166" width="61" height="6" rx="3" fill="#D1CDF7"/>
+    <circle cx="173" cy="185" r="4" fill="#8175EA"/>
+    <rect x="184" y="182" width="51" height="6" rx="3" fill="#D1CDF7"/>
+    <circle cx="173" cy="201" r="4" fill="#8175EA"/>
+    <rect x="184" y="198" width="68" height="6" rx="3" fill="#D1CDF7"/>
+
+    <!-- Small card -->
+    <rect x="278" y="153" width="83" height="58" rx="11" fill="url(#panel)"/>
+    <rect x="293" y="169" width="52" height="7" rx="3.5" fill="#D1CDF7"/>
+    <rect x="293" y="184" width="38" height="7" rx="3.5" fill="#DDD9FA"/>
+
+    <!-- Plus badge -->
+    <circle cx="382" cy="230" r="24" fill="url(#accent)"/>
+    <path d="M382 218V242M370 230H394"
+          stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

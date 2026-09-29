@@ -18,7 +18,7 @@ fields.forEach(field => {
 })
 
 const addMilestonePopup = document.querySelector('.js-add-milestone-popup')
-const addMilestoneButton = document.querySelector('.js-add-milestone-button')
+const addMilestoneButtons = document.querySelectorAll('.js-add-milestone-button')
 const cancelMilestonePopup = document.querySelector('.js-cancel-add-milestone')
 const startedOn = document.querySelector('.js-started-on')
 const stageName = document.querySelector('.js-stage-name');
@@ -26,6 +26,8 @@ const stageDescription = document.querySelector('.js-stage-description');
 let timeoutID
 let previousExpandedMilestoneId = null;
 let taskProgressOpen = false;
+let defaultCurrentMilestoneBodyHTML = '';
+
 
 startedOn.textContent = stage.startedOn;
 stageName.textContent = stage.name;
@@ -51,9 +53,11 @@ document.body.addEventListener('keydown', (event) => {
 })
 
 
-addMilestoneButton.addEventListener('click', () => {
-  addMilestonePopup.classList.add('show');
-})
+addMilestoneButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    addMilestonePopup.classList.add('show');
+  });
+});
 
 cancelMilestonePopup.addEventListener('click', () => {
   addMilestonePopup.classList.remove('show');
@@ -618,7 +622,7 @@ function attachRemoveStep() {
 
       stage.milestones = newMilestones;
       renderMilestoneCards(stage.milestones);
-      expandMilestoneCard(milestone.id);
+      expandMilestoneCard(milestoneId);
       updateProgressBox(milestoneId);
       updateDashboard();
 
@@ -888,6 +892,18 @@ function updateOverallProgress(milestoneId) {
 function updateDashboard() {
   document.querySelector('.js-dashboard-start-date-value').textContent = stage.startedOn;
 
+  const dashboardContent = document.querySelector('.js-dashboard-content');
+  const dashboardEmpty = document.querySelector('.js-dashboard-empty-card');
+
+  if (stage.milestones.length === 0) {
+    if (dashboardContent) dashboardContent.classList.add('hidden');
+    if (dashboardEmpty) dashboardEmpty.classList.remove('hidden');
+    return;
+  }
+
+  if (dashboardContent) dashboardContent.classList.remove('hidden');
+  if (dashboardEmpty) dashboardEmpty.classList.add('hidden');
+
   updateDashboardCurrentMilestone();
   updateDashboardSteps();
   updateDashboardTasks();
@@ -895,14 +911,45 @@ function updateDashboard() {
 }
 
 function updateDashboardCurrentMilestone() {
-  if (stage.milestones.length === 0) {
+  const milestoneBody = document.querySelector('.js-current-milestone-body');
+  if (!milestoneBody) return;
+
+  if (!defaultCurrentMilestoneBodyHTML) {
+    defaultCurrentMilestoneBodyHTML = milestoneBody.innerHTML;
+  }
+
+  const currentMilestone = stage.milestones.find(m => !m.completed);
+
+  if (!currentMilestone) {
+    milestoneBody.innerHTML = `
+      <div class="current-milestone-completed">
+        <svg class="current-milestone-completed-illustration" width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Radiating mint rays -->
+          <line x1="18" y1="24" x2="26" y2="30" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="18" y1="56" x2="26" y2="50" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="82" y1="24" x2="74" y2="30" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="82" y1="56" x2="74" y2="50" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+
+          <!-- Light green circle -->
+          <circle cx="50" cy="40" r="24" fill="#B9F1D0"/>
+
+          <!-- Green checkmark -->
+          <path d="M 40 40 L 47 47 L 60 33" stroke="#00A34C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <h4 class="current-milestone-completed-title">Stage Completed</h4>
+        <p class="current-milestone-completed-subtitle">
+          All milestones in this stage<br>have been completed.
+        </p>
+      </div>
+    `;
     return;
   }
 
-  const currentMilestone = stage.milestones.find(m => !m.completed)
-  if (!currentMilestone) {
-    return
+  if (!milestoneBody.querySelector('.js-current-milestone-name')) {
+    milestoneBody.innerHTML = defaultCurrentMilestoneBodyHTML;
   }
+
   const progress = getMilestoneProgress(currentMilestone);
   const steps = currentMilestone.steps.length;
   const tasks = currentMilestone.tasks.length;
@@ -912,25 +959,93 @@ function updateDashboardCurrentMilestone() {
   document.querySelector('.js-current-milestone-steps-count').textContent = steps;
   document.querySelector('.js-current-milestone-tasks-count').textContent = tasks;
   document.querySelector('.js-current-milestone-progress-bar').value = progress;
-  document.querySelector('.js-current-milestone-progress-percentage').textContent = `${Math.round(progress)}%`
+  document.querySelector('.js-current-milestone-progress-percentage').textContent = `${Math.round(progress)}%`;
 }
 
 function updateDashboardSteps() {
-
-   if (stage.milestones.length === 0) {
-    return;
-  }
+  const badge = document.querySelector('.js-dashboards-steps-badge');
+  const container = document.querySelector('.js-dashboard-steps-container');
 
   const currentMilestone = stage.milestones.find(m => !m.completed);
 
   if (!currentMilestone) {
+    if (badge) badge.style.display = 'none';
+    if (container) {
+      container.innerHTML = `
+        <div class="current-milestone-completed">
+          <svg class="current-milestone-completed-illustration" width="100" height="80" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Radiating mint rays -->
+            <line x1="18" y1="24" x2="26" y2="30" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="18" y1="56" x2="26" y2="50" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="82" y1="24" x2="74" y2="30" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="82" y1="56" x2="74" y2="50" stroke="#94E2B7" stroke-width="3.5" stroke-linecap="round"/>
+
+            <!-- Light green circle -->
+            <circle cx="50" cy="40" r="24" fill="#B9F1D0"/>
+
+            <!-- Green checkmark -->
+            <path d="M 40 40 L 47 47 L 60 33" stroke="#00A34C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          <h4 class="current-milestone-completed-title">Stage Completed</h4>
+          <p class="current-milestone-completed-subtitle">
+            All milestones in this stage<br>have been completed.
+          </p>
+        </div>
+      `;
+    }
     return;
   }
 
   const steps = currentMilestone.steps;
-  let stepHTML = '';
 
-  document.querySelector('.js-dashboards-steps-badge').textContent = `${steps.filter(s => s.completed).length} / ${steps.length} Completed`
+  if (steps.length === 0) {
+    badge.style.display = 'none';
+    container.innerHTML = `
+      <div class="dashboards-steps-empty">
+        <svg class="dashboards-steps-empty-illustration" width="140" height="96" viewBox="0 0 140 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="28" y1="26" x2="35" y2="32" stroke="#9E93F6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="28" y1="56" x2="35" y2="50" stroke="#9E93F6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="112" y1="26" x2="105" y2="32" stroke="#9E93F6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="112" y1="56" x2="105" y2="50" stroke="#9E93F6" stroke-width="3" stroke-linecap="round"/>
+
+          <rect x="44" y="10" width="52" height="66" rx="8" fill="#FFFFFF" stroke="#C5BEFB" stroke-width="3.5"/>
+
+          <circle cx="55" cy="28" r="2.5" fill="#B3ABFB"/>
+          <rect x="62" y="26.25" width="24" height="3.5" rx="1.75" fill="#DDD9FA"/>
+
+          <circle cx="55" cy="41" r="2.5" fill="#B3ABFB"/>
+          <rect x="62" y="39.25" width="24" height="3.5" rx="1.75" fill="#DDD9FA"/>
+
+          <circle cx="55" cy="54" r="2.5" fill="#B3ABFB"/>
+          <rect x="62" y="52.25" width="16" height="3.5" rx="1.75" fill="#DDD9FA"/>
+
+          <circle cx="90" cy="70" r="13" fill="#4F35E8"/>
+          <line x1="90" y1="64" x2="90" y2="76" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="84" y1="70" x2="96" y2="70" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <h4 class="dashboards-steps-empty-title">No steps yet</h4>
+        <p class="dashboards-steps-empty-subtitle">
+          Break this milestone into smaller steps<br>to track your progress.
+        </p>
+        <button class="dashboards-steps-empty-add-button js-dashboards-steps-empty-add-button" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="M12 5v14"/>
+          </svg>
+          <span>Add Step</span>
+        </button>
+      </div>
+    `;
+
+    attachDashboardEmptyAddStepButton(currentMilestone);
+    return;
+  }
+
+  badge.style.display = 'inline-flex';
+  badge.textContent = `${steps.filter(s => s.completed).length} / ${steps.length} Completed`;
+
+  let stepHTML = '';
 
   steps.forEach(step => {
     stepHTML += `
@@ -972,12 +1087,26 @@ function updateDashboardSteps() {
         </svg>
       </button>
     </div>`
-  })
+  });
 
-  document.querySelector('.js-dashboard-steps-container').innerHTML = stepHTML;
+  container.innerHTML = stepHTML;
 
   attachDashboardStepsCheckbox(steps);
   updateDashboardStepsCheckbox(steps);
+}
+
+function attachDashboardEmptyAddStepButton(currentMilestone) {
+  const button = document.querySelector('.js-dashboards-steps-empty-add-button');
+  if (button) {
+    button.addEventListener('click', () => {
+      const id = crypto.randomUUID();
+      currentMilestone.steps.push(new Step(id));
+      saveToStorage();
+      renderMilestoneCards(stage.milestones);
+      expandMilestoneCard(currentMilestone.id);
+      updateDashboard();
+    });
+  }
 }
 
 function attachDashboardStepsCheckbox(steps) {
@@ -1010,10 +1139,6 @@ function updateDashboardStepsCheckbox(steps) {
 }
 
 function updateDashboardTasks() {
-
-   if (stage.milestones.length === 0) {
-    return;
-  }
 
   const totalTasksCount = getStageTask(stage).totalCount;
   const completedTasksCount = getStageTask(stage).completedCount;
@@ -1097,10 +1222,6 @@ function updateDashboardTaskCheckbox(tasks) {
 }
 
 function updateDashboardOverallProgress() {
-
-   if (stage.milestones.length === 0) {
-    return;
-  }
 
   const milestoneCount = stage.milestones.length;
   const totalMilestoneProgress = stage.milestones.reduce((accumulator, milestone) => accumulator + getMilestoneProgress(milestone), 0);
