@@ -925,6 +925,10 @@
     flex-direction: column;
 }
 
+.dashboard-current-focus {
+  width: 25rem;
+}
+
   .dashboard-current-milestone {
     margin-right: 0.5rem;
   }
