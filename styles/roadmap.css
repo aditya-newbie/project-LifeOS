@@ -13,7 +13,7 @@ body{
   height: 14em;
   width: 60rem;
   padding: 2rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
   border-radius: 0.6rem;
   background-color: white;
   position: relative;
@@ -95,7 +95,7 @@ body{
   width: 20rem;
   display: flex;
   padding: 1rem;
-  border: solid 0.7px rgb(201, 201, 201);
+  border: solid 0.04375rem rgb(201, 201, 201);
   border-radius: 1rem;
 }
 
@@ -134,7 +134,7 @@ body{
 
 .milestone-container {
   margin-top: 1.8rem;
-  box-shadow: 0px -3px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem -0.1875rem 0.25rem rgba(0, 0, 0, 0.15);
   border-radius: 0.6rem;
   background-color: white;
   width: 62rem;
@@ -183,17 +183,17 @@ body{
   display: inline-block;
   height: 1rem;
   width: 1rem;
-  border: solid 2.6px rgb(71, 71, 71);
+  border: solid 0.1625rem rgb(71, 71, 71);
   border-radius: 50%;
 }
 
 .milestone-visual-checkbox.in-progress {
-  border: solid 4.4px rgb(0, 53, 228);
+  border: solid 0.275rem rgb(0, 53, 228);
 }
 
 .milestone-visual-checkbox.completed {
   background-color: rgb(0, 211, 0);
-  border: solid 4px rgb(0, 211, 0);
+  border: solid 0.25rem rgb(0, 211, 0);
   position: relative;
 } 
 
@@ -223,7 +223,7 @@ body{
 .milestone-detials-and-step-cards-container {
   display: flex;
   flex-direction: column;
-  border: solid 1px rgb(231, 231, 231);
+  border: solid 0.0625rem rgb(231, 231, 231);
   border-radius: 0.4rem;
 }
 
@@ -269,7 +269,7 @@ body{
   flex-direction: column;
   background-color: white;
   border-radius: 0.3rem;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0rem 0rem 0.3125rem rgba(0, 0, 0, 0.1);
   opacity: 0;
   transition: 
   opacity 0.15s;
@@ -345,7 +345,7 @@ body{
   min-height: 0;
   display: flex;
   flex-direction: column;
-  border: solid 1px rgb(231, 231, 231);
+  border: solid 0.0625rem rgb(231, 231, 231);
   border-radius: 0.4rem;
 }
 .step {
@@ -364,7 +364,7 @@ body{
     left: 0;
     top: 0;
     width: 100%;
-    height: 1px;
+    height: 0.0625rem;
 
     background: linear-gradient(
         to left,
@@ -379,7 +379,7 @@ body{
   display: inline-block;
   height: 1rem;
   width: 1rem;
-  border: solid 1px gray;
+  border: solid 0.0625rem gray;
   border-radius: 10%;
   margin-right: 1rem;
 }
@@ -429,14 +429,14 @@ body{
   justify-content: center;
   align-items: center;
   border: none;
-  border-top: solid 1px rgb(201, 201, 201);
+  border-top: solid 0.0625rem rgb(201, 201, 201);
   background-color: white;
   color: blue;
 }
 
 .add-milestone-popup {
-  border: groove 0.4px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border: groove 0.025rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
   border-radius: 0.6rem;
   padding: 2rem;
   width: 22.5rem;
@@ -517,7 +517,7 @@ body{
   width: 22.5rem;
   height: 1.8rem;
   border-radius: 0.4rem;
-  border: solid 1px rgb(190, 190, 190);
+  border: solid 0.0625rem rgb(190, 190, 190);
   outline: none;
 }
 
@@ -553,7 +553,7 @@ body{
   height: 4rem;
   resize: none;
   border-radius: 0.4rem;
-  border: solid 1px rgb(190, 190, 190);
+  border: solid 0.0625rem rgb(190, 190, 190);
   outline: none;
   font-family: arial;
 }
@@ -651,7 +651,7 @@ body{
   padding: 0.4rem 1rem;
   font-weight: bold;
   color: white;
-  border: solid 1px rgb(0, 81, 255);
+  border: solid 0.0625rem rgb(0, 81, 255);
   border-radius: 999rem;
   background-color: rgb(59, 121, 255);
   cursor: pointer;
@@ -744,7 +744,7 @@ body{
   width: 17rem;
   background-color: white;
   border-radius: 0.7rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
 
@@ -825,7 +825,7 @@ body{
   display: inline-block;
   height: 0.85rem;
   width: 0.85rem;
-  border: solid 1px gray;
+  border: solid 0.0625rem gray;
   border-radius: 10%;
   margin-right: 1rem;
   margin-left: 0.5rem;
@@ -899,7 +899,7 @@ body{
   padding: 0.2rem 0.6rem;
   font-weight: bold;
   color: white;
-  border: solid 1px rgb(0, 81, 255);
+  border: solid 0.0625rem rgb(0, 81, 255);
   border-radius: 999rem;
   background-color: rgb(59, 121, 255);
   font-size: 0.6rem;
@@ -976,7 +976,7 @@ body{
   width: 16rem;
   background-color: white;
   border-radius: 0.7rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
 
   margin-top: 1.25rem;
   padding: 0.6rem;
@@ -1050,7 +1050,7 @@ body{
 .progress-box-steps-count + .progress-box-task-progress::before{
   content: "";
   height: 95%;
-  width: 1px;
+  width: 0.0625rem;
   position: absolute;
   top: 0.35rem;
   left: -0.5rem;
@@ -1149,8 +1149,8 @@ body{
 }
 
 .progress-box-task-progress-ring {
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   position: relative;
   margin-top: 1.9rem;
@@ -1175,11 +1175,11 @@ body{
 .progress-box-task-progress-center {
     position: absolute;
 
-    width: 62px;
-    height: 62px;
+    width: 3.875rem;
+    height: 3.875rem;
 
-    top: 9px;
-    left: 9px;
+    top: 0.5625rem;
+    left: 0.5625rem;
 
     border-radius: 50%;
     background: white;
@@ -1210,7 +1210,7 @@ body{
 
 .progress-box-stats::after {
   content: "";
-  height: 1px;
+  height: 0.0625rem;
   width: 100%;
   position: absolute;
   bottom: 0rem;
@@ -1272,7 +1272,7 @@ body{
   -moz-appearance: none;
   appearance: none;
   border: none;
-  border-radius: 9999px;
+  border-radius: 9999rem;
   background-color: #E8E5F8;
   overflow: hidden;
   display: block;
@@ -1280,7 +1280,7 @@ body{
 
 .overall-progress-bar::-webkit-progress-bar {
   background-color: #E8E5F8;
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .overall-progress-bar::-webkit-progress-value {
@@ -1289,7 +1289,7 @@ body{
     #5AD68A,
     #5BA8E8
   );
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .overall-progress-bar::-moz-progress-bar {
@@ -1298,7 +1298,7 @@ body{
     #5AD68A,
     #5BA8E8
   );
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .progress-dashboard {
@@ -1319,8 +1319,8 @@ body{
   box-sizing: border-box;
   padding: 0.5rem 1rem;
   background-color: rgb(250, 248, 252);
-  border-top: solid 1px rgb(220, 220, 220);
-  border-bottom: solid 1px rgb(220, 220, 220);
+  border-top: solid 0.0625rem rgb(220, 220, 220);
+  border-bottom: solid 0.0625rem rgb(220, 220, 220);
   margin-bottom: 2rem;
 }
 
@@ -1374,7 +1374,7 @@ body{
 .dashboard-empty-card {
   width: 100%;
   background-color: white;
-  border: 1px solid rgb(238, 238, 242);
+  border: 0.0625rem solid rgb(238, 238, 242);
   border-radius: 1rem;
   padding: 4.5rem 2rem 5rem;
   display: flex;
@@ -1386,7 +1386,7 @@ body{
 }
 
 .dashboard-empty-illustration {
-  width: 380px;
+  width: 23.75rem;
   max-width: 100%;
   height: auto;
   margin-bottom: 1.5rem;
@@ -1419,7 +1419,7 @@ body{
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25);
+  box-shadow: 0 0.125rem 0.375rem rgba(79, 70, 229, 0.25);
   transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -1440,7 +1440,7 @@ body{
   height: 21rem;
   background-color: rgb(252, 252, 252);
   border-radius: 0.7rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   padding: 1.25rem;
   display: inline-block;
@@ -1516,8 +1516,8 @@ body{
 }
 
 .current-milestone-completed-illustration {
-  width: 100px;
-  height: 80px;
+  width: 6.25rem;
+  height: 5rem;
   margin-bottom: 0.75rem;
 }
 
@@ -1636,7 +1636,7 @@ body{
   -moz-appearance: none;
   appearance: none;
   border: none;
-  border-radius: 9999px;
+  border-radius: 9999rem;
   background-color: #E8E5F8;
   overflow: hidden;
   display: block;
@@ -1644,17 +1644,17 @@ body{
 
 .current-milestone-progress-bar::-webkit-progress-bar {
   background-color: #E8E5F8;
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .current-milestone-progress-bar::-webkit-progress-value {
   background: linear-gradient(to right, #3b82f6, blueviolet);
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .current-milestone-progress-bar::-moz-progress-bar {
   background: linear-gradient(to right, #3b82f6, blueviolet);
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .dashboards-steps-badge {
@@ -1679,8 +1679,8 @@ body{
 }
 
 .dashboards-steps-empty-illustration {
-  width: 140px;
-  height: 96px;
+  width: 8.75rem;
+  height: 6rem;
 }
 
 .dashboards-steps-empty-title {
@@ -1710,7 +1710,7 @@ body{
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(79, 53, 232, 0.2);
+  box-shadow: 0 0.125rem 0.25rem rgba(79, 53, 232, 0.2);
   transition: background-color 0.2s;
 }
 
@@ -1742,14 +1742,14 @@ body{
   top: 0;
   right: 0.6rem;
   width: 88%;
-  height: 1px;
+  height: 0.0625rem;
   background-color: rgb(230, 230, 230);
 }
 
 .dashboard-checkbox {
   width: 1.15rem;
   height: 1.15rem;
-  border: solid 1.5px rgb(180, 180, 180);
+  border: solid 0.09375rem rgb(180, 180, 180);
   border-radius: 0.25rem;
   display: flex;
   align-items: center;
@@ -1805,7 +1805,7 @@ body{
   height: 10.5rem;
   background-color: rgb(252, 252, 252);
   border-radius: 0.7rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   padding: 1.25rem;
   margin-top: 1.5rem;
@@ -1844,7 +1844,7 @@ body{
   position: absolute;
   top: 5%;
   height: 90%;
-  width: 1px;
+  width: 0.0625rem;
   background-color: rgb(225, 225, 225);
 }
 
@@ -1925,7 +1925,7 @@ body{
   left: 0;
   top: 15%;
   height: 80%;
-  width: 1px;
+  width: 0.0625rem;
   background-color: rgb(225, 225, 225);
 }
 
@@ -2020,8 +2020,8 @@ body{
 }
 
 .dashboard-task-progress-ring {
-  width: 110px;
-  height: 110px;
+  width: 6.875rem;
+  height: 6.875rem;
   border-radius: 50%;
   position: relative;
   background-color: #E8E5F8;
@@ -2042,10 +2042,10 @@ body{
 
 .dashboard-task-progress-center {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  top: 10px;
-  left: 10px;
+  width: 5.625rem;
+  height: 5.625rem;
+  top: 0.625rem;
+  left: 0.625rem;
   border-radius: 50%;
   background: white;
 }
@@ -2085,7 +2085,7 @@ body{
   height: 33rem;
   background-color: rgb(252, 252, 252);
   border-radius: 0.7rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   padding: 1.25rem;
 }
@@ -2161,7 +2161,7 @@ body{
 .dashboard-overall-progress-header-bottom {
   width: 100%;
   padding-bottom: 1.5rem;
-  border-bottom: solid 0.1px rgb(220, 220, 220);
+  border-bottom: solid 0.00625rem rgb(220, 220, 220);
 }
 
 .dashboard-overall-progress-bar {
@@ -2171,7 +2171,7 @@ body{
   -moz-appearance: none;
   appearance: none;
   border: none;
-  border-radius: 9999px;
+  border-radius: 9999rem;
   background-color: #E8E5F8;
   overflow: hidden;
   display: block;
@@ -2179,7 +2179,7 @@ body{
 
 .dashboard-overall-progress-bar::-webkit-progress-bar {
   background-color: #E8E5F8;
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .dashboard-overall-progress-bar::-webkit-progress-value {
@@ -2188,7 +2188,7 @@ body{
     #5AD68A,
     #5BA8E8
   );
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .dashboard-overall-progress-bar::-moz-progress-bar {
@@ -2197,7 +2197,7 @@ body{
     #5AD68A,
     #5BA8E8
   );
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .milestone-progress {
@@ -2259,7 +2259,7 @@ body{
   margin-right: 0.5rem;
   background-color: white;
   border-radius: 0.6rem;
-  border: solid 1px rgb(245, 245, 245);
+  border: solid 0.0625rem rgb(245, 245, 245);
   padding: 0.85rem 1rem;
   display: flex;
   align-items: center;
@@ -2296,7 +2296,7 @@ body{
   -moz-appearance: none;
   appearance: none;
   border: none;
-  border-radius: 9999px;
+  border-radius: 9999rem;
   background-color: #E8E5F8;
   overflow: hidden;
   display: block;
@@ -2304,7 +2304,7 @@ body{
 
 .dashboard-overall-milestone-bar::-webkit-progress-bar {
   background-color: #E8E5F8;
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .dashboard-overall-milestone-bar::-webkit-progress-value {
@@ -2313,7 +2313,7 @@ body{
     #5AD68A,
     #5BA8E8
   );
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .dashboard-overall-milestone-bar.current::-webkit-progress-value {
@@ -2326,7 +2326,7 @@ body{
     #5AD68A,
     #5BA8E8
   );
-  border-radius: 9999px;
+  border-radius: 9999rem;
 }
 
 .dashboard-overall-milestone-bar.current::-moz-progress-bar {
@@ -2341,7 +2341,7 @@ body{
   display: inline-flex;
   align-items: center;
   position: relative;
-  top: -1px;
+  top: -0.0625rem;
   white-space: nowrap;
 }
 

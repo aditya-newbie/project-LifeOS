@@ -1,15 +1,15 @@
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   body {
     padding: 3.5rem 0.2rem;
   }
 
   p {
-    margin: 0px;
+    margin: 0rem;
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 100rem) {
   html {
-    font-size: 22.5px;
+    font-size: 1.40625rem;
   }
 }

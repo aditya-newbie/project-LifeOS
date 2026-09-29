@@ -1,4 +1,4 @@
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   .stage-details {
     column-gap: 0.75rem;
 
@@ -125,11 +125,11 @@
   .milestone-visual-checkbox {
     height: 0.375rem;
     width: 0.375rem;
-    border: solid 1.5px rgb(71, 71, 71);
+    border: solid 0.09375rem rgb(71, 71, 71);
   }
 
   .milestone-visual-checkbox.in-progress {
-    border: solid 2px rgb(0, 53, 228);
+    border: solid 0.125rem rgb(0, 53, 228);
   }
 
   .milestone-visual-checkbox .checkmark-icon {
@@ -175,7 +175,7 @@
   }
 
   .expand-milestone-icon {
-    width: 10px;
+    width: 0.625rem;
   }
 
   .milestone-menu-button {
@@ -184,7 +184,7 @@
   }
 
   .milestone-three-dot {
-    height: 10px;
+    height: 0.625rem;
   }
 
   .milestone-menu-popup {
@@ -833,18 +833,18 @@
   }
 
   .progress-box-task-progress-ring {
-    width: 52px;
-    height: 52px;
+    width: 3.25rem;
+    height: 3.25rem;
     margin-top: 1.25rem;
     margin-left: auto;
     margin-right: auto;
   }
 
   .progress-box-task-progress-center {
-    width: 40px;
-    height: 40px;
-    top: 6px;
-    left: 6px;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 0.375rem;
+    left: 0.375rem;
   }
 
   .progress-box-task-progress-stats {
@@ -1057,8 +1057,8 @@
   }
 
   .current-milestone-completed-illustration {
-    width: 38px;
-    height: 30px;
+    width: 2.375rem;
+    height: 1.875rem;
     margin-bottom: 0.2rem;
   }
 
@@ -1114,8 +1114,8 @@
   }
 
   .dashboards-steps-empty-illustration {
-    width: 48px;
-    height: 34px;
+    width: 3rem;
+    height: 2.125rem;
   }
 
   .dashboards-steps-empty-title {
@@ -1137,8 +1137,8 @@
   }
 
   .dashboards-steps-empty-add-button svg {
-    width: 8px;
-    height: 8px;
+    width: 0.5rem;
+    height: 0.5rem;
   }
 
   .dashboard-task {
@@ -1268,7 +1268,7 @@
     position: absolute;
     top: 5%;
     height: 90%;
-    width: 1px;
+    width: 0.0625rem;
     background-color: rgb(225, 225, 225);
   }
 
@@ -1352,8 +1352,8 @@
   }
 
   .dashboard-task-progress-ring {
-    width: 72px;
-    height: 72px;
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 50%;
     position: relative;
     background-color: #E8E5F8;
@@ -1362,10 +1362,10 @@
 
   .dashboard-task-progress-center {
     position: absolute;
-    width: 58px;
-    height: 58px;
-    top: 7px;
-    left: 7px;
+    width: 3.625rem;
+    height: 3.625rem;
+    top: 0.4375rem;
+    left: 0.4375rem;
     border-radius: 50%;
     background: white;
   }
@@ -1466,12 +1466,12 @@
   .dashboard-overall-progress-header-bottom {
     width: 100%;
     padding-bottom: 0.45rem;
-    border-bottom: solid 1px rgb(230, 230, 230);
+    border-bottom: solid 0.0625rem rgb(230, 230, 230);
   }
 
   .dashboard-overall-progress-bar {
     height: 0.45rem;
-    border-radius: 9999px;
+    border-radius: 9999rem;
   }
 
   .milestone-progress {
@@ -1530,7 +1530,7 @@
     margin-right: 0.15rem;
     padding: 0.4rem 0.5rem;
     border-radius: 0.3rem;
-    border: solid 1px rgb(240, 240, 240);
+    border: solid 0.0625rem rgb(240, 240, 240);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1567,7 +1567,7 @@
     flex: 1;
     width: auto;
     height: 0.4rem;
-    border-radius: 9999px;
+    border-radius: 9999rem;
   }
 
   .dashboard-overall-milestone-progress .milestone-progress-percentage {
